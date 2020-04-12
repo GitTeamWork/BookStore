@@ -1,16 +1,17 @@
-var express = require('express');
+var express = require("express");
 var app = express();
-var bodyParser = require('body-parser');
+var bodyParser = require("body-parser");
 var userController = require("./api/controllers/user.controller")
 
-
+app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.set("view engine","ejs");
 // route mặc định 
 app.get('/', function (req, res) {
-    return res.send({ error: true, message: 'hello' })
+    res.render("index");
 });
 
 app.get('/userList', function (req, res) {
