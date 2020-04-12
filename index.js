@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var userController = require("./api/controllers/user.controller")
 
-app.use("/assets", express.static(__dirname+"           /public"));
+app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
