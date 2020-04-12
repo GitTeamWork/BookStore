@@ -24,7 +24,7 @@ function getUser(req, res, userId) {
         res.end();
     });
 }
-async function login(email, password, res) {
+function login(email, password, res) {
     try {
         var sql= `select * from [User] where email= '${email}' and password= '${password}'`;
         console.log(sql);
@@ -39,7 +39,7 @@ async function login(email, password, res) {
         res.json(error)
     }
 }
-async function signup(reqBody, res) {
+function signup(reqBody, res) {
     try {
         let { email, username, password } = reqBody;
         var sql = `INSERT INTO [User](email, username, password) VALUES  ('${email}', '${username}', '${password}')`;
