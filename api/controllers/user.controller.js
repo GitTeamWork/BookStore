@@ -12,7 +12,7 @@ function userList(req, res) {
 };
 
 function getUser(req, res, userId) {
-    var sql = `SELECT * from [User] where username= '${userId}'`;
+    var sql = `SELECT * from [User] where userId= '${userId}'`;
     console.log(sql);
 
     db.executeSql(sql, function (data, err) {
@@ -24,12 +24,9 @@ function getUser(req, res, userId) {
         res.end();
     });
 }
-async function login(username, password, res) {
+async function login(email, password, res) {
     try {
-        //let {username} = reqBody;
-        //console.log({username});
-        var sql= `select * from [User] where username= '${username}' and password= '${password}'`;
-        console.log({ sql});
+        var sql= `select * from [User] where email= '${email}' and password= '${password}'`;
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
@@ -41,12 +38,10 @@ async function login(username, password, res) {
         res.json(error)
     }
 }
-async function CreateUser(reqBody, res) {
+async function signup(reqBody, res) {
     try {
         let { email, username, password } = reqBody;
-        console.log({ email, username, password });
         var sql = `INSERT INTO [User](email, username, password) VALUES  ('${email}', '${username}', '${password}')`;
-        console.log({ sql });
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
@@ -59,10 +54,45 @@ async function CreateUser(reqBody, res) {
     }
 
 };
+function updateUser(reqBody, res, userId){
+    try {
+        if (!reqBody) throw new Error("input not valid");
+        let { fullname, phone } = reqBody;
+        var sql = `UPDATE [User] SET fullname= '${fullname}' , phone= '${phone}' WHERE userId= ${userId}`
+        console.log({ sql});
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                return res.json({data: { fullname, phone }});
+            }
+            return res.json({ message: 'that bai' });
+        })
+    } catch (error) {
+        
+    }
+}
+
+function delUser(userId, res){
+    try {
+        var sql = `DELETE FROM [User] WHERE userId = ${userId}`;
+        console.log({ sql});
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                return res.json({message: 'thanhcong'});
+            }
+            return res.json({ message: 'that bai' });
+        })
+    } catch (error) {
+        
+    }
+}
 module.exports = {
     userList: userList,
     getUser: getUser,
     login: login,
-    CreateUser: CreateUser,
+    signup: signup,
+    updateUser: updateUser,
+    delUser: delUser,
 }
 //exports.userList = userList;
