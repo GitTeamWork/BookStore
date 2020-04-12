@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var userController = require("./api/controllers/user.controller")
 
-app.use("/assets", express.static(__dirname+"/public"));
+app.use("/assets", express.static(__dirname+"           /public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
 app.set("view engine","ejs");
 // route mặc định 
 app.get('/', function (req, res) {
-    res.render("index");
+    res.render("index1");
 });
 
 app.get('/userList', function (req, res) {
