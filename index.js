@@ -26,7 +26,7 @@ app.get('/login', function (req, res) {
     userController.login(email, password, res);
 
 })
-app.post('/createUser', (req, res) => {
+app.post('/signup', (req, res) => {
     let { email, username, password } = req.body;
     console.log({ body: req.body });
     console.log({ email, username, password });
