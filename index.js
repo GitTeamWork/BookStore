@@ -11,9 +11,11 @@ app.use(bodyParser.urlencoded({
 app.set("view engine","ejs");
 // route mặc định 
 app.get('/', function (req, res) {
-    res.render("index1");
+    res.render("index");
 });
-
+app.get('/home', function (req, res) {
+    res.render("home");
+});
 app.get('/userList', function (req, res) {
     userController.userList(req, res)
 });
