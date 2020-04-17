@@ -16,9 +16,6 @@ app.get('/', function (req, res) {
 app.get('/home', function (req, res) {
     res.render("home");
 });
-app.get('/home', function (req, res) {
-    res.render("home");
-});
 
 app.get('/userList', function (req, res) {
     userController.userList(req, res)
