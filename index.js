@@ -3,7 +3,7 @@ var app = express();
 var bodyParser = require("body-parser");
 var userController = require("./api/controllers/user.controller")
 var productController = require("./api/controllers/product.controller")
-
+var cataController = require("./api/controllers/catalog.controller")
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -23,7 +23,7 @@ app.get('/login', function (req, res) {
 
 // remote method ===================
 //user
-app.get('/api/user-list', function (req, res) {
+app.get('/api/userList', function (req, res) {
     userController.userList(req, res)
 });
 app.get('/api/user/:id', function (req, res, userId) {
@@ -51,25 +51,36 @@ app.put('/api/updateUser/:id', function(req, res){
     userController.updateUser(reqBody, res, userId);
     
 })
-app.delete('/api/user/:id', function(req, res){
+app.delete('/api/delUser/:id', function(req, res){
     let userId = req.params.id;
     userController.delUser(userId, res);
 })
+// catalog
+app.get("/api/cataList", function(req, res){
+    cataController.cataList(req, res);
+})
+app.post("/api/addCate", function(req, res){
+    cataController.addCata(req, res);
+})
+app.put("/api/updateCata/:id", function(req, res){
+    cataController.updateCata(req, res);
+})
+app.delete("/api/delCata/:id", function(req, res){
+    cataController.delCata(req, res);
+})
 // production
-app.get('/api/products/list', function (req, res) {
+app.get('/api/productList', function (req, res) {
     productController.productList(req, res)
 });
-app.post('/api/products/post', function(req, res) {
-    let { email, username, password } = req.body;
-    console.log({ body: req.body });
-    console.log({ email, productName, price ,image,detail  , inventory , catalodId ,publisherId });
-    let reqBody = {email, productName, price ,image,detail  , inventory , catalodId ,publisherId };
-    userController.signup(reqBody, res);
+app.post('/api/addProduct', function(req, res) {
+    // let { email, username, password } = req.body;
+    // console.log({ body: req.body });
+    // console.log({ email, productName, price ,image,detail  , inventory , catalodId ,publisherId });
+    // let reqBody = {email, productName, price ,image,detail  , inventory , catalodId ,publisherId };
+    //userController.signup(reqBody, res);
     // const result= CreateUser(reqBody,res);
+    productController.addProduct(req, res);
 })
-// app.post('/api/products/add', function (req, res) {
-//     userController.userList(req, res)
-// });
 
 // chỉnh port
 const post = process.env.PORT || 9000;

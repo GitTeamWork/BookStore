@@ -10,16 +10,18 @@ function productList(req, res) {
         res.end();
     });
 };
-function post(reqBody, res) {
+function addProduct(req, res) {
     try {
-        let { email, username, password } = reqBody;
-        var sql = `INSERT INTO [User](productId, productName, price, image, detail, inventory, catalodId, publisherId) VALUES  
-        ('${productId}', '${productName}', '${price}', '${image} , '${detail}', '${inventory}', '${catalodId}', '${publisherId}'')`;
+        let {productName, price, image, detail, inventory, catalogId, publisherId } = req.body;
+        var sql = `INSERT INTO [Product] (productName, price, image, detail, inventory, catalogId, publisherId) VALUES  
+        ('${productName}', ${price}, '${image}' , '${detail}', ${inventory}, ${catalogId}, ${publisherId})`;
+        console.log({ productName, price, image, detail, inventory, catalogId, publisherId })
+        console.log(sql);
         
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Them thanh cong', data: { email, productName, price ,image,detail  , inventory , catalodId ,publisherId} });
+                return res.json({ message: 'Them thanh cong', data: {productName, price ,image,detail  , inventory , catalogId ,publisherId} });
             }
             return res.json({ message: 'Them that bai' });
         })
@@ -32,6 +34,7 @@ function post(reqBody, res) {
 
 
 module.exports = {
-    productList,
+    productList: productList,
+    addProduct: addProduct,
 }
 //exports.userList = userList;
