@@ -11,11 +11,11 @@
 </head>
 <body>
     <div id="login">
-        <form>
+        <form id="form-login">
           <h1>Sign In</h1>
-          <input type="text" placeholder="Username">
-          <input type="password" placeholder="Password">
-          <button>Sign in</button>
+          <input type="text" placeholder="Username" name="username" id="username">
+          <input type="password" placeholder="Password" name="password" id="password">
+          <button type="submit">Sign in</button>
           <a href="">Create account ?</a>
         </form>
       </div>
@@ -28,6 +28,9 @@
         </form>
       </div>
       </div>
+
+      <script src="assets/libs/jquery.min.js"></script>
+      <script src="assets/js/login-page.js"></script>
 </body>
 </html>
 

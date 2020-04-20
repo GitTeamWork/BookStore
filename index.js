@@ -30,11 +30,10 @@ app.get('/api/user/:id', function (req, res, userId) {
     let userid = req.params.id;
     userController.getUser(req, res, userid);
 })
-app.get('/api/login', function (req, res) {
-    let email = req.query.email;
-    let password = req.query.password;
+app.post('/api/login', function (req, res) {
+    let email = req.body.email;
+    let password = req.body.password;
     userController.login(email, password, res);
-
 })
 app.post('/api/signup', function(req, res) {
     let { email, username, password } = req.body;
@@ -67,6 +66,19 @@ app.put("/api/updateCata/:id", function(req, res){
 })
 app.delete("/api/delCata/:id", function(req, res){
     cataController.delCata(req, res);
+})
+//publisher
+app.get("/api/publisher", function(req, res){
+    publisherController.publisherList(req, res);
+})
+app.post("/api/addpublisher", function(req, res){
+    publisherController.addpublisher(req, res);
+})
+app.put("/api/updatepublisher/:id", function(req, res){
+    publisherController.updatepublisher(req, res);
+})
+app.delete("/api/delpublisher/:id", function(req, res){
+    publisherController.delpublisher(req, res);
 })
 // production
 app.get('/api/productList', function (req, res) {

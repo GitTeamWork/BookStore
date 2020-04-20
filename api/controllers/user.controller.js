@@ -26,12 +26,12 @@ function getUser(req, res, userId) {
 }
 function login(email, password, res) {
     try {
-        var sql= `select * from [User] where email= '${email}' and password= '${password}'`;
+        var sql= `select * from [User] where email='${email}' and password='${password}'`;
         console.log(sql);
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Dang nhap thanh cong' });
+                return res.json({ message: 'Dang nhap thanh cong', data: {email} });
             }
             return res.json({ message: 'Dang nhap that bai' });
         })
