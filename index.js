@@ -72,6 +72,10 @@ app.delete("/api/delCata/:id", function(req, res){
 app.get('/api/productList', function (req, res) {
     productController.productList(req, res)
 });
+app.get('api/getProduct/:id', function(req, res){
+    let productid = req.params.id;
+    productController.getProduct(req, res, productid);
+})
 app.post('/api/addProduct', function(req, res) {
     // let { email, username, password } = req.body;
     // console.log({ body: req.body });
@@ -81,7 +85,13 @@ app.post('/api/addProduct', function(req, res) {
     // const result= CreateUser(reqBody,res);
     productController.addProduct(req, res);
 })
+app.put("/api/updateProduct/:id", function(req, res){
+    productController.updateProduct(req, res);
+})
 
+app.delete("/api/delProduct/:id", function(req, res){
+    productController.delProduct(req, res);
+})
 // chỉnh port
 const post = process.env.PORT || 9000;
 app.listen(post, function () {
