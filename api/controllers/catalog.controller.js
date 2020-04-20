@@ -16,6 +16,7 @@ function cataList(req, res) {
     }
 }
 
+
 function addCata(req, res){
     try {
         let cataName = req.body.cata;
