@@ -1,4 +1,3 @@
-  
 var db = require("../db");
 
 function cataList(req, res) {
@@ -16,6 +15,7 @@ function cataList(req, res) {
         console.log(error);
     }
 }
+
 
 function addCata(req, res){
     try {
