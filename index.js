@@ -71,7 +71,7 @@ app.delete("/api/delCata/:id", function(req, res){
     cataController.delCata(req, res);
 })
 //publisher
-app.get("/api/publisher", function(req, res){
+app.get("/api/publisherList", function(req, res){
     publisherController.publisherList(req, res);
 })
 app.post("/api/addpublisher", function(req, res){

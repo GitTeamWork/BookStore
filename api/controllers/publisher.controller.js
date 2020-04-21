@@ -2,7 +2,7 @@ var db = require("../db");
 
 function publisherList(req, res) {
     try {
-        var sql = `SELECT * FROM [publisher]`;
+        var sql = `SELECT * FROM [Publisher]`;
         db.executeSql(sql, function (data, err) {
             if (err) {
                 res.json(err);
@@ -19,7 +19,7 @@ function publisherList(req, res) {
 
 function addpublisher(req, res){
     try {
-        let cataName = req.body.cata;
+        let cataName = req.body.publisherName;
         var sql = ` INSERT INTO [publisher] VALUES ('${publisherName}') `;
         console.log(sql);
         
@@ -41,7 +41,7 @@ function updatepublisher(req, res){
     try {
         let cataId = req.params.id;
         let cataName = req.body.cata;
-        var sql = ` UPDATE [publisher] SET catalogName = '${publisherName}' WHERE catalogId = ${publisherId}`;
+        var sql = ` UPDATE [Publisher] SET publisherName = '${publisherName}' WHERE publisherId = ${publisherId}`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
@@ -61,7 +61,7 @@ function updatepublisher(req, res){
 function delpublisher(req, res){
     try {
         let cataId = req.params.id;
-        var sql = ` DELETE FROM [publisher] WHERE catalogId = ${publisherId}`;
+        var sql = ` DELETE FROM [publisher] WHERE publisherId = ${publisherId}`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
