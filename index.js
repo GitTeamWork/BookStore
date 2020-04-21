@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var userController = require("./api/controllers/user.controller")
 var productController = require("./api/controllers/product.controller")
 var cataController = require("./api/controllers/catalog.controller")
+var publisherController = require("./api/controllers/publisher.controller")
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
