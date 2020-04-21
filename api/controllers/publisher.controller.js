@@ -40,7 +40,7 @@ function addpublisher(req, res){
 function updatepublisher(req, res){
     try {
         let publisherId = req.params.id;
-        let publisherName = req.body.cata;
+        let publisherName = req.body.Name;
         var sql = ` UPDATE [Publisher] SET publisherName = '${publisherName}' WHERE publisherId = ${publisherId}`;
         console.log(sql);
         
