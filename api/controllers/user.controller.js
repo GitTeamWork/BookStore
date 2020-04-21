@@ -46,7 +46,7 @@ function signup(reqBody, res) {
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Them thanh cong', data: { email, username } });
+                return res.json({ message: 'create account success', data: { email, username } });
             }
             return res.json({ message: 'Them that bai' });
         })
