@@ -24,7 +24,31 @@ app.get('/login', function (req, res) {
 app.get('/register', function (req, res) {
     res.render("register");
 });
-
+// router-admin
+app.get('/catalog-admin', function (req, res) {
+    res.render("catalog-admin");
+});
+app.get('/comment-admin', function (req, res) {
+    res.render("comment-admin");
+});
+app.get('/index-admin', function (req, res) {
+    res.render("index-admin");
+});
+app.get('/order-admin', function (req, res) {
+    res.render("order-admin");
+});
+app.get('/orderdetail-admin', function (req, res) {
+    res.render("comment-admin");
+});
+app.get('/product-admin', function (req, res) {
+    res.render("Product-admin");
+});
+app.get('/publisher-admin', function (req, res) {
+    res.render("publisher-admin");
+});
+app.get('/user-admin', function (req, res) {
+    res.render("user-admin");
+});
 // remote method ===================
 //user
 app.get('/api/userList', function (req, res) {
