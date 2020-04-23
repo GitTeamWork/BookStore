@@ -24,5 +24,8 @@ route.get('/publisher-admin', function (req, res) {
 route.get('/user-admin', function (req, res) {
     res.render("admin/user-admin");
 });
+route.get('/addproduct-admin', function (req, res) {
+    res.render("admin/addproduct-admin");
+});
 
 module.exports = route;

@@ -41,7 +41,7 @@ const LoadProduct = () => {
                           <td>${item.inventory}</td>
                           <td>${item.catalogId}</td>
                           <td>${item.publisherId}</td>
-                          <td><button id="delete" onclick="deleteProduct(${item.productId})" >Delete</button></td>
+                          <td><button onclick="deleteProduct(${item.productId})" >Delete</button></td>
                           <td><button id="update">Update</button></td>
                           <td><button id ="add" >Add</button></td>
                    </tr>
