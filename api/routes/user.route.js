@@ -3,10 +3,10 @@ var route = require("express").Router();
 
 
 route.get('/login', function (req, res) {
-    res.render("login");
+    res.render("user/login");
 });
 route.get('/register', function (req, res) {
-    res.render("register");
+    res.render("user/register");
 });
 route.get('/api/userList', function (req, res) {
     userController.userList(req, res)
