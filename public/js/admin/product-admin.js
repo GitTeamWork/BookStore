@@ -42,7 +42,7 @@ const LoadProduct = () => {
                           <td>${item.catalogId}</td>
                           <td>${item.publisherId}</td>
                           <td><button onclick="deleteProduct(${item.productId})" >Delete</button></td>
-                          <td><button id="update">Update</button></td>
+                          <td><button>Update</button></td>
                           <td><a href="http://localhost:9000/addproduct-admin" >Add</a></td>
                    </tr>
                    `;
@@ -69,3 +69,4 @@ const deleteProduct = (idProduct) => {
     });
   }
 };
+// update
