@@ -61,16 +61,14 @@ $("#form-addpublisher").submit((e) => {
     publisherName: addpublisherName,
   };
   console.log(JSON.stringify(data));
-
   let settings = {
     async: true,
     crossDomain: true,
     url: "http://localhost:9000/api/addPublisher",
     method: "POST",
     headers: {
-      "content-type": "application/json;charset=UTF-8",
+      "content-type": "application/json",
       "cache-control": "no-cache",
-      "postman-token": "b2479ce6-e9bc-65af-1ed7-7b40dfba0b64"
     },
 
     processData: false,
@@ -78,7 +76,7 @@ $("#form-addpublisher").submit((e) => {
   };
   $.ajax(settings).done(function (response) {
     try {
-      if (response.message == 'Them thanh cong') {
+      if (response.message == 'them thanh cong') {
         //console.log(message)
         localStorage.setItem('addpublisher', JSON.stringify(response.data))
         location.assign('/publisher-admin');
