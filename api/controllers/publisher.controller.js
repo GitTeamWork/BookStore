@@ -80,7 +80,7 @@ function delPublisher(req, res){
 
 module.exports = {
     publisherList: publisherList,
-    addPblisher: addPublisher,
+    addPublisher: addPublisher,
     updatePublisher: updatePublisher,
     delPublisher: delPublisher,
 }
