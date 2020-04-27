@@ -47,10 +47,10 @@ function updatePublisher(req, res){
         db.executeSql(sql, (result) => {
             let {rowsAffected} = result;
             if (rowsAffected[0]==1){
-                res.json({message: "them thanh cong"});
+                res.json({message: "update thanh cong"});
             }
             else{
-                res.json({message: "them that bai"});
+                res.json({message: "update that bai"});
             }
         })
     } catch (error) {
