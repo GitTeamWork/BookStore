@@ -95,12 +95,14 @@
                             <li class="breadcrumb-item active">Publisher</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-body">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>.</div>
-                        </div>
-                        <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Publisher Table</div>
                             <div class="card-body">
                                 <div class="table-responsive">
+                                    <a href="http://localhost:9000/addpublisher-admin" class="buttonadd" style="float: right;
+                                    margin-left: 90px;
+                                    color: blue;
+                                    background: lightgray;
+                                    padding: 5px 10px;">Add</a>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -108,37 +110,10 @@
                                                 <th>PublisherName</th>
                                                 <th>Delete</th>
                                                 <th>Update</th>
-                                                <th>Add</th>
-                                              
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>PublisherId</th>
-                                                <th>PublisherName</th>
-                                                <th>Delete</th>
-                                                <th>Update</th>
-                                                <th>Add</th>
-                                            
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Delete</td>
-                                                <td>Update</td>
-                                                <td>Add</td>
-                                             
-                                            </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Delete</td>
-                                                <td>Update</td>
-                                                <td>Add</td>
-                                            </tr>
-                                           
+                                    
+                                        <tbody id="ShowPublisher">
                                         </tbody>
                                     </table>
                                 </div>
@@ -166,5 +141,6 @@
         <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
         <script src="assets/assets-admin/demo/datatables-demo.js"></script>
+        <script src="assets/js/admin/publisher-admin.js"></script>
     </body>
 </html>

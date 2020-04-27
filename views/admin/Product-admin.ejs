@@ -95,12 +95,17 @@
                             <li class="breadcrumb-item active">Product</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-body">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net/">official DataTables documentation</a>.</div>
-                        </div>
-                        <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>Product Table</div>
                             <div class="card-body">
                                 <div class="table-responsive">
+                                    <!-- <button class="buttonadd" style="float: right;
+                                    margin-left: 90px;
+                                    color: blue;">Add</button> -->
+                                    <a href="http://localhost:9000/addproduct-admin" class="buttonadd" style="float: right;
+                                    margin-left: 90px;
+                                    color: blue;
+                                    background: lightgray;
+                                    padding: 5px 10px;">Add</a>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
@@ -114,8 +119,6 @@
                                                 <th>PublisherId</th>
                                                 <th>Delete</th>
                                                 <th>Update</th>
-                                                <th>Add</th>
-                                             
                                             </tr>
                                         </thead>
                                        
@@ -127,7 +130,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="buttonadd">Add</button>
+                    <!-- <button class="buttonadd">Add</button> -->
                 </main>
                 
                 <footer class="py-4 bg-light mt-auto">

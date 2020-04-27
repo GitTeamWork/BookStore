@@ -1,33 +1,16 @@
-// let $test = $('#Showproduct')
-// let settings = {
-//     "async": true,
-//     "url": "/api/userList",
-//     "method": "GET",
-//     "headers": {
-//       "cache-control": "no-cache",
-//     }
-//   }
 
-// $.ajax(settings).done(function (response) {
-//     console.log(response);
-//     let str = '';
-//     response.map(function(item, index){
-//         str += `<p>${index} - ${item.email}</p>`
-//     })
-//     $test.html(str)
-// });
-
+// GET
 let $test = $("#ShowProduct");
-var settings = {
-  async: true,
-  url: "/api/productList",
-  method: "GET",
-  headers: {
-    "cache-control": "no-cache",
-  },
-};
-
 const LoadProduct = () => {
+  var settings = {
+    async: true,
+    url: "/api/productList",
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+  
   $.ajax(settings).done(function (response) {
     console.log(response);
     let str = "";
@@ -47,7 +30,7 @@ const LoadProduct = () => {
                               <button>Update</button>
                             </form>
                           </td>
-                          <td><a href="http://localhost:9000/addproduct-admin" >Add</a></td>
+                          
                    </tr>
                    `;
     });
@@ -55,6 +38,8 @@ const LoadProduct = () => {
   });
 };
 LoadProduct();
+
+//DELETE
 const deleteProduct = (idProduct) => {
   if (confirm(`Are you sure delete product id : ${idProduct}`)) {
     var settings = {
@@ -73,4 +58,118 @@ const deleteProduct = (idProduct) => {
     });
   }
 };
-// update
+
+//ADD
+$("#form-addproduct").submit((e) => {
+  e.preventDefault();
+
+  let addproductName = $("#addproductName").val();
+  let addprice = $("#addprice").val();
+  let addimage = $("#addimage").val();
+  let adddetail = $("#adddetail").val();
+  let addinventory = $("#addinventory").val();
+  let addcatalogId = $("#addcatalogId").val();
+  let addpublisherId = $("#addpublisherId").val();
+  console.log(e);
+  
+  let data = { 
+    productName: addproductName,
+    price: addprice,
+    image: addimage,
+    detail: adddetail,
+    inventory: addinventory,
+    catalogId: addcatalogId,
+    publisherId: addpublisherId,
+  };
+  console.log(JSON.stringify(data));
+  
+  let settings = {
+      async: true,
+      crossDomain: true,
+      url: "http://localhost:9000/api/addProduct",
+      method: "POST",
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+        "cache-control": "no-cache",
+        "postman-token": "b2479ce6-e9bc-65af-1ed7-7b40dfba0b64"
+      },
+      
+      processData: false,
+      data: JSON.stringify(data) ,
+  };
+    $.ajax(settings).done(function (response) {
+      try {
+          if(response.message == 'Them thanh cong'){
+              //console.log(message)
+              localStorage.setItem('addproduct', JSON.stringify(response.data))
+              location.assign('/Product-admin');
+          } else {
+              alert(response.message)
+          }
+      } catch (error) {
+          alert('Error network!!!-----------------------------------------')
+          console.log(erro);
+      }
+    });
+    });
+    
+//UPDATE
+var full_url = document.URL; // Get current url
+var url_array = full_url.split('/') // Split the string into an array with / as separator
+var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
+//alert( last_segment ); // Alert last segment
+
+$("#form-updateproduct").submit((e) => {
+    e.preventDefault();
+    
+    let updateproductName = $("#updateproductName").val();
+    let updateprice = $("#updateprice").val();
+    let updateimage = $("#updateimage").val();
+    let updatedetail = $("#updatedetail").val();
+    let updateinventory = $("#updateinventory").val();
+    let updatecatalogId = $("#updatecatalogId").val();
+    let updatepublisherId = $("#updatepublisherId").val();
+    console.log(e);
+    
+    let data = { 
+      productName: updateproductName,
+      price: updateprice,
+      image: updateimage,
+      detail: updatedetail,
+      inventory: updateinventory,
+      catalogId: updatecatalogId,
+      publisherId: updatepublisherId,
+    };
+    console.log(JSON.stringify(data));
+   
+    let settings = {
+        async: true,
+        crossDomain: true,
+       
+        url: "http://localhost:9000/api/updateProduct/"+last_segment,
+        method: "PUT",
+        headers: {
+            "content-type": "application/json",
+        },
+        
+        processData: false,
+        data: JSON.stringify(data) ,
+    };
+      $.ajax(settings).done(function (response) {
+        try {
+            if(response.message == 'update thanh cong'){
+                localStorage.setItem('update', JSON.stringify(response.data))
+                location.assign('/Product-admin');
+            } else {
+                alert(response.message)
+            }
+        } catch (error) {
+            alert('Error network!!!')
+            console.log(erro);
+        }
+    });
+});
+      
+   
+
+  
