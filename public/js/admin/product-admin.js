@@ -42,7 +42,11 @@ const LoadProduct = () => {
                           <td>${item.catalogId}</td>
                           <td>${item.publisherId}</td>
                           <td><button onclick="deleteProduct(${item.productId})" >Delete</button></td>
-                          <td><button>Update</button></td>
+                          <td>
+                            <form method="GET" action="/updateproduct-admin/${item.productId}">
+                              <button>Update</button>
+                            </form>
+                          </td>
                           <td><a href="http://localhost:9000/addproduct-admin" >Add</a></td>
                    </tr>
                    `;

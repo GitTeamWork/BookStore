@@ -27,8 +27,8 @@ route.get('/user-admin', function (req, res) {
 route.get('/addproduct-admin', function (req, res) {
     res.render("admin/addproduct-admin");
 });
-route.get('/updateproduct-admin', function (req, res) {
-    res.render("admin/updateproduct-admin");
+route.get('/updateproduct-admin/:id', function (req, res) {
+    res.render("admin/updateproduct-admin",{id: req.params.id});
 });
 
 module.exports = route;
