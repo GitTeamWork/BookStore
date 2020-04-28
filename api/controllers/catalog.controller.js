@@ -19,8 +19,8 @@ function cataList(req, res) {
 
 function addCata(req, res){
     try {
-        let cataName = req.body.cata;
-        var sql = ` INSERT INTO [Catalog] VALUES ('${cataName}') `;
+        let cataName = req.body.catalogName;
+        var sql = ` INSERT INTO [Catalog] (catalogName) VALUES ('${cataName}') `;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
@@ -40,17 +40,17 @@ function addCata(req, res){
 function updateCata(req, res){
     try {
         let cataId = req.params.id;
-        let cataName = req.body.cata;
+        let cataName = req.body.catalogName;
         var sql = ` UPDATE [Catalog] SET catalogName = '${cataName}' WHERE catalogId = ${cataId}`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
             let {rowsAffected} = result;
             if (rowsAffected[0]==1){
-                res.json({message: "them thanh cong"});
+                res.json({message: "update thanh cong"});
             }
             else{
-                res.json({message: "them that bai"});
+                res.json({message: "update that bai"});
             }
         })
     } catch (error) {

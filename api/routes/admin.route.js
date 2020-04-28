@@ -43,4 +43,15 @@ route.get('/addpublisher-admin', function (req, res) {
 route.get('/updatepublisher-admin/:id', function (req, res) {
     res.render("admin/updatepublisher-admin",{id: req.params.id});
 });
+
+
+// catalog
+route.get('/addcatalog-admin', function (req, res) {
+    res.render("admin/addcatalog-admin");
+});
+route.get('/updatecatalog-admin/:id', function (req, res) {
+    res.render("admin/updatecatalog-admin");
+});
+
+
 module.exports = route;
