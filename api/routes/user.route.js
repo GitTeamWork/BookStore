@@ -11,7 +11,7 @@ route.get('/register', function (req, res) {
 route.get('/api/userList', function (req, res) {
     userController.userList(req, res)
 });
-route.get('/api/user/:id', function (req, res, userId) {
+route.get('/api/user/:id', function (req, res) {
     let userid = req.params.id;
     userController.getUser(req, res, userid);
 })
@@ -39,5 +39,6 @@ route.delete('/api/delUser/:id', function(req, res){
     let userId = req.params.id;
     userController.delUser(userId, res);
 })
+
 
 module.exports = route;
