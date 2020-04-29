@@ -8,6 +8,8 @@ var productRoute = require("./api/routes/product.route");
 var publisherRoute = require("./api/routes/publisher.route");
 var userRoute = require("./api/routes/user.route");
 var adminRoute = require("./api/routes/admin.route");
+var orderRoute = require("./api/routes/order.route");
+var orderDetailRoute = require("./api/routes/orderDetail.route")
 
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
@@ -28,6 +30,10 @@ app.use(cataRoute);
 app.use(publisherRoute);
 // production
 app.use(productRoute);
+//order
+app.use(orderRoute);
+//orderDetail
+app.use(orderDetailRoute);
 // chỉnh port
 const post = process.env.PORT || 9000;
 app.listen(post, function () {
