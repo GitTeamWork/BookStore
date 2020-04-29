@@ -105,23 +105,26 @@ LoadSingleProduct();
 
 // GET CATALOG
 let $catalog = $('#ShowCatalog')
-var settings = {
-    "async": true,
-    "url": "/api/cataList",
-    "method": "GET",
-    "headers": {
-      "cache-control": "no-cache",
-    },
-  }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = '';
-        response.map(function(item){
-            str +=
-                 `
-                  <li><a href="#">${item.catalogName} <span>(3)</span></a></li>
-                 `
-         })
-     $catalog.html(str)
-  });
+const Load = () => {
+    var settings = {
+        "async": true,
+        "url": "/api/cataList",
+        "method": "GET",
+        "headers": {
+          "cache-control": "no-cache",
+        },
+      }
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        let str = '';
+            response.map(function(item){
+                str +=
+                     `
+                      <li><a href="#">${item.catalogName} <span>(3)</span></a></li>
+                     `
+             })
+         $catalog.html(str)
+      });
+};
+Load();

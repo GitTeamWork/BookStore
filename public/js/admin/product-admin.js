@@ -119,6 +119,60 @@ var url_array = full_url.split('/') // Split the string into an array with / as 
 var last_segment = url_array[url_array.length-1];  // Get the last part of the array (-1)
 //alert( last_segment ); // Alert last segment
 
+
+let $getproduct = $("#form-updateproduct");
+const LoadSingleProduct = () => {
+    var settings = {
+        async: true,
+        url: "/api/product/"+last_segment,
+        method: "GET",
+        headers: {
+            "cache-control": "no-cache",
+        },
+    };
+
+    $.ajax(settings).done(function (response) {
+        console.log(response);
+        let str = "";
+        response.map(function (item) {
+            str += `  <div class="form-group">
+            <label class="col-sm-2">productName</label>
+            <input class="input-css" type="text" id="updateproductName" value="${item.productName}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">price</label>
+            <input class="input-css" type="text" id="updateprice" value="${item.price}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">image</label>
+            <input class="input-css" type="text" id="updateimage" value="${item.image}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">detail</label>
+            <input class="input-css" type="text" id="updatedetail" value="${item.detail}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">inventory</label>
+            <input class="input-css" type="text" id="updateinventory" value="${item.inventory}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">catalogId</label>
+            <input class="input-css" type="text" id="updatecatalogId" value="${item.catalogId}">
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2">publisherId</label>
+            <input class="input-css" type="text" id="updatepublisherId" value="${item.publisherId}">
+        </div> 
+        <button type="submit" class="button-css" id=" button">Update sản phẩm</button>`;
+        });
+        $getproduct.html(str);
+    });
+};
+LoadSingleProduct();
+
+
+
+//
 $("#form-updateproduct").submit((e) => {
     e.preventDefault();
     
@@ -169,7 +223,3 @@ $("#form-updateproduct").submit((e) => {
         }
     });
 });
-      
-   
-
-  
