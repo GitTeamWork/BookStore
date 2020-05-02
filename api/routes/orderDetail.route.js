@@ -10,9 +10,7 @@ route.get('/api/getDetail/:id', function (req, res) {
 });
 route.post('/api/addDetail', function (req, res) {
     //console.log(req);
-    console.log(res);
-    
-    
+    //console.log(res);
     orderDetailController.addDetail(req, res)
 });
 module.exports = route

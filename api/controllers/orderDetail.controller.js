@@ -27,18 +27,20 @@ function addDetail(req, res) {
     try {
         let {orderId, productId, quantity, amount} = req.body;
         var sql = `INSERT INTO [OrderDetail] (orderId, productId, quantity, amount) VALUES (${orderId}, ${productId}, ${quantity}, ${amount})`;
-        console.log({ orderId, productName, quantity, amount })
+        console.log({ orderId, productId, quantity, amount })
         console.log(sql);
         
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Them thanh cong', data: {orderId, productName, quantity, amount} });
+                return res.json({ message: 'Them thanh cong', data: {orderId, productId, quantity, amount} });
             }
             return res.json({ message: 'Them that bai' });
         })
     } catch (error) {
         res.json(error)
+        console.log(error);
+        
     }
 };
 module.exports = {
