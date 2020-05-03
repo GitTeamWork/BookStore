@@ -23,7 +23,7 @@
         <form>
           <h1>Facebook Login</h1>
           <div class="footer-social">
-            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="#" onclick='login();' target="_blank"><i class="fa fa-facebook"></i></a>
         </div>
         </form>
       </div>
@@ -31,6 +31,45 @@
 
       <script src="assets/libs/jquery.min.js"></script>
       <script src="assets/js/user/login-page.js"></script>
+      
+  
+<script type="text/javascript">
+//<![CDATA[
+window.fbAsyncInit = function() {
+   FB.init({
+     appId      : '673135713508345', // App ID
+     channelURL : 'http://localhost:9000/home', // Channel File, not required so leave empty
+     status     : true, // check login status
+     cookie     : true, // enable cookies to allow the server to access the session
+     oauth      : true, // enable OAuth 2.0
+     xfbml      : false  // parse XFBML
+   });
+};
+// logs the user in the application and facebook
+function login(){
+FB.getLoginStatus(function(r){
+     if(r.status === 'connected'){
+            window.location.href = 'home';
+     }else{
+        FB.login(function(response) {
+                if(response.authResponse) {
+              //if (response.perms)
+                    window.location.href = 'home';
+            } else {
+              // user is not logged in
+            }
+     },{scope:'email'}); // which data to access from user profile
+ }
+});
+}
+// Load the SDK Asynchronously
+(function() {
+   var e = document.createElement('script'); e.async = true;
+   e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+   document.getElementById('fb-root').appendChild(e);
+}());
+//]]>
+</script>
 </body>
 </html>
 
