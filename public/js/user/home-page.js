@@ -2,8 +2,7 @@
  
  window.onload = function() {
   var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
-  document.getElementById("testUser").innerHTML = userLogin.email;
-  alert(userLogin.email)
+  document.getElementById("testUser").innerHTML = userLogin.userId;
  }
 
 let $catalog = $('#ShowCatalog')

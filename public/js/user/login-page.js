@@ -21,10 +21,10 @@ $("#form-login").submit((e) => {
   $.ajax(settings).done(function (response) {
     try {
       if (response.message == 'Dang nhap thanh cong') {
-        window.localStorage.setItem('userLogin', JSON.stringify(response.data))
+        //console.log(response.data.recordset[0].userId);
+        
+        window.localStorage.setItem('userLogin', JSON.stringify(response.data.recordset[0]))
         //console.log(response.data);
-        
-        
         location.assign('/home');
         
       } else {
