@@ -1,21 +1,12 @@
-// let eleUsername = document.getElementById('username');
-// let elePassword = document.getElementById('password');
 
-// document.getElementById('form-login').addEventListener('submit', (event) => {
-//     event.preventDefault();
-//     let username = eleUsername.value;
-//     let password = elePassword.value;
-//     console.log(username, password);
-
-// })
-
+var userLogin = new Object();
 $("#form-login").submit((e) => {
   e.preventDefault();
   console.log(e);
-  let username = $("#username").val();
+  let email = $("#email").val();
   let password = $("#password").val();
   let data = {
-    email: username,
+    email: email,
     password: password,
   };
   let settings = {
@@ -25,18 +16,22 @@ $("#form-login").submit((e) => {
     headers: {
       "content-type": "application/json",
     },
-    data: JSON.stringify(data) ,
+    data: JSON.stringify(data),
   };
   $.ajax(settings).done(function (response) {
     try {
-        if(response.message == 'Dang nhap thanh cong'){
-            localStorage.setItem('userLogin', JSON.stringify(response.data))
-            location.assign('/home');
-        } else {
-            alert(response.message)
-        }
+      if (response.message == 'Dang nhap thanh cong') {
+        window.localStorage.setItem('userLogin', JSON.stringify(response.data))
+        //console.log(response.data);
+        
+        
+        location.assign('/home');
+        
+      } else {
+        alert(response.message)
+      }
     } catch (error) {
-        alert('Error network!!!')
+      alert('Error network!!!' + error)
     }
   });
 });

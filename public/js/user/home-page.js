@@ -1,4 +1,10 @@
 
+ 
+ window.onload = function() {
+  var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
+  document.getElementById("testUser").innerHTML = userLogin.email;
+  alert(userLogin.email)
+ }
 
 let $catalog = $('#ShowCatalog')
 var settings = {
