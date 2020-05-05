@@ -57,51 +57,6 @@ const LoadProduct = () => {
 };
 LoadProduct();
 
-// GET CATALOG
-let $catalog = $('#ShowCatalog')
-var settings = {
-    "async": true,
-    "url": "/api/cataList",
-    "method": "GET",
-    "headers": {
-        "cache-control": "no-cache",
-    },
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = '';
-    response.map(function (item) {
-        str +=
-            `
-                  <li><a href="#">${item.catalogName} <span>(3)</span></a></li>
-                 `
-    })
-    $catalog.html(str)
-});
-
-// GET PUBLISHER
-let $publisher = $('#ShowPublisher')
-var settings = {
-    "async": true,
-    "url": "/api/publisherList",
-    "method": "GET",
-    "headers": {
-        "cache-control": "no-cache",
-    },
-}
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = '';
-    response.map(function (item) {
-        str +=
-            `
-                  <li><a href="#">${item.publisherName} <span>(3)</span></a></li>
-                 `
-    })
-    $publisher.html(str)
-});
 
 
 // CLASS Product 

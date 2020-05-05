@@ -1,9 +1,4 @@
 
- 
- window.onload = function() {
-  var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
-  document.getElementById("testUser").innerHTML = userLogin.userId;
- }
 
 let $catalog = $('#ShowCatalog')
 var settings = {
@@ -25,7 +20,7 @@ var settings = {
          })
      $catalog.html(str)
   });
-
+//==============================
   let $publisher = $('#ShowPublisher')
   var settings = {
       "async": true,
@@ -46,3 +41,30 @@ var settings = {
            })
        $publisher.html(str1)
     });
+
+    let $userName = $('#Showusername')
+    window.onload = function() {
+     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
+     var a = userLogin.userId;
+     console.log(a);
+     var settings = {
+       "async": true,
+       "crossDomain": true,
+       "url": "http://localhost:9000/api/user/"+a,
+       "method": "GET",
+       "headers": {
+         "content-type": "application/json",
+       },  
+     }
+     
+     $.ajax(settings).done(function (response) {
+       console.log(response);
+       let str = '';
+       response.map(function(item){
+         str +=
+              `${item.username}`
+             })
+           $userName.html(str)
+     });
+    }
+    //===================================//==============================
