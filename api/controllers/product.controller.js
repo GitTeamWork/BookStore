@@ -1,5 +1,15 @@
 var db = require("../db")
 
+function newProduct(req, res) {
+    db.executeSql('select top (4) * from [Product]', function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+};
 function productList(req, res) {
     db.executeSql('select * from [Product]', function (data, err) {
         if (err) {
@@ -25,16 +35,16 @@ function getProduct(req, res, productId) {
 }
 function addProduct(req, res) {
     try {
-        let {productName, price, image, detail, inventory, catalogId, publisherId } = req.body;
-        var sql = `INSERT INTO [Product] (productName, price, image, detail, inventory, catalogId, publisherId) VALUES  
-        ('${productName}', ${price}, '${image}' , '${detail}', ${inventory}, ${catalogId}, ${publisherId})`;
-        console.log({ productName, price, image, detail, inventory, catalogId, publisherId })
+        let {productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
+        var sql = `INSERT INTO [Product] (productName, price, oldPrice, image, detail, inventory, catalogId, publisherId) VALUES  
+        ('${productName}', ${price}, ${oldPrice}, '${image}' , '${detail}', ${inventory}, ${catalogId}, ${publisherId})`;
+        console.log({ productName, price, oldPrice, image, detail, inventory, catalogId, publisherId })
         console.log(sql);
         
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Them thanh cong', data: {productName, price ,image,detail  , inventory , catalogId ,publisherId} });
+                return res.json({ message: 'Them thanh cong', data: {productName, price, oldPrice, image,detail  , inventory , catalogId ,publisherId} });
             }
             return res.json({ message: 'Them that bai' });
         })
@@ -45,8 +55,8 @@ function addProduct(req, res) {
 function updateProduct(req, res){
     try {
         let productId = req.params.id;
-        let {productName, price, image, detail, inventory, catalogId, publisherId } = req.body;
-        var sql = ` UPDATE [Product] SET productName = '${productName}', price = ${price}, image = '${image}', detail = '${detail}', inventory = ${inventory}, catalogId = ${catalogId}, publisherId = ${publisherId}  WHERE productId = ${productId}`;
+        let {productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
+        var sql = ` UPDATE [Product] SET productName = '${productName}', price = ${price}, oldPrice = ${oldPrice}, image = '${image}', detail = '${detail}', inventory = ${inventory}, catalogId = ${catalogId}, publisherId = ${publisherId}  WHERE productId = ${productId}`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
@@ -89,5 +99,6 @@ module.exports = {
     addProduct: addProduct,
     updateProduct: updateProduct,
     delProduct: delProduct,
+    newProduct: newProduct
 }
 //exports.userList = userList;

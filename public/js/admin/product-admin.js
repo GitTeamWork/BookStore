@@ -19,6 +19,7 @@ const LoadProduct = () => {
                           <td>${item.productId}</td>
                           <td>${item.productName}</td>
                           <td>${item.price}</td>
+                          <td>${item.oldPrice}</td>
                           <td><img style="width=100px;height:150px" src="${item.image}"></td>
                           <td>${item.detail}</td>
                           <td>${item.inventory}</td>
@@ -65,6 +66,7 @@ $("#form-addproduct").submit((e) => {
 
   let addproductName = $("#addproductName").val();
   let addprice = $("#addprice").val();
+  let addoldPrice = $("#addoldPrice").val();
   let addimage = $("#addimage").val();
   let adddetail = $("#adddetail").val();
   let addinventory = $("#addinventory").val();
@@ -75,6 +77,7 @@ $("#form-addproduct").submit((e) => {
   let data = { 
     productName: addproductName,
     price: addprice,
+    oldPrice: addoldPrice,
     image: addimage,
     detail: adddetail,
     inventory: addinventory,

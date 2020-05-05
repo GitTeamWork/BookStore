@@ -5,6 +5,9 @@ var route = require("express").Router();
 route.get('/api/productList', function (req, res) {
     productController.productList(req, res)
 });
+route.get('/api/newProduct', function (req, res) {
+    productController.newProduct(req, res)
+});
 route.get('/api/product/:id', function (req, res) {
     let productid = req.params.id;
     productController.getProduct(req, res, productid);
