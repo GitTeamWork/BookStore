@@ -13,7 +13,7 @@ var settings = {
     let str = '';
         response.map(function(item){
             str +=
-                 `<li><a href="shop-grid.html">${item.catalogName} </a></li>
+                 `<li><a href="http://localhost:9000/showproductcatalog/${item.catalogId}">${item.catalogName} </a></li>
                  `
          })
      $catalog.html(str)
@@ -34,7 +34,7 @@ var settings = {
       let str1 = '';
           response1.map(function(item1){
               str1 +=
-                   `<li><a href="shop-grid.html">${item1.publisherName}</a></li>
+                   `<li><a http://localhost:9000/showproductpublisher/${item1.publisherId}">${item1.publisherName}</a></li>
                    `
            })
        $publisher.html(str1)

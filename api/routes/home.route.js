@@ -10,4 +10,10 @@ route.get('/shop-gird', function (req, res) {
 route.get('/single-product/:id', function (req, res) {
     res.render("user/single-product",{id: req.params.id});
 });
+route.get('/showproductcatalog/:id', function (req, res) {
+    res.render("user/showproductcatalog",{id: req.params.id});
+});
+route.get('/showproductpublisher/:id', function (req, res) {
+    res.render("user/showproductpublisher",{id: req.params.id});
+});
 module.exports = route;

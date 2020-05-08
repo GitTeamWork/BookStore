@@ -13,7 +13,6 @@ route.get('/api/product/:id', function (req, res) {
     productController.getProduct(req, res, productid);
 })
 route.post('/api/addProduct', function(req, res) {
-
     productController.addProduct(req, res);
 })
 route.put("/api/updateProduct/:id", function(req, res){
@@ -23,5 +22,14 @@ route.put("/api/updateProduct/:id", function(req, res){
 route.delete("/api/delProduct/:id", function(req, res){
     productController.delProduct(req, res);
 })
-
+//showcata
+route.get('/api/productcatalogId/:id', function (req, res) {
+    let catalogId = req.params.id;
+    productController.getcatalodId(req, res, catalogId);
+})
+//showpblic
+route.get('/api/productpublisherId/:id', function (req, res) {
+    let publisherId = req.params.id;
+    productController.getpublisherId(req, res, publisherId);
+})
 module.exports = route;

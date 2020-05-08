@@ -91,6 +91,34 @@ function delProduct(req, res){
         res.json(error);
     }
 }
+// show theo cata
+function getcatalodId(req, res, catalogId) {
+    var sql = `SELECT * from [Product] where catalogId= ${catalogId}`;
+    console.log(sql);
+
+    db.executeSql(sql, function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+}
+// show theo publicsher
+function getpublisherId(req, res, publisherId) {
+    var sql = `SELECT * from [Product] where publisherId= ${publisherId}`;
+    console.log(sql);
+
+    db.executeSql(sql, function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+}
 
 
 module.exports = {
@@ -99,6 +127,8 @@ module.exports = {
     addProduct: addProduct,
     updateProduct: updateProduct,
     delProduct: delProduct,
-    newProduct: newProduct
+    newProduct: newProduct,
+    getcatalodId: getcatalodId,
+    getpublisherId: getpublisherId
 }
 //exports.userList = userList;
