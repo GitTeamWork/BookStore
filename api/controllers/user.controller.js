@@ -41,7 +41,7 @@ function login(email, password, res) {
                 return res.json({ message: 'Dang nhap thanh cong', data: {recordset} });
             }
             else {
-                return res.json({ message: 'Dang nhap that bai' });
+                return res.json({ message: 'Dang nhap that bai, ban xem lai username/password' });
             }
             
         })

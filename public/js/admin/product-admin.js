@@ -40,6 +40,56 @@ const LoadProduct = () => {
 };
 LoadProduct();
 
+let $loadcatalog = $("#addcatalogId");
+const LoadCatalog = () => {
+  var settings = {
+    async: true,
+    url: "/api/cataList",
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    let str = "";
+    response.map(function (item) {
+      str += `
+              <option value="${item.catalogId}">${item.catalogName}</option>
+                
+                   `;
+    });
+    $loadcatalog.html(str);
+  });
+};
+LoadCatalog();
+
+let $loadpublisher = $("#addpublisherId");
+const LoadPublisher = () => {
+  var settings = {
+    async: true,
+    url: "/api/publisherList",
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    let str = "";
+    response.map(function (item) {
+      str += `
+              <option value="${item.publisherId}">${item.publisherName}</option>
+                
+                   `;
+    });
+    $loadpublisher.html(str);
+  });
+};
+LoadPublisher();
+
 //DELETE
 const deleteProduct = (idProduct) => {
   if (confirm(`Are you sure delete product id : ${idProduct}`)) {
@@ -135,9 +185,9 @@ const LoadSingleProduct = () => {
     };
 
     $.ajax(settings).done(function (response) {
-        console.log(response);
+        //console.log(response);
         let str = "";
-        response.map(function (item) {
+        [response].map(function (item) {
             str += `  <div class="form-group">
             <label class="col-sm-2">productName</label>
             <input class="input-css" type="text" id="updateproductName" value="${item.productName}">
@@ -160,6 +210,7 @@ const LoadSingleProduct = () => {
         </div>
         <div class="form-group">
             <label class="col-sm-2">catalogId</label>
+            
             <input class="input-css" type="text" id="updatecatalogId" value="${item.catalogId}">
         </div>
         <div class="form-group">
