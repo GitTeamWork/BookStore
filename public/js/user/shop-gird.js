@@ -151,21 +151,13 @@ var CartItem = function (product, quantity, item, amount) {
 };
 
 LoadDataProduct().done(data => {
-    console.log(data);
+    console.log(data[0].productId);
     let ViewModel = function () {
         let self = this; // Scope Trick
 
         self.cart = ko.observableArray();
         self.products = ko.observableArray();
-
         
-        self.test1 = (product, evnt) => {
-            var link = "";
-            link = "single-product/" + product.productId
-            //self.link = ko.observable("single-product/"+ product.productId);
-            console.log(link);
-            self.products().link = observable(link);
-        }
         self.addToCart = function (product, event) {
             // Instantiate a new CartItem object using the passed
             // in `Product` object, and then set a quantity of 1.
