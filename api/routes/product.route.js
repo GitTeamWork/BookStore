@@ -32,4 +32,8 @@ route.get('/api/productpublisherId/:id', function (req, res) {
     let publisherId = req.params.id;
     productController.getpublisherId(req, res, publisherId);
 })
+route.get('/api/search', function (req, res) {
+    //let catalogId = req.params.id;
+    productController.getsearch(req, res);
+})
 module.exports = route;

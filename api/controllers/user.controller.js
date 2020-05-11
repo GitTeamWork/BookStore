@@ -27,40 +27,29 @@ function getUser(req, res, userId) {
 }
 function login(email, password, res) {
     try {
-        var sql= `select * from [User] where email='${email}' and password='${password}'`;
-        console.log(sql);
-        db.executeSql(sql, (result) => {
-            let { recordset } = result;
-            if (recordset != null) {
-                return res.json({ message: 'Dang nhap thanh cong', data: {recordset} });
-            }
-            return res.json({ message: 'Dang nhap that bai' });
-        })
-    } catch (error) {
-        res.json(error)
-    }
-}
-function login1(email, password, res) {
-    try {
         var hash = crypto.createHmac('sha256', "BOOKSTORE") // ma hoa password
                     .update(password)
                     .digest('hex');
                     password = hash;
         var sql= `select * from [User] where email='${email}' and password='${password}'`;
         console.log(sql);
-        db.executeSql(sql,function (data, err) {
-            if (err){
-                res.json({message: 'loi dang nhap', error: err});
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                console.log(result);
+                
+                return res.json({ message: 'Dang nhap thanh cong', data: {recordset} });
             }
-            else{
-                //res.json(data.recordset);
-                res.json({ message: 'Dang nhap thanh cong', dta: {data} });
+            else {
+                return res.json({ message: 'Dang nhap that bai' });
             }
+            
         })
     } catch (error) {
         res.json(error)
     }
 }
+
 function signup(reqBody, res) {
     try {
         let { email, username, password } = reqBody;
@@ -123,6 +112,5 @@ module.exports = {
     signup: signup,
     updateUser: updateUser,
     delUser: delUser,
-    login1: login1
 }
 //exports.userList = userList;

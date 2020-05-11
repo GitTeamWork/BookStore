@@ -119,7 +119,20 @@ function getpublisherId(req, res, publisherId) {
         res.end();
     });
 }
+function getsearch(req, res) {
+    let searchproduct = req.body.searchproduct;
+    var sql = `SELECT * FROM Product WHERE CONTAINS(productName,'"%${searchproduct}%"')`;
+    console.log(sql);
 
+    db.executeSql(sql, function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+}
 
 module.exports = {
     productList: productList,
@@ -129,6 +142,7 @@ module.exports = {
     delProduct: delProduct,
     newProduct: newProduct,
     getcatalodId: getcatalodId,
-    getpublisherId: getpublisherId
+    getpublisherId: getpublisherId,
+    getsearch: getsearch
 }
 //exports.userList = userList;
