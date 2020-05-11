@@ -1,4 +1,5 @@
 var db = require("../db")
+var crypto = require('crypto'); 
 
 function userList(req, res) {
     db.executeSql('select * from [User]', function (data, err) {
@@ -41,11 +42,15 @@ function login(email, password, res) {
 }
 function login1(email, password, res) {
     try {
+        var hash = crypto.createHmac('sha256', "BOOKSTORE") // ma hoa password
+                    .update(password)
+                    .digest('hex');
+                    password = hash;
         var sql= `select * from [User] where email='${email}' and password='${password}'`;
         console.log(sql);
         db.executeSql(sql,function (data, err) {
             if (err){
-                res.json(err);
+                res.json({message: 'loi dang nhap', error: err});
             }
             else{
                 //res.json(data.recordset);
@@ -59,6 +64,12 @@ function login1(email, password, res) {
 function signup(reqBody, res) {
     try {
         let { email, username, password } = reqBody;
+        var hash = crypto.createHmac('sha256', "BOOKSTORE") // ma hoa password
+                    .update(password)
+                    .digest('hex');
+                    password = hash;
+                    
+                    console.log({ email, username, password });            
         var sql = `INSERT INTO [User](email, username, password) VALUES  ('${email}', '${username}', '${password}')`;
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
