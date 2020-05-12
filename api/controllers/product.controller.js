@@ -35,16 +35,16 @@ function getProduct(req, res, productId) {
 }
 function addProduct(req, res) {
     try {
-        let {productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
+        let { productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
         var sql = `INSERT INTO [Product] (productName, price, oldPrice, image, detail, inventory, catalogId, publisherId) VALUES  
         ('${productName}', ${price}, ${oldPrice}, '${image}' , '${detail}', ${inventory}, ${catalogId}, ${publisherId})`;
         console.log({ productName, price, oldPrice, image, detail, inventory, catalogId, publisherId })
         console.log(sql);
-        
+
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'Them thanh cong', data: {productName, price, oldPrice, image,detail  , inventory , catalogId ,publisherId} });
+                return res.json({ message: 'Them thanh cong', data: { productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } });
             }
             return res.json({ message: 'Them that bai' });
         })
@@ -52,39 +52,39 @@ function addProduct(req, res) {
         res.json(error)
     }
 };
-function updateProduct(req, res){
+function updateProduct(req, res) {
     try {
         let productId = req.params.id;
-        let {productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
+        let { productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
         var sql = ` UPDATE [Product] SET productName = '${productName}', price = ${price}, oldPrice = ${oldPrice}, image = '${image}', detail = '${detail}', inventory = ${inventory}, catalogId = ${catalogId}, publisherId = ${publisherId}  WHERE productId = ${productId}`;
         console.log(sql);
-        
+
         db.executeSql(sql, (result) => {
-            let {rowsAffected} = result;
-            if (rowsAffected[0]==1){
-                res.json({message: "update thanh cong"});
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                res.json({ message: "update thanh cong" });
             }
-            else{
-                res.json({message: "update that bai"});
+            else {
+                res.json({ message: "update that bai" });
             }
         })
     } catch (error) {
         res.json(error);
     }
 }
-function delProduct(req, res){
+function delProduct(req, res) {
     try {
         let productId = req.params.id;
         var sql = ` DELETE FROM [Product] WHERE productId = ${productId}`;
         console.log(sql);
-        
+
         db.executeSql(sql, (result) => {
-            let {rowsAffected} = result;
-            if (rowsAffected[0]==1){
-                res.json({message: "xoa thanh cong"});
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                res.json({ message: "xoa thanh cong" });
             }
-            else{
-                res.json({message: "xoa that bai"});
+            else {
+                res.json({ message: "xoa that bai" });
             }
         })
     } catch (error) {
@@ -120,18 +120,27 @@ function getpublisherId(req, res, publisherId) {
     });
 }
 function getsearch(req, res) {
-    let searchproduct = req.body.searchproduct;
-    var sql = `SELECT * FROM Product WHERE CONTAINS(productName,'"%${searchproduct}%"')`;
-    console.log(sql);
+    try {
+        let searchproduct = req.query.name;
+        console.log({ searchproduct });
 
-    db.executeSql(sql, function (data, err) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(data.recordset);
-        }
-        res.end();
-    });
+        var sql = `SELECT * FROM Product WHERE CONTAINS(productName,'"%${searchproduct}%"')`;
+        console.log(sql);
+
+        db.executeSql(sql, function (data, err) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(data.recordset);
+            }
+            res.end();
+        });
+       
+    } catch (error) {
+        console.log(error);
+
+    }
+
 }
 
 module.exports = {

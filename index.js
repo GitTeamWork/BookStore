@@ -14,8 +14,9 @@ var orderDetailRoute = require("./api/routes/orderDetail.route")
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
+
 app.set("view engine","ejs");
 // route mặc định 
 //home

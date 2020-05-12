@@ -25,6 +25,9 @@ route.get('/user-admin', function (req, res) {
 route.get('/product-admin', function (req, res) {
     res.render("admin/Product-admin");
 });
+route.get('/product-admin/search', function (req, res) {
+    res.render("admin/Product-admin");
+});
 route.get('/addproduct-admin', function (req, res) {
     res.render("admin/addproduct-admin");
 });
