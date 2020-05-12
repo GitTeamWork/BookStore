@@ -77,54 +77,8 @@ $("#searchproduct").submit((e) => {
 });
 
 let $loadcatalog = $("#addcatalogId");
-const LoadCatalog = () => {
-  var settings = {
-    async: true,
-    url: "/api/cataList",
-    method: "GET",
-    headers: {
-      "cache-control": "no-cache",
-    },
-  };
+let $loadcatalog1 = $("#updatecatalogId");
 
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = "";
-    response.map(function (item) {
-      str += `
-              <option value="${item.catalogId}">${item.catalogName}</option>
-                
-                   `;
-    });
-    $loadcatalog.html(str);
-  });
-};
-LoadCatalog();
-
-let $loadpublisher = $("#addpublisherId");
-const LoadPublisher = () => {
-  var settings = {
-    async: true,
-    url: "/api/publisherList",
-    method: "GET",
-    headers: {
-      "cache-control": "no-cache",
-    },
-  };
-
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = "";
-    response.map(function (item) {
-      str += `
-              <option value="${item.publisherId}">${item.publisherName}</option>
-                
-                   `;
-    });
-    $loadpublisher.html(str);
-  });
-};
-LoadPublisher();
 
 //DELETE
 const deleteProduct = (idProduct) => {
@@ -196,7 +150,7 @@ $("#form-addproduct").submit((e) => {
         alert(response.message)
       }
     } catch (error) {
-      alert('Error network!!!-----------------------------------------')
+      alert('Error network!!!')
       console.log(erro);
     }
   });
@@ -204,9 +158,8 @@ $("#form-addproduct").submit((e) => {
 
 //UPDATE
 
-
-
-let $getproduct = $("#form-updateproduct");
+let $getproduct = $("#str");
+let $getproduct2 = $("#str2");
 const LoadSingleProduct = () => {
   var full_url = document.URL; // Get current url
   var url_array = full_url.split('/') // Split the string into an array with / as separator
@@ -224,7 +177,9 @@ const LoadSingleProduct = () => {
   $.ajax(settings).done(function (response) {
     //console.log(response);
     let str = "";
+    let str2 = "";
     response.map(function (item) {
+      //document.getElementById("selected").value = $(item.catalogId);
       str += `  <div class="form-group">
             <label class="col-sm-2">productName</label>
             <input class="input-css" type="text" id="updateproductName" value="${item.productName}">
@@ -244,12 +199,8 @@ const LoadSingleProduct = () => {
         <div class="form-group">
             <label class="col-sm-2">inventory</label>
             <input class="input-css" type="text" id="updateinventory" value="${item.inventory}">
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2">catalogId</label>
-            
-            <input class="input-css" type="text" id="updatecatalogId" value="${item.catalogId}">
-        </div>
+        </div>`
+        str2+= `
         <div class="form-group">
             <label class="col-sm-2">publisherId</label>
             <input class="input-css" type="text" id="updatepublisherId" value="${item.publisherId}">
@@ -257,10 +208,11 @@ const LoadSingleProduct = () => {
         <button type="submit" class="button-css" id=" button">Update sản phẩm</button>`;
     });
     $getproduct.html(str);
+    $getproduct2.html(str2);
   });
 };
 
-
+LoadSingleProduct();
 
 
 //
@@ -316,3 +268,52 @@ $("#form-updateproduct").submit((e) => {
 // search
 
 
+const LoadCatalog = () => {
+  var settings = {
+    async: true,
+    url: "/api/cataList",
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    let str = "";
+    response.map(function (item) {
+      str += `
+              
+              <option value="${item.catalogId}">${item.catalogName}</option>
+                   `;
+    });
+    $loadcatalog.html(str);
+    $loadcatalog1.html(str);
+  });
+};
+LoadCatalog();
+
+let $loadpublisher = $("#addpublisherId");
+const LoadPublisher = () => {
+  var settings = {
+    async: true,
+    url: "/api/publisherList",
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+    let str = "";
+    response.map(function (item) {
+      str += `
+              <option value="${item.publisherId}">${item.publisherName}</option>
+                
+                   `;
+    });
+    $loadpublisher.html(str);
+  });
+};
+LoadPublisher();
