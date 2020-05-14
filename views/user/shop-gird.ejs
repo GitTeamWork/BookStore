@@ -115,11 +115,11 @@
 											<span>close</span>
 										</div>
 										<div class="items-total d-flex justify-content-between">
-											<span data-bind="text:$data.cart().item"> items</span>
+											<span data-bind="text:$data.item"> items</span>
 											<span>Cart Subtotal</span>
 										</div>
 										<div class="total_amount text-right">
-											<span data-bind="text:$data.cart().amount"></span>
+											<span data-bind="text:$data.amount"></span>
 										</div>
 										<div class="mini_action checkout">
 											<a class="checkout__btn" href="cart.html">Go to Checkout</a>
@@ -379,10 +379,11 @@
 
 								</ul> -->
 								<div class="row" id="productGird" data-bind="foreach:products">
+									
 									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12" >
 										<div class="product__thumb">
 											<a class="first__img" data-bind="attr: { href: link}"><img data-bind="attr:{src: image,alt:image}"></a>
-											<a class="second__img animation1" data-bind="attr: { href: link}"><img src=${item.image} alt="product image"></a>
+											<a class="second__img animation1" data-bind="attr: { href: link}"><img data-bind="attr:{src: image,alt:image}"></a>
 											<div class="hot__box">
 												<span class="hot-label">BEST SALLER</span>
 											</div>
@@ -412,7 +413,10 @@
 													<li><i class="fa fa-star-o"></i></li>
 												</ul>
 											</div>
-											
+											<div>
+												<input type="text" data-bind="value:$data.quantity">
+												
+											</div>
 											
 										</div>
 									</div>

@@ -10,8 +10,8 @@ function orderDetail(req, res) {
         res.end();
     });
 };
-function getDetail(req, res, orderId) {
-    var sql = `SELECT * from [OrderDetail] where orderId= ${orderId}`;
+function getDetail(req, res, userId) {
+    var sql = `SELECT * FROM [OrderDetail] WHERE orderId = (SELECT orderId  FROM dbo.[Order] WHERE userId = ${userId} AND status = 0)`;
     console.log(sql);
 
     db.executeSql(sql, function (data, err) {
