@@ -82,7 +82,7 @@
 								<li class="drop"><a href="shop-grid.html">Books</a>
 									<div class="megamenu mega02">
 										<ul class="item item01">
-											<li class="title" >Catalogs</li>
+											<li class="title">Catalogs</li>
 											<li><a href="shop-grid.html" id="ShowCatalog"></a></li>
 										</ul>
 										<ul class="item item01">
@@ -91,7 +91,7 @@
 										</ul>
 									</div>
 								</li>
-								
+
 								<li class="drop"><a href="blog.html">Blog</a>
 									<div class="megamenu dropdown">
 										<ul class="item item01">
@@ -108,8 +108,8 @@
 						<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 							<li class="shop_search"><a class="search__active" href="#"></a></li>
 							<li class="wishlist"><a href="#"></a></li>
-							<li class="shopcart"><a class="cartbox_active" href="#"><span
-										class="product_qun" id="cart">0</span></a>
+							<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun"
+										id="cart">0</span></a>
 								<!-- Start Shopping Cart -->
 								<div class="block-minicart minicart__active">
 									<div class="minicart-content-wrapper">
@@ -117,28 +117,29 @@
 											<span>close</span>
 										</div>
 										<div class="items-total d-flex justify-content-between">
-											<span data-bind='text: (grandTotal())'></span>
+											<span data-bind="text:$data.item"> items</span>
 											<span>Cart Subtotal</span>
 										</div>
-										<div class="total_amount text-right grandTotal">
-											<span data-bind='text: (grandTotal())'> </span>
+										<div class="total_amount text-right">
+											<span data-bind="text:$data.amount"></span>
 										</div>
 										<div class="mini_action checkout">
 											<a class="checkout__btn" href="cart.html">Go to Checkout</a>
 										</div>
 										<div class="single__items">
-											<div class="miniproduct">
-												<!-- <div class="item01 d-flex">
+											<div class="miniproduct" data-bind="foreach:cart">
+												<div class="item01 d-flex">
 													<div class="thumb">
 														<a href="product-details.html"><img
 																src="assets/template/images/product/sm-img/1.jpg"
 																alt="product images"></a>
 													</div>
 													<div class="content">
-														<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-														<span class="prize">$30.00</span>
+														<h6 data-bind="text:$data.product().productName"><a
+																href="product-details.html"></a></h6>
+														<span class="prize" data-bind="text:$data.total"></span>
 														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 01</span>
+															<span class="qun" data-bind="value:$data.quantity"></span>
 															<ul class="d-flex justify-content-end">
 																<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
 																</li>
@@ -148,46 +149,7 @@
 														</div>
 													</div>
 												</div>
-												<div class="item01 d-flex mt--20">
-													<div class="thumb">
-														<a href="product-details.html"><img
-																src="assets/template/images/product/sm-img/3.jpg"
-																alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">Impulse Duffle</a></h6>
-														<span class="prize">$40.00</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 03</span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
-																</li>
-																<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="item01 d-flex mt--20">
-													<div class="thumb">
-														<a href="product-details.html"><img
-																src="assets/template/images/product/sm-img/2.jpg"
-																alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">Compete Track Tote</a></h6>
-														<span class="prize">$40.00</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 03</span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="#"><i class="zmdi zmdi-settings"></i></a>
-																</li>
-																<li><a href="#"><i class="zmdi zmdi-delete"></i></a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div> -->
+
 											</div>
 										</div>
 										<div class="mini_action cart">
@@ -207,6 +169,7 @@
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
 													<span class="currency-trigger" id="Showusername"></span>
+													<p id = "userid" style="display: none;"></p>
 												</div>
 											</div>
 										</div>
@@ -318,24 +281,51 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-9 col-12">
-						<div class="wn__single__product" >
-							<div class="row">
+						<div class="wn__single__product">
+							<div class="row" data-bind="foreach:products">
 								<div class="col-lg-6 col-12">
 									<div class="wn__fotorama__wrapper" id="singlePoduct1">
-										<!-- xu li get product o js -->
+										<div  data-nav="thumbs">
+											<a href="1.jpg"><img data-bind="attr:{src: image,alt:image}"></a>
+											<!-- <a href="2.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="3.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="4.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="5.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="6.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="7.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a>
+											<a href="8.jpg"><img data-bind="attr:{src: image,alt:image} alt="></a> -->
+										</div>
+
 									</div>
 								</div>
 								<div class="col-lg-6 col-12">
 									<div class="product__info__main" >
-										<div id="singlePoduct2"></div>
-										
+										<h1 data-bind="text:$data.productName"></h1>
+										<div class="product-reviews-summary d-flex">
+											<ul class="rating-summary d-flex">
+												<li><i class="zmdi zmdi-star-outline"></i></li>
+												<li><i class="zmdi zmdi-star-outline"></i></li>
+												<li><i class="zmdi zmdi-star-outline"></i></li>
+												<li class="off"><i class="zmdi zmdi-star-outline"></i></li>
+												<li class="off"><i class="zmdi zmdi-star-outline"></i></li>
+											</ul>
+										</div>
+										<div class="price-box">
+											<span id="price" data-bind="text:$data.price"></span>
+										</div>
+										<div class="product__overview">
+											<p data-bind="text:$data.detail"></p>
+										</div>
+
 										<!-- xu li get product o js -->
 										<div class="box-tocart d-flex">
 											<span>Qty</span>
-											<input id="qty" data-bind='value: quantity, valueUpdate: "afterkeydown" '  class="input-text qty" name="qty" min="1" value="1"
-												title="Qty" type="number">
+											<input id="qty" data-bind="value:$data.quantity"
+												class="input-text qty" name="qty" min="1" value="1" title="Qty"
+												type="number">
 											<div>
-												<button class="btn add" type="button" data-bind='click: save'>Add</button>
+												<button class="btn add" type="button"
+													data-bind="click: $parent.addToCart">Add</button>
 
 											</div>
 											<div class="product-addto-links clearfix">
@@ -388,12 +378,28 @@
 								<!-- Start Single Tab Content -->
 								<div class="pro__tab_label tab-pane fade show active" id="nav-details" role="tabpanel">
 									<div class="description__attribute">
-										<p>Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.
+										<p>Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã
+											giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với
+											vũ trụ và con người.
 
-											Tiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.
-											
-											“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”
-											
+											Tiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị,
+											nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông.
+											Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900
+											bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt
+											ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm
+											hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có
+											thể làm thay đổi cuộc đời người đọc.
+
+											“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng
+											thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa
+											mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát
+											thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà
+											ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm
+											thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát
+											vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể
+											Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông
+											nghĩ.”
+
 											- Trích Nhà giả kim</p>
 										<ul>
 											<li>• Two-tone gray heather hoodie.</li>
@@ -1311,6 +1317,7 @@
 	<script src="assets/template/js/bootstrap.min.js"></script>
 	<script src="assets/template/js/plugins.js"></script>
 	<script src="assets/template/js/active.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
 	<script src="assets/js/user/single-product.js"></script>
 
 </body>

@@ -38,7 +38,7 @@ function login(email, password, res) {
             if (rowsAffected[0] == 1) {
                 console.log(result);
                 
-                return res.json({ message: 'Dang nhap thanh cong', data: {recordset} });
+                return res.json({ message: 'Dang nhap thanh cong', data: result.recordset});
             }
             else {
                 return res.json({ message: 'Dang nhap that bai, ban xem lai username/password' });

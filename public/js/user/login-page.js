@@ -23,8 +23,9 @@ $("#form-login").submit((e) => {
       if (response.message == 'Dang nhap thanh cong') {
         //console.log(response.data.recordset[0].userId);
         
-        window.localStorage.setItem('userLogin', JSON.stringify(response.data.recordset[0]))
+        window.localStorage.setItem('userLogin', JSON.stringify(response.data[0]))
         //console.log(response.data);
+        //console.log(response.data[0].userId);
         location.assign('/home');
         
       } else {
