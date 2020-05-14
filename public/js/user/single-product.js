@@ -57,6 +57,7 @@ window.onload = function () {
 
   $.ajax(settings).done(function (response) {
     console.log(response);
+    $("#userid").html(a)
     let str = '';
     response.map(function (item) {
       str +=
