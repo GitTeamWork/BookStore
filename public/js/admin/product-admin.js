@@ -117,9 +117,9 @@ $("#form-addproduct").submit((e) => {
   {
     alert('vui lòng không để trống thông tin')
   }
-  else if(addoldPrice >= addprice )
+  else if(addoldPrice < addprice )
   {
-    alert('old-price không thể lớn hơn hoặc bằng price ')
+    alert('giá cũ phải lớn hơn giá mới')
   }
   else {
     let data = {
@@ -245,46 +245,56 @@ $("#form-updateproduct").submit((e) => {
   let updateinventory = $("#updateinventory").val();
   let updatecatalogId = $("#updatecatalogId").val();
   let updatepublisherId = $("#updatepublisherId").val();
-  console.log(e);
+  
 
-  let data = {
-    productName: updateproductName,
-    price: updateprice,
-    oldPrice: updateoldPrice,
-    image: updateimage,
-    detail: updatedetail,
-    inventory: updateinventory,
-    catalogId: updatecatalogId,
-    publisherId: updatepublisherId,
-  };
-  console.log(JSON.stringify(data));
-  var full_url = document.URL; // Get current url
-  var url_array = full_url.split('/') // Split the string into an array with / as separator
-  var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
-  let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://localhost:9000/api/updateProduct/" + last_segment,
-    method: "PUT",
-    headers: {
-      "content-type": "application/json",
-    },
-    processData: false,
-    data: JSON.stringify(data),
-  };
-  $.ajax(settings).done(function (response) {
-    try {
-      if (response.message == 'update thanh cong') {
-        localStorage.setItem('update', JSON.stringify(response.data))
-        location.assign('/Product-admin');
-      } else {
-        alert(response.message)
+  if(updateproductName==''||updateprice==''||updateoldPrice==''||updateimage==''||updatedetail==''||updateinventory==''||updatecatalogId==''||updatepublisherId=='')
+  {
+    alert('vui lòng không để trống thông tin update');
+  }
+  else if(updateoldPrice < updateprice )
+  {
+    alert('giá cũ phải lớn hơn giá mới');
+  }
+  else {
+    let data = {
+      productName: updateproductName,
+      price: updateprice,
+      oldPrice: updateoldPrice,
+      image: updateimage,
+      detail: updatedetail,
+      inventory: updateinventory,
+      catalogId: updatecatalogId,
+      publisherId: updatepublisherId,
+    };
+    console.log(JSON.stringify(data));
+    var full_url = document.URL; // Get current url
+    var url_array = full_url.split('/') // Split the string into an array with / as separator
+    var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+    let settings = {
+      async: true,
+      crossDomain: true,
+      url: "http://localhost:9000/api/updateProduct/" + last_segment,
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      processData: false,
+      data: JSON.stringify(data),
+    };
+    $.ajax(settings).done(function (response) {
+      try {
+        if (response.message == 'update thanh cong') {
+          localStorage.setItem('update', JSON.stringify(response.data))
+          location.assign('/Product-admin');
+        } else {
+          alert(response.message)
+        }
+      } catch (error) {
+        alert('Error network!!!')
+        console.log(erro);
       }
-    } catch (error) {
-      alert('Error network!!!')
-      console.log(erro);
-    }
-  });
+    });
+  }
 });
 // search
 
