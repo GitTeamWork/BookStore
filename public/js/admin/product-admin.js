@@ -108,52 +108,61 @@ $("#form-addproduct").submit((e) => {
   let addprice = $("#addprice").val();
   let addoldPrice = $("#addoldPrice").val();
   let addimage = $("#addimage").val();
-  let adddetail = $("#adddetail").val();
+  let adddetail = CKEDITOR.instances['adddetail'].getData();
   let addinventory = $("#addinventory").val();
   let addcatalogId = $("#addcatalogId").val();
   let addpublisherId = $("#addpublisherId").val();
   console.log(e);
-
-  let data = {
-    productName: addproductName,
-    price: addprice,
-    oldPrice: addoldPrice,
-    image: addimage,
-    detail: adddetail,
-    inventory: addinventory,
-    catalogId: addcatalogId,
-    publisherId: addpublisherId,
-  };
-  console.log(JSON.stringify(data));
-
-  let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://localhost:9000/api/addProduct",
-    method: "POST",
-    headers: {
-      "content-type": "application/json;charset=UTF-8",
-      "cache-control": "no-cache",
-      "postman-token": "b2479ce6-e9bc-65af-1ed7-7b40dfba0b64"
-    },
-
-    processData: false,
-    data: JSON.stringify(data),
-  };
-  $.ajax(settings).done(function (response) {
-    try {
-      if (response.message == 'Them thanh cong') {
-        //console.log(message)
-        localStorage.setItem('addproduct', JSON.stringify(response.data))
-        location.assign('/Product-admin');
-      } else {
-        alert(response.message)
+  if(addproductName==''||addprice==''||addoldPrice==''||addimage==''||adddetail==''||adddetail==''||addinventory==''||addcatalogId==''||addpublisherId=='')
+  {
+    alert('vui lòng không để trống thông tin')
+  }
+  else if(addoldPrice >= addprice )
+  {
+    alert('old-price không thể lớn hơn hoặc bằng price ')
+  }
+  else {
+    let data = {
+      productName: addproductName,
+      price: addprice,
+      oldPrice: addoldPrice,
+      image: addimage,
+      detail: adddetail,
+      inventory: addinventory,
+      catalogId: addcatalogId,
+      publisherId: addpublisherId,
+    };
+    console.log(JSON.stringify(data));
+  
+    let settings = {
+      async: true,
+      crossDomain: true,
+      url: "http://localhost:9000/api/addProduct",
+      method: "POST",
+      headers: {
+        "content-type": "application/json;charset=UTF-8",
+        "cache-control": "no-cache",
+        "postman-token": "b2479ce6-e9bc-65af-1ed7-7b40dfba0b64"
+      },
+  
+      processData: false,
+      data: JSON.stringify(data),
+    };
+    $.ajax(settings).done(function (response) {
+      try {
+        if (response.message == 'Them thanh cong') {
+          //console.log(message)
+          localStorage.setItem('addproduct', JSON.stringify(response.data))
+          location.assign('/Product-admin');
+        } else {
+          alert(response.message)
+        }
+      } catch (error) {
+        alert('Error network!!!')
+        console.log(erro);
       }
-    } catch (error) {
-      alert('Error network!!!')
-      console.log(erro);
-    }
-  });
+    });
+  }
 });
 
 //UPDATE
@@ -188,13 +197,19 @@ const LoadSingleProduct = () => {
             <label class="col-sm-2">price</label>
             <input class="input-css" type="text" id="updateprice" value="${item.price}">
         </div>
+
+        <div class="form-group">
+            <label class="col-sm-2">old-price</label>
+            <input class="input-css" type="text" id="updateoldPrice" value="${item.oldPrice}">
+        </div>
+        
         <div class="form-group">
             <label class="col-sm-2">image</label>
             <input class="input-css" type="text" id="updateimage" value="${item.image}">
         </div>
         <div class="form-group">
             <label class="col-sm-2">detail</label>
-            <input class="input-css" type="text" id="updatedetail" value="${item.detail}">
+            <textarea id="updatedetail">${item.detail}</textarea>
         </div>
         <div class="form-group">
             <label class="col-sm-2">inventory</label>
@@ -205,7 +220,10 @@ const LoadSingleProduct = () => {
             <label class="col-sm-2">publisherId</label>
             <input class="input-css" type="text" id="updatepublisherId" value="${item.publisherId}">
         </div> 
-        <button type="submit" class="button-css" id=" button">Update sản phẩm</button>`;
+        <button type="submit" class="button-css" id=" button">Update sản phẩm</button>
+            <script src="assets/ckeditor/ckeditor.js"></script>
+            <script type="text/javascript">CKEDITOR.replace('updatedetail');</script>
+        `;
     });
     $getproduct.html(str);
     $getproduct2.html(str2);
@@ -221,8 +239,9 @@ $("#form-updateproduct").submit((e) => {
 
   let updateproductName = $("#updateproductName").val();
   let updateprice = $("#updateprice").val();
+  let updateoldPrice = $("#updateoldPrice").val();
   let updateimage = $("#updateimage").val();
-  let updatedetail = $("#updatedetail").val();
+  let updatedetail = CKEDITOR.instances['updatedetail'].getData();
   let updateinventory = $("#updateinventory").val();
   let updatecatalogId = $("#updatecatalogId").val();
   let updatepublisherId = $("#updatepublisherId").val();
@@ -231,6 +250,7 @@ $("#form-updateproduct").submit((e) => {
   let data = {
     productName: updateproductName,
     price: updateprice,
+    oldPrice: updateoldPrice,
     image: updateimage,
     detail: updatedetail,
     inventory: updateinventory,
@@ -238,7 +258,9 @@ $("#form-updateproduct").submit((e) => {
     publisherId: updatepublisherId,
   };
   console.log(JSON.stringify(data));
-
+  var full_url = document.URL; // Get current url
+  var url_array = full_url.split('/') // Split the string into an array with / as separator
+  var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
   let settings = {
     async: true,
     crossDomain: true,
@@ -247,7 +269,6 @@ $("#form-updateproduct").submit((e) => {
     headers: {
       "content-type": "application/json",
     },
-
     processData: false,
     data: JSON.stringify(data),
   };

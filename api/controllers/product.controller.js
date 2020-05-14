@@ -11,7 +11,7 @@ function newProduct(req, res) {
     });
 };
 function productList(req, res) {
-    db.executeSql('select * from [Product]', function (data, err) {
+    db.executeSql('SELECT * FROM Product ORDER BY productId DESC', function (data, err) {
         if (err) {
             res.json(err);
         } else {

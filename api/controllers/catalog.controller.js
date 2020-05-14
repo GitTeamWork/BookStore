@@ -2,7 +2,7 @@ var db = require("../db");
 
 function cataList(req, res) {
     try {
-        var sql = `SELECT * FROM [Catalog]`;
+        var sql = `SELECT * FROM [Catalog] ORDER BY catalogId DESC;`;
         db.executeSql(sql, function (data, err) {
             if (err) {
                 res.json(err);
@@ -26,7 +26,7 @@ function addCata(req, res){
         db.executeSql(sql, (result) => {
             let {rowsAffected} = result;
             if (rowsAffected[0]==1){
-                res.json({message: "them thanh cong"});
+                res.json({message: "them thanh cong",data : {cataName}} );
             }
             else{
                 res.json({message: "them that bai"});

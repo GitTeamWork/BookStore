@@ -2,7 +2,7 @@ var db = require("../db");
 
 function publisherList(req, res) {
     try {
-        var sql = `SELECT * FROM [Publisher]`;
+        var sql = `SELECT * FROM Publisher ORDER BY publisherId DESC;`;
         db.executeSql(sql, function (data, err) {
             if (err) {
                 res.json(err);

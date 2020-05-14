@@ -53,41 +53,46 @@ const deletePublisher = (idPublisher) => {
 //ADD
 $("#form-addpublisher").submit((e) => {
   e.preventDefault();
-
   let addpublisherName = $("#addpublisherName").val();
   console.log(e);
-
-  let data = {
-    publisherName: addpublisherName,
-  };
-  console.log(JSON.stringify(data));
-  let settings = {
-    async: true,
-    crossDomain: true,
-    url: "http://localhost:9000/api/addPublisher",
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      "cache-control": "no-cache",
-    },
-
-    processData: false,
-    data: JSON.stringify(data),
-  };
-  $.ajax(settings).done(function (response) {
-    try {
-      if (response.message == 'them thanh cong') {
-        //console.log(message)
-        localStorage.setItem('addpublisher', JSON.stringify(response.data))
-        location.assign('/publisher-admin');
-      } else {
-        alert(response.message)
+  if(addpublisherName=='')
+  {
+    alert('không có publisher để thêm');
+  }
+  else{
+    let data = {
+      publisherName: addpublisherName,
+    };
+    console.log(JSON.stringify(data));
+    let settings = {
+      async: true,
+      crossDomain: true,
+      url: "http://localhost:9000/api/addPublisher",
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+      },
+  
+      processData: false,
+      data: JSON.stringify(data),
+    };
+    $.ajax(settings).done(function (response) {
+      try {
+        if (response.message == 'them thanh cong') {
+          //console.log(message)
+          localStorage.setItem('addpublisher', JSON.stringify(response.data))
+          location.assign('/publisher-admin');
+        } else {
+          alert(response.message)
+        }
+      } catch (error) {
+        alert('Error network!!!')
+        console.log(erro);
       }
-    } catch (error) {
-      alert('Error network!!!')
-      console.log(erro);
-    }
-  });
+    });
+  }
+ 
 });
 
 //UPDATE

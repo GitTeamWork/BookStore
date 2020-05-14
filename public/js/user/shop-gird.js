@@ -119,7 +119,7 @@ const LoadProduct = () => {
     $gird.html(str);
   });
 };
-//
+// search
 let $test1 = $("#productGird");
 $("body").ready(() => {
   console.log(document.querySelector("#search_mini_form a"));

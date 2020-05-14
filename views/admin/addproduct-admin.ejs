@@ -128,7 +128,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <form class="form-css" id="form-addproduct"
-                                style="width: 764px !important;padding-top: 17px;">
+                                style="width: 900px; height: 900px !important;padding-top: 17px;">
                                 <div class="form-group">
                                     <label class="col-sm-2">productName</label>
                                     <input class="input-css" type="text" id="addproductName">
@@ -147,7 +147,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2">detail</label>
-                                    <input class="input-css" type="text" id="adddetail">
+                                    <textarea id="adddetail"></textarea>
+                                    
+                                    
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2">inventory</label>
@@ -166,7 +168,7 @@
                                     </select>
                                     
                                 </div>
-                                <button type="submit" class="button-css" id=" button">Thêm sản phẩm</button>
+                                <button type="submit" class="button-css" id="button">Thêm sản phẩm</button>
                             </form>
                         </div>
 
@@ -197,6 +199,8 @@
 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="assets/assets-admin/demo/datatables-demo.js"></script>
 <script src="assets/js/admin/product-admin.js"></script>
+<script src="assets/ckeditor/ckeditor.js"></script>
+<script type="text/javascript">CKEDITOR.replace('adddetail');</script>
 </body>
 
 </html>
