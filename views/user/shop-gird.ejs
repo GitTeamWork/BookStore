@@ -28,10 +28,6 @@
 
 	<!-- Modernizer js -->
 	<script src="assets/template/js/vendor/modernizr-3.5.0.min.js"></script>
-	<script type="text/javascript">
-		var WEB_URL = "/";
-		var commands = [];
-	</script>
 </head>
 
 <body>
@@ -133,7 +129,8 @@
 																alt="product images"></a>
 													</div>
 													<div class="content">
-														<h6 data-bind="text:$data.product().productName"><a href="product-details.html"></a></h6>
+														<h6 data-bind="text:$data.product().productName"><a
+																href="product-details.html"></a></h6>
 														<span class="prize" data-bind="text:$data.total"></span>
 														<div class="product_prize d-flex justify-content-between">
 															<span class="qun" data-bind="value:$data.quantity"></span>
@@ -146,11 +143,11 @@
 														</div>
 													</div>
 												</div>
-												
+
 											</div>
 										</div>
-										<div class="mini_action cart">
-											<a class="cart__btn" href="cart.html">View and edit cart</a>
+										<div class="mini_action cart" id="linkcart">
+											<!-- <a class="cart__btn" href="cart.html">View and edit cart</a> -->
 										</div>
 									</div>
 								</div>
@@ -165,8 +162,8 @@
 											</strong>
 											<div class="switcher-options">
 												<div class="switcher-currency-trigger">
-                          <span class="currency-trigger" id="Showusername"></span>
-                          <p id = "userid" style="display: none;"></p>
+													<span class="currency-trigger" id="Showusername"></span>
+													<p id="userid" style="display: none;"></p>
 												</div>
 											</div>
 										</div>
@@ -380,17 +377,20 @@
 
 								</ul> -->
 								<div class="row" id="productGird" data-bind="foreach:products">
-									
-									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12" >
+
+									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
 										<div class="product__thumb">
-											<a class="first__img" data-bind="attr: { href: link}"><img data-bind="attr:{src: image,alt:image}"></a>
-											<a class="second__img animation1" data-bind="attr: { href: link}"><img data-bind="attr:{src: image,alt:image}"></a>
+											<a class="first__img" data-bind="attr: { href: link}"><img
+													data-bind="attr:{src: image,alt:image}"></a>
+											<a class="second__img animation1" data-bind="attr: { href: link}"><img
+													data-bind="attr:{src: image,alt:image}"></a>
 											<div class="hot__box">
 												<span class="hot-label">BEST SALLER</span>
 											</div>
 										</div>
 										<div class="product__content content--center">
-											<h4 data-bind="text:$data.productName"><a data-bind="attr: { href: link}"></a></h4>
+											<h4 data-bind="text:$data.productName"><a
+													data-bind="attr: { href: link}"></a></h4>
 											<ul class="prize d-flex">
 												<li data-bind="text:$data.price"></li>
 												<li class="old_prize" data-bind="text:$data.oldPrice"></li>
@@ -398,10 +398,17 @@
 											<div class="action">
 												<div class="actions_inner">
 													<ul class="add_to_links">
-														<li><a class="cart" data-bind="click: $parent.addToCart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-														<li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-														<li><a class="compare" href="#"><i class="bi bi-heart-beat"></i></a></li>
-														<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+														<li><a class="cart" data-bind="click: $parent.addToCart"
+																href="cart.html"><i class="bi bi-shopping-bag4"></i></a>
+														</li>
+														<li><a class="wishlist" href="wishlist.html"><i
+																	class="bi bi-shopping-cart-full"></i></a></li>
+														<li><a class="compare" href="#"><i
+																	class="bi bi-heart-beat"></i></a></li>
+														<li><a data-toggle="modal" title="Quick View"
+																class="quickview modal-view detail-link"
+																href="#productmodal"><i class="bi bi-search"></i></a>
+														</li>
 													</ul>
 												</div>
 											</div>
@@ -416,9 +423,9 @@
 											</div>
 											<div>
 												<input type="text" data-bind="value:$data.quantity">
-												
+
 											</div>
-											
+
 										</div>
 									</div>
 								</div>

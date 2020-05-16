@@ -13,4 +13,7 @@ route.post('/api/addDetail', function (req, res) {
     //console.log(res);
     orderDetailController.addDetail(req, res)
 });
+route.delete('/api/delItem', function(req, res){
+    orderDetailController.delItem(req, res)
+})
 module.exports = route

@@ -10,7 +10,6 @@ var userRoute = require("./api/routes/user.route");
 var adminRoute = require("./api/routes/admin.route");
 var orderRoute = require("./api/routes/order.route");
 var orderDetailRoute = require("./api/routes/orderDetail.route")
-
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

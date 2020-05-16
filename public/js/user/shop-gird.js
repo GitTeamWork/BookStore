@@ -41,6 +41,7 @@ $.ajax(settings).done(function (response1) {
 });
 
 let $userName = $('#Showusername')
+let $linkcart = $('#linkcart')
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
     var a = userLogin.userId;
@@ -59,36 +60,16 @@ window.onload = function () {
         console.log(response);
         $("#userid").html(a)
         let str = '';
+        let str2 = '';
         response.map(function (item) {
             str +=
                 `${item.username}`
+            str2 +=`<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
         })
-        $userName.html(str)
+        $userName.html(str);
+        $linkcart.html(str2)
     });
 }
-// GET
-// let $gird = $("#productGird");
-// const LoadProduct = () => {
-//     var settings = {
-//         async: true,
-//         url: "/api/productList",
-//         method: "GET",
-//         headers: {
-//             "cache-control": "no-cache",
-//         },
-//     };
-
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         let str = "";
-//         response.map(function (item) {
-           
-//         });
-        
-//     });
-// };
-
-
 
 const LoadDataProduct = () => {
     var settings = {

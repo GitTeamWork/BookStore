@@ -150,6 +150,8 @@ var CartItem = function (product, quantity) {
 };
 
 LoadSingleProduct().done(data => {
+  console.log('okkkkkkkkkk');
+  
 
   let ViewModel = function () {
     let self = this; // Scope Trick

@@ -43,8 +43,30 @@ function addDetail(req, res) {
         
     }
 };
+function delItem(req, res) {
+    try {
+        let {productId} = req.body;
+        var sql = `DELETE FROM dbo.OrderDetail WHERE productId =${productId}`;
+        console.log(sql);
+        
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                res.json({ message: "xoa thanh cong" });
+            }
+            else {
+                res.json({ message: "xoa that bai" });
+            }
+        })
+    } catch (error) {
+        res.json(error)
+        console.log(error);
+        
+    }
+};
 module.exports = {
     orderDetail: orderDetail, 
     getDetail: getDetail,
-    addDetail: addDetail
+    addDetail: addDetail,
+    delItem: delItem,
 }
