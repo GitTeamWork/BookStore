@@ -62,9 +62,6 @@ var CartItem = function (product, quantity) {
     console.log('okkkkkkkkkk');
     let ViewModel = function () {
       let self = this; // Scope Trick
-      self.test1 = function (test, eve) {
-        alert("ok")
-      }
       //self.cart = ko.observableArray();
       //self.products = ko.observableArray();
       self.details = ko.observableArray();
