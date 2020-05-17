@@ -8,6 +8,9 @@ route.get('/api/productList', function (req, res) {
 route.get('/api/newProduct', function (req, res) {
     productController.newProduct(req, res)
 });
+route.get('/api/AllProduct', function (req, res) {
+    productController.AllProduct(req, res)
+});
 route.get('/api/product/:id', function (req, res) {
     let productid = req.params.id;
     productController.getProduct(req, res, productid);

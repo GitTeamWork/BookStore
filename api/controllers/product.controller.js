@@ -10,6 +10,17 @@ function newProduct(req, res) {
         res.end();
     });
 };
+
+function AllProduct(req, res) {
+    db.executeSql('select top (8) * from [Product]', function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+};
 function productList(req, res) {
     db.executeSql('SELECT * FROM Product ORDER BY productId DESC', function (data, err) {
         if (err) {
@@ -152,6 +163,7 @@ module.exports = {
     newProduct: newProduct,
     getcatalodId: getcatalodId,
     getpublisherId: getpublisherId,
-    getsearch: getsearch
+    getsearch: getsearch,
+    AllProduct: AllProduct
 }
 //exports.userList = userList;
