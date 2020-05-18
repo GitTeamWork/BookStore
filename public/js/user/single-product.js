@@ -1,5 +1,5 @@
 let $catalog = $('#ShowCatalog')
-var settings = {
+var settingsCa = {
   "async": true,
   "url": "/api/cataList",
   "method": "GET",
@@ -8,7 +8,7 @@ var settings = {
   },
 }
 
-$.ajax(settings).done(function (response) {
+$.ajax(settingsCa).done(function (response) {
   console.log(response);
   let str = '';
   response.map(function (item) {
@@ -20,7 +20,7 @@ $.ajax(settings).done(function (response) {
 });
 //==============================
 let $publisher = $('#ShowPublisher')
-var settings = {
+var settingsPu = {
   "async": true,
   "url": "/api/publisherList",
   "method": "GET",
@@ -29,7 +29,7 @@ var settings = {
   },
 }
 
-$.ajax(settings).done(function (response1) {
+$.ajax(settingsPu).done(function (response1) {
   console.log(response1);
   let str1 = '';
   response1.map(function (item1) {
@@ -41,11 +41,13 @@ $.ajax(settings).done(function (response1) {
 });
 
 let $userName = $('#Showusername')
+let $sumitem = $('#sumItem')
 window.onload = function () {
   var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
   var a = userLogin.userId;
   console.log(a);
-  var settings = {
+
+  var settingsU = {
     "async": true,
     "crossDomain": true,
     "url": "http://localhost:9000/api/user/" + a,
@@ -55,18 +57,41 @@ window.onload = function () {
     },
   }
 
-  $.ajax(settings).done(function (response) {
+  $.ajax(settingsU).done(function (response) {
     console.log(response);
     $("#userid").html(a)
-    let str = '';
+    let strU = '';
     response.map(function (item) {
-      str +=
+      strU +=
         `${item.username}`
     })
-    $userName.html(str)
+    $userName.html(strU)
   });
-}
+  LoadSumItem = () => {
+    var settings1 = {
+      async: true,
+      url: "/api/sumItem/" + a,
+      method: "GET",
+      headers: {
+        "cache-control": "no-cache",
+      },
+    };
+    $.ajax(settings1).done(function (response1) {
+      console.log(response1);
+      let str3 = '';
+      response1.map(function (item) {
+        str3 +=
+          `<span class="product_qun">${item.sumitem}</span>`;
+      })
+      $sumitem.html(str3)
+    })
+      .fail(function (err) {
+        console.log(err);
 
+      })
+  }
+  LoadSumItem();
+}
 var full_url = document.URL; // Get current url
 var url_array = full_url.split('/') // Split the string into an array with / as separator
 var last_segment = url_array[url_array.length - 1];
@@ -143,29 +168,22 @@ var CartItem = function (product, quantity) {
 
   self.product = ko.observable(product);
   self.quantity = quantity;
-
   self.total = ko.computed(function () {
     return self.product().price * self.quantity;
   });
 };
 
 LoadSingleProduct().done(data => {
-  console.log('okkkkkkkkkk');
-  
 
   let ViewModel = function () {
     let self = this; // Scope Trick
-    self.test1 = function (test, eve) {
-      alert("ok")
-    }
-
     self.cart = ko.observableArray();
     self.products = ko.observableArray();
 
     self.item = ko.computed(function () {
       var item = 0;
       $(self.cart()).each(function () {
-        item += 1;
+        item += parseInt(this.quantity);
       });
       return item;
     })
@@ -177,17 +195,14 @@ LoadSingleProduct().done(data => {
       });
       return subtotal;
     });
+    var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
+    var a = userLogin.userId;
+    console.log(a);
 
-    var full_url = document.URL; // Get current url
-    var url_array = full_url.split('/') // Split the string into an array with / as separator
-    var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+    
     self.addToCart = function (product, event) {
-      // Instantiate a new CartItem object using the passed
-      // in `Product` object, and then set a quantity of 1.
       var qt = $("#qty").val();
-
-      var id = last_segment
-      id.toLocaleString();
+      //id.toLocaleString();
       console.log(id);
       var cart_item = new CartItem(product, qt);
 
@@ -195,27 +210,23 @@ LoadSingleProduct().done(data => {
       let fcpush = function () {
         self.cart.push(cart_item);
         return $.ajax({
-            type: "POST",
-            url: "/api/addDetail",
-            data: {orderId:1,productId:id,quantity:qt, amount: self.amount},
-            dataType: "html",
-            success: function(response) {
-                alert('Add new product successfully!');
-            },
-            error: function() {
-                alert("Problem communicating with the server");
-            }
+          type: "POST",
+          url: "/api/addDetail",
+          data: { productId: product.productId, quantity: qt, amount: self.amount, userId: a },
+          dataType: "html",
+          success: function (response) {
+            alert('Add new product successfully!');
+            console.log(response);
+            (response);
+            LoadSumItem();
+          },
+          error: function () {
+            console.log(response);
+            alert("Problem communicating with the server");
+          }
         });
       }
       fcpush()
-
-
-
-      //alert(qt)
-      // self.addToCart().done(data => {
-      //   console.log(product);
-
-      // })   
     };
   };
 

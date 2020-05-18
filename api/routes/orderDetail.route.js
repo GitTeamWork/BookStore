@@ -5,8 +5,12 @@ route.get('/api/orderDetail', function (req, res) {
     orderDetailController.orderDetail(req, res)
 });
 route.get('/api/getDetail/:id', function (req, res) {
-    let orderid = req.params.id;
-    orderDetailController.getDetail(req, res, orderid)
+    let userid = req.params.id;
+    orderDetailController.getDetail(req, res, userid)
+});
+route.get('/api/sumItem/:id', function (req, res) {
+    let userid = req.params.id;
+    orderDetailController.sumItem(req, res, userid)
 });
 route.post('/api/addDetail', function (req, res) {
     //console.log(req);

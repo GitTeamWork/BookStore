@@ -1,5 +1,6 @@
 let $userName = $('#Showusername')
 let $linkcart = $('#link')
+let $sumitem = $('#sumItem')
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
     var a = userLogin.userId;
@@ -28,9 +29,50 @@ window.onload = function () {
         $userName.html(str)
         $linkcart.html(str2)
     });
+
+    var settings1 = {
+        async: true,
+        url: "/api/sumItem/"+a,
+        method: "GET",
+        headers: {
+            "cache-control": "no-cache",
+        },
+    };
+    $.ajax(settings1).done(function (response1) {
+        console.log(response1);
+        let str3 = '';
+        response1.map(function (item) {
+            str3 +=
+                `<span class="product_qun">${item.sumitem}</span>`;
+        })
+        $sumitem.html(str3)
+    })
+    .fail(function (err){
+        console.log(err);
+        
+    })
 }
-
-
+// let $sumitem = $('#sumItem')
+// LoadSumItem = () => {
+//     var settings = {
+//         async: true,
+//         url: "/api/getDetail/"+a,
+//         method: "GET",
+//         headers: {
+//             "cache-control": "no-cache",
+//         },
+//     };
+//     $.ajax(settings).done(function (response) {
+//         console.log(response);
+//         let str = '';
+//         response.map(function (item) {
+//             str +=
+//                 `<span class="product_qun">${item}</span>`;
+//         })
+//         $sumitem.html(str)
+//     });
+// }
+// LoadSumItem();
 const LoadDataCart = () => {
     var full_url = document.URL; // Get current url
     var url_array = full_url.split('/') // Split the string into an array with / as separator
@@ -59,7 +101,6 @@ var CartItem = function (product, quantity) {
   };
   
   LoadDataCart().done(data => {
-    console.log('okkkkkkkkkk');
     let ViewModel = function () {
       let self = this; // Scope Trick
       //self.cart = ko.observableArray();

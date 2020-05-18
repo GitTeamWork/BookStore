@@ -41,6 +41,7 @@ $.ajax(settings).done(function (response1) {
 });
 
 let $userName = $('#Showusername')
+let $sumitem = $('#sumItem')
 let $linkcart = $('#linkcart')
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
@@ -64,11 +65,35 @@ window.onload = function () {
         response.map(function (item) {
             str +=
                 `${item.username}`
-            str2 +=`<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
+            str2 += `<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
         })
         $userName.html(str);
         $linkcart.html(str2)
     });
+    LoadSumItem = () => {
+        var settings1 = {
+            async: true,
+            url: "/api/sumItem/" + a,
+            method: "GET",
+            headers: {
+                "cache-control": "no-cache",
+            },
+        };
+        $.ajax(settings1).done(function (response1) {
+            console.log(response1);
+            let str3 = '';
+            response1.map(function (item) {
+                str3 +=
+                    `<span class="product_qun">${item.sumitem}</span>`;
+            })
+            $sumitem.html(str3)
+        })
+            .fail(function (err) {
+                console.log(err);
+
+            })
+    }
+    LoadSumItem();
 }
 
 const LoadDataProduct = () => {
@@ -91,8 +116,8 @@ var CartItem = function (product, quantity) {
     self.quantity = ko.observable(quantity || 1);
     //self.item = ko.observable(item || 0);
     self.amount = ko.observable(amount || 0);
-    self.total= ko.computed(function(){
-      return self.product().price * self.quantity;
+    self.total = ko.computed(function () {
+        return self.product().price * self.quantity;
     });
 };
 
@@ -103,7 +128,7 @@ LoadDataProduct().done(data => {
 
         self.cart = ko.observableArray();
         self.products = ko.observableArray();
-        
+
         self.item = ko.computed(function () {
             var item = 0;
             $(self.cart()).each(function () {
@@ -111,25 +136,68 @@ LoadDataProduct().done(data => {
             });
             return item;
         })
-        self.amount = ko.computed(function(){
+        self.amount = ko.computed(function () {
             var subtotal = 0;
-            $(self.cart()).each(function(){
-              subtotal += this.total();
-              //console.log(cart_item.total());
+            $(self.cart()).each(function () {
+                subtotal += this.total();
+                //console.log(cart_item.total());
             });
             return subtotal;
-          });
+        });
 
         self.addToCart = function (product, event) {
-            // Instantiate a new CartItem object using the passed
-            // in `Product` object, and then set a quantity of 1.
             var cart_item = new CartItem(product, 1);
 
             // Add the CartItem instance to the self.cart (Observable Array)
             self.cart.push(cart_item);
-            
-            
-              
+            //console.log([cart_item.product](0));
+            let fcpush = function () {
+                self.cart.push(cart_item);
+                let settings = {
+                    type: "POST",
+                    url: "/api/addDetail",
+                    data: { productId: product.productId, quantity: 1, amount: product.price, userId: 23 },
+                    dataType: "html",
+                };
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+
+                    try {
+                        if (response == 'Them thanh cong') {
+                            alert('Them san pham vao gio hang thanh cong!');
+                            LoadSumItem();
+
+                        } else {
+                            alert(response)
+                        }
+                    } catch (error) {
+                        alert('Error network!!!' + error)
+                    }
+                });
+
+                // return $.ajax({
+                //     type: "POST",
+                //     url: "/api/addDetail",
+                //     data: { productId: product.productId, quantity: 1, amount: product.price, userId: 23 },
+                //     dataType: "html",
+                //     success: function (response) {
+                //         console.log(response.message);
+
+                //         if (response.message == 'Them thanh cong') {
+                //             alert('Them san pham vao gio hang thanh cong!');
+                //             LoadSumItem();
+                //         }
+                //         else {
+                //             alert("San pham da ton tai, vui long update trong gio hang");
+                //             LoadSumItem();
+                //         }
+                //     },
+                //     error: function () {
+                //         alert("Problem communicating with the server");
+                //     }
+                // });
+            }
+            fcpush()
         };
     };
 
@@ -149,20 +217,20 @@ LoadDataProduct().done(data => {
 
 let $test1 = $("#productGird");
 $("body").ready(() => {
-  console.log(document.querySelector("#search_mini_form a"));
+    console.log(document.querySelector("#search_mini_form a"));
 
-  $("#search_mini_form > div > div > a").click((e) => {
-    e.preventDefault();
-    let search = $("#search_mini_form > div > input[type=text]").val();
-    let settings = {
-      url: "/api/product-admin/search",
-      method: "GET",
-      data: { name: search },
-    };
-    $.ajax(settings).done(function (response) {
-      let str = "";
-      response.map(function (item) {
-        str += `   <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12" data-bind="foreach:products">
+    $("#search_mini_form > div > div > a").click((e) => {
+        e.preventDefault();
+        let search = $("#search_mini_form > div > input[type=text]").val();
+        let settings = {
+            url: "/api/product-admin/search",
+            method: "GET",
+            data: { name: search },
+        };
+        $.ajax(settings).done(function (response) {
+            let str = "";
+            response.map(function (item) {
+                str += `   <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12" data-bind="foreach:products">
       <div class="product__thumb">
           <a class="first__img" href="single-product/${item.productId}"><img src=${item.image} alt="product image"></a>
           <a class="second__img animation1" href="single-product/${item.productId}"><img src=${item.image} alt="product image"></a>
@@ -197,10 +265,10 @@ $("body").ready(() => {
           </div>
       </div>
   </div>`;
-      });
-      $test1.html(str);
+            });
+            $test1.html(str);
+        });
     });
-  });
 });
 
 
