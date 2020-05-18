@@ -11,7 +11,9 @@ function orderDetail(req, res) {
     });
 };
 function getDetail(req, res, userId) {
-    var sql = `SELECT * FROM [OrderDetail] WHERE orderId = (SELECT orderId  FROM dbo.[Order] WHERE userId = ${userId} AND status = 0)`;
+    var sql = `SELECT PRODUCT.productId, image, productName,price, quantity, amount 
+    FROM ORDERDETAIL INNER JOIN PRODUCT ON PRODUCT.productId = ORDERDETAIL.productId 
+    WHERE orderId = (SELECT orderId  FROM dbo.[Order] WHERE userId = ${userId} AND status = 0)`;
     console.log(sql);
 
     db.executeSql(sql, function (data, err) {

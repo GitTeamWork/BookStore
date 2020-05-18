@@ -375,11 +375,11 @@
                                     </thead>
                                     <tbody data-bind="foreach:details">
                                         <tr>
-                                            <td class="product-thumbnail"><span data-bind="text:$data.productId"></span></td>
-                                            <!-- <a href="#"><img src="assets/template/images/product/sm-3/1.jpg" alt="product img"></a> -->
-                                            <td class="product-name"><span id="productid" data-bind="text:$data.productId"></span></td>
+                                            <td class="product-thumbnail"> <a href="#"><img data-bind="attr:{src: image,alt:image}"></a></td>
+                                           
+                                            <td class="product-name"><span id="productid" data-bind="text:$data.productName"></span></td>
                                             <!-- <a href="#">Natoque penatibus</a> -->
-                                            <td class="product-price"><span class="amount" ></span></td>
+                                            <td class="product-price"><span class="amount" data-bind="text:$data.price"></span></td>
                                             <td class="product-quantity"><input type="number" data-bind="value:$data.quantity"></td>
                                             <td class="product-subtotal"><span data-bind="text:$data.amount"></span></td>
                                             <td class="product-remove"><a href="#" data-bind="click:$parent.removeFromCart">X</a></td>
@@ -392,7 +392,7 @@
                             <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
                                 <li><a href="#">Coupon Code</a></li>
                                 <li><a href="#">Apply Code</a></li>
-                                <li><a href="#">Update Cart</a></li>
+                                <!-- <li><a href="#" data-bind="click:$data.updateCart">Update Cart</a></li> -->
                                 <li><a href="#">Check Out</a></li>
                             </ul>
                         </div>
@@ -401,7 +401,7 @@
                 <div class="row">
                     <div class="col-lg-6 offset-lg-6">
                         <div class="cartbox__total__area">
-                            <div class="cartbox-total d-flex justify-content-between">
+                            <!-- <div class="cartbox-total d-flex justify-content-between">
                                 <ul class="cart__total__list">
                                     <li>Cart total</li>
                                     <li>Sub Total</li>
@@ -410,10 +410,10 @@
                                     <li>$70</li>
                                     <li>$70</li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <div class="cart__total__amount">
                                 <span>Grand Total</span>
-                                <span>$140</span>
+                                <span data-bind="text:$data.subtt"></span>
                             </div>
                         </div>
                     </div>

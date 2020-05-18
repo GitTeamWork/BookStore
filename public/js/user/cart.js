@@ -85,7 +85,6 @@ const LoadDataCart = () => {
             "cache-control": "no-cache",
         },
     };
-
     return $.ajax(settings)
 }
 //LoadDataCart()
@@ -94,7 +93,6 @@ var CartItem = function (product, quantity) {
   
     self.product = ko.observable(product);
     self.quantity = quantity;
-  
     self.total = ko.computed(function () {
       return self.product().price * self.quantity;
     });
@@ -106,7 +104,14 @@ var CartItem = function (product, quantity) {
       //self.cart = ko.observableArray();
       //self.products = ko.observableArray();
       self.details = ko.observableArray();
-
+      self.subtt = ko.computed(function () {
+        var subtotal = 0;
+        $(self.details()).each(function () {
+          subtotal += this.amount;
+          //console.log(details.total());
+        });
+        return subtotal;
+      });
       self.removeFromCart = function(cart_item, event) {
         //var qt = $("#producid").val();
         productid=cart_item.productId
@@ -128,9 +133,6 @@ var CartItem = function (product, quantity) {
           }
           fcremove()
       };
-
-     
-  
     //   self.item = ko.computed(function () {
     //     var item = 0;
     //     $(self.cart()).each(function () {
@@ -138,14 +140,7 @@ var CartItem = function (product, quantity) {
     //     });
     //     return item;
     //   })
-    //   self.amount = ko.computed(function () {
-    //     var subtotal = 0;
-    //     $(self.cart()).each(function () {
-    //       subtotal += this.total();
-    //       //console.log(cart_item.total());
-    //     });
-    //     return subtotal;
-    //   });
+     
   
     //   var full_url = document.URL; // Get current url
     //   var url_array = full_url.split('/') // Split the string into an array with / as separator

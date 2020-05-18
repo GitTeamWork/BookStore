@@ -20,6 +20,7 @@ $.ajax(settingsCa).done(function (response) {
 });
 //==============================
 let $publisher = $('#ShowPublisher')
+
 var settingsPu = {
   "async": true,
   "url": "/api/publisherList",
@@ -32,15 +33,19 @@ var settingsPu = {
 $.ajax(settingsPu).done(function (response1) {
   console.log(response1);
   let str1 = '';
+  
   response1.map(function (item1) {
     str1 +=
       `<li><a http://localhost:9000/showproductpublisher/${item1.publisherId}">${item1.publisherName}</a></li>
                    `
+                  
   })
   $publisher.html(str1)
+  
 });
 
 let $userName = $('#Showusername')
+let $linkcart = $('#linkcart')
 let $sumitem = $('#sumItem')
 window.onload = function () {
   var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
@@ -61,11 +66,14 @@ window.onload = function () {
     console.log(response);
     $("#userid").html(a)
     let strU = '';
+    let str2 = '';
     response.map(function (item) {
       strU +=
-        `${item.username}`
+        `${item.username}`;
+        str2 += `<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
     })
     $userName.html(strU)
+    $linkcart.html(str2)
   });
   LoadSumItem = () => {
     var settings1 = {
