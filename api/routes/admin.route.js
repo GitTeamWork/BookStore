@@ -37,7 +37,7 @@ route.get('/updateproduct-admin/:id', function (req, res) {
 
 
 // publisher
-route.get('/publisher-admin', function (req, res) {
+route.get('/publisher-admin', function (req, res) { 
     res.render("admin/publisher-admin");
 });
 route.get('/addpublisher-admin', function (req, res) {
