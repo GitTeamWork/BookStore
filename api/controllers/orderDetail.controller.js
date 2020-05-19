@@ -33,12 +33,32 @@ function sumItem(req, res, userId) {
         if (err) {
             res.json(err);
         } else {
-            if (data.recordset.sumItem != null){
+            //let {recordset} = sumit;
+            //res.json(sumit)
+            //  if (String(data.recordset[0])=={ sumitem: 0 }){
+            //      console.log(String({ sumitem: 0 }));
+                 
+            //     res.json(String({ sumitem: 0 }));
+            //  } 
+            //  else{
+            //     console.log(data.recordset);
+            //     //res.json(data.recordset[0]);
+            //  }
+            if (String(data.recordset)=="{ sumitem: 0 }") {
+                res.json({sumitem: 0});
+            }
+            else{
                 res.json(data.recordset);
             }
-           else{
-               res.json(0);
-           }
+            //console.log(data.recordset);
+            
+            
+            // if (data.recordset().sumItem != null){
+            //     res.json(data.recordset);
+            // }
+            // else{
+            //     res.json(0);
+            // }
         }
         res.end();
     });

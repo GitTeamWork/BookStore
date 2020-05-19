@@ -416,8 +416,8 @@
                             </div> -->
                             <div class="cart__total__amount">
 								<span>Grand Total</span>
-								<input type="number" id="pay"  data-bind="value:100">
-                                <!-- <span data-bind="text:$data.subtt"></span> -->
+								<input id="pay" data-bind="value:$data.subtt()">
+                                <!-- <span data-bind="text:$data.subtt()"></span> -->
 							</div>
 							
 							<div id="paypal-button-container"></div>

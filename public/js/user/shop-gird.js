@@ -160,15 +160,18 @@ LoadDataProduct().done(data => {
                     dataType: "html",
                 };
                 $.ajax(settings).done(function (response) {
-                    console.log(response);
-
+                    //console.log(response);
                     try {
                         if (response == 'Them thanh cong') {
-                            alert('Them san pham vao gio hang thanh cong!');
-                            LoadSumItem();
-
+                            try {
+                                LoadSumItem();
+                                alert('Them san pham vao gio hang thanh cong!');
+                            } catch (error) {
+                                console.log(error);
+                            }
                         } else {
-                            alert(response)
+                            alert(response);
+                            LoadSumItem();
                         }
                     } catch (error) {
                         alert('Error network!!!' + error)

@@ -112,10 +112,11 @@ var CartItem = function (product, quantity) {
         var subtotal = 0;
         $(self.details()).each(function () {
           subtotal += this.amount;
-          //console.log(subtotal);
-          return subtotal;
+          console.log(subtotal);
+          
       });
-        });
+      return subtotal;
+    });
         
       self.subam = ko.computed(function () {
         $(self.details()).each(function () {
