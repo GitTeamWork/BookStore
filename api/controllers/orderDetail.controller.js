@@ -44,10 +44,12 @@ function sumItem(req, res, userId) {
             //     console.log(data.recordset);
             //     //res.json(data.recordset[0]);
             //  }
-            if (String(data.recordset)=="{ sumitem: 0 }") {
+            if (String(data.recordset)==`[ { sumitem: 1 } ]`) {
                 res.json({sumitem: 0});
             }
             else{
+                console.log(data.recordset);
+                
                 res.json(data.recordset);
             }
             //console.log(data.recordset);

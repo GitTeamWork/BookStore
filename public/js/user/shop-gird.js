@@ -83,8 +83,15 @@ window.onload = function () {
             console.log(response1);
             let str3 = '';
             response1.map(function (item) {
-                str3 +=
+                if (item.sumitem==null){
+                    console.log(item.sumitem+"-------------------");
+                    str3 +=
+                    `<span class="product_qun">0</span>`;
+                }
+                else{
+                    str3 +=
                     `<span class="product_qun">${item.sumitem}</span>`;
+                }
             })
             $sumitem.html(str3)
         })

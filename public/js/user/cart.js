@@ -40,12 +40,20 @@ window.onload = function () {
             },
         };
         $.ajax(settings1).done(function (response1) {
-            console.log(response1);
+            
             let str3 = '';
             response1.map(function (item) {
                 
-                str3 +=
+                if (item.sumitem==null){
+                    console.log(item.sumitem+"-------------------");
+                    str3 +=
+                    `<span class="product_qun">0</span>`;
+                }
+                else{
+                    str3 +=
                     `<span class="product_qun">${item.sumitem}</span>`;
+                }
+                
             })
             $sumitem.html(str3)
         })
@@ -148,15 +156,15 @@ var CartItem = function (product, quantity) {
           }
           fcremove()
       };
-    //   self.updateCart = function(cart_item, event) {
-    //     $(self.details((function () {
-    //         //var qt = $("#qt").val();
-    //         this.quantity = $("#qt").val();
+      self.updateCart = function(cart_item, event) {
+        $(self.details((function () {
+            var qt = $("#qt").val();
+            this.quantity = $("#qt").val();
             
-            
-    //     })));
+            console.log(qt);
+        })));
         
-    //   }
+      }
     //   self.item = ko.computed(function () {
     //     var item = 0;
     //     $(self.cart()).each(function () {
