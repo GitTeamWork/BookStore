@@ -2,6 +2,9 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
+
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>Shopping Cart | Bookshop Responsive Bootstrap4 Template</title>
@@ -28,7 +31,7 @@
 
 	<!-- Modernizer js -->
 	<script src="assets/template/js/vendor/modernizr-3.5.0.min.js"></script>
-</head>
+
 <body>
 	<!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -412,14 +415,20 @@
                                 </ul>
                             </div> -->
                             <div class="cart__total__amount">
-                                <span>Grand Total</span>
-                                <span data-bind="text:$data.subtt"></span>
-                            </div>
+								<span>Grand Total</span>
+								<input type="number" id="pay"  data-bind="value:100">
+                                <!-- <span data-bind="text:$data.subtt"></span> -->
+							</div>
+							
+							<div id="paypal-button-container"></div>
+							<script> paypal.Buttons().render('#paypal-button-container') </script>
+							
                         </div>
                     </div>
                 </div>
             </div>  
-        </div>
+		</div>
+		
         <!-- cart-main-area end -->
 		<!-- Footer Area -->
 		<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
@@ -488,5 +497,29 @@
     <script src="assets/template/js/active.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
 	<script src="assets/js/user/cart.js" ></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AZBZ2Qj67dTuyMdpZzKQjKghlxbB_XpvU6mOaqeU5ODG2iB7BcHrsRUmomZPcz6sQ13O_FIZJ1qDnbjl"></script>
+	<script>
+		paypal.Buttons({
+		  createOrder: function(data, actions) {
+			// This function sets up the details of the transaction, including the amount and line item details.
+			return actions.order.create({
+			  purchase_units: [{
+				amount: {
+				  value: $("#pay").val()
+				}
+			  }]
+			});
+		  },
+		  onApprove: function(data, actions) {
+			// This function captures the funds from the transaction.
+			return actions.order.capture().then(function(details) {
+			  // This function shows a transaction success message to your buyer.
+			  alert('Transaction completed by ' + details.payer.name.given_name);
+			});
+		  }
+		}).render('#paypal-button-container');
+		//This function displays Smart Payment Buttons on your web page.
+	  </script>
+
 </body>
 </html>
