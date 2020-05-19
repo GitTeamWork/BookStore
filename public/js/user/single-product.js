@@ -249,3 +249,32 @@ LoadSingleProduct().done(data => {
 
 })
 
+    //// ======================================//
+let $getdetail = $("#nav-details");
+const LoaddetailProduct = () => {
+  var full_url = document.URL; // Get current url
+  var url_array = full_url.split('/') // Split the string into an array with / as separator
+  var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
+  //alert( last_segment ); // Alert last segment
+  var settings = {
+    async: true,
+    url: "/api/product/" + last_segment,
+    method: "GET",
+    headers: {
+      "cache-control": "no-cache",
+    },
+  };
+
+  $.ajax(settings).done(function (response) {
+    //console.log(response);
+    let str3 = "";
+    response.map(function (item) {
+      //document.getElementById("selected").value = $(item.catalogId);
+      str3 += 
+      `<p>${item.detail}</p>`;
+    });
+    $getdetail.html(str3);
+  });
+};
+
+LoaddetailProduct();
