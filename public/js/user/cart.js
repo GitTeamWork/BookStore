@@ -30,27 +30,31 @@ window.onload = function () {
         $linkcart.html(str2)
     });
 
-    var settings1 = {
-        async: true,
-        url: "/api/sumItem/"+a,
-        method: "GET",
-        headers: {
-            "cache-control": "no-cache",
-        },
-    };
-    $.ajax(settings1).done(function (response1) {
-        console.log(response1);
-        let str3 = '';
-        response1.map(function (item) {
-            str3 +=
-                `<span class="product_qun">${item.sumitem}</span>`;
+    LoadSumItem = () => {
+        var settings1 = {
+            async: true,
+            url: "/api/sumItem/" + a,
+            method: "GET",
+            headers: {
+                "cache-control": "no-cache",
+            },
+        };
+        $.ajax(settings1).done(function (response1) {
+            console.log(response1);
+            let str3 = '';
+            response1.map(function (item) {
+                
+                str3 +=
+                    `<span class="product_qun">${item.sumitem}</span>`;
+            })
+            $sumitem.html(str3)
         })
-        $sumitem.html(str3)
-    })
-    .fail(function (err){
-        console.log(err);
-        
-    })
+            .fail(function (err) {
+                console.log(err);
+
+            })
+    }
+    LoadSumItem();
 }
 // let $sumitem = $('#sumItem')
 // LoadSumItem = () => {
@@ -108,9 +112,18 @@ var CartItem = function (product, quantity) {
         var subtotal = 0;
         $(self.details()).each(function () {
           subtotal += this.amount;
-          //console.log(details.total());
+          //console.log(subtotal);
+          return subtotal;
+      });
         });
-        return subtotal;
+        
+      self.subam = ko.computed(function () {
+        $(self.details()).each(function () {
+            //console.log(this.price * this.quantity);
+            this.amount = this.price * this.quantity
+            return this.amount;
+        });
+        
       });
       self.removeFromCart = function(cart_item, event) {
         //var qt = $("#producid").val();
@@ -124,15 +137,25 @@ var CartItem = function (product, quantity) {
                 url: "/api/delItem",
                 data: {productId:productid},
                 success: function(response) {
-                    alert('Add new product successfully!');
+                    alert('Xóa sản phẩm thành công!');
+                    LoadSumItem();
                 },
                 error: function() {
-                    alert("Problem communicating with the server");
+                    alert("Lỗi xóa sản phẩm");
                 }
             });
           }
           fcremove()
       };
+    //   self.updateCart = function(cart_item, event) {
+    //     $(self.details((function () {
+    //         //var qt = $("#qt").val();
+    //         this.quantity = $("#qt").val();
+            
+            
+    //     })));
+        
+    //   }
     //   self.item = ko.computed(function () {
     //     var item = 0;
     //     $(self.cart()).each(function () {

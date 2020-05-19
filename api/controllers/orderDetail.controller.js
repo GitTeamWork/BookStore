@@ -33,7 +33,12 @@ function sumItem(req, res, userId) {
         if (err) {
             res.json(err);
         } else {
-            res.json(data.recordset);
+            if (data.recordset.sumItem != null){
+                res.json(data.recordset);
+            }
+           else{
+               res.json(0);
+           }
         }
         res.end();
     });
