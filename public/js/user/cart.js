@@ -40,20 +40,20 @@ window.onload = function () {
             },
         };
         $.ajax(settings1).done(function (response1) {
-            
+
             let str3 = '';
             response1.map(function (item) {
-                
-                if (item.sumitem==null){
-                    console.log(item.sumitem+"-------------------");
+
+                if (item.sumitem == null) {
+                    console.log(item.sumitem + "-------------------");
                     str3 +=
-                    `<span class="product_qun">0</span>`;
+                        `<span class="product_qun">0</span>`;
                 }
-                else{
+                else {
                     str3 +=
-                    `<span class="product_qun">${item.sumitem}</span>`;
+                        `<span class="product_qun">${item.sumitem}</span>`;
                 }
-                
+
             })
             $sumitem.html(str3)
         })
@@ -85,13 +85,14 @@ window.onload = function () {
 //     });
 // }
 // LoadSumItem();
-const LoadDataCart = () => {
-    var full_url = document.URL; // Get current url
+var full_url = document.URL; // Get current url
     var url_array = full_url.split('/') // Split the string into an array with / as separator
     var last_segment = url_array[url_array.length - 1];
+const LoadDataCart = () => {
+    
     var settings = {
         async: true,
-        url: "/api/getDetail/"+last_segment,
+        url: "/api/getDetail/" + last_segment,
         method: "GET",
         headers: {
             "cache-control": "no-cache",
@@ -102,129 +103,107 @@ const LoadDataCart = () => {
 //LoadDataCart()
 var CartItem = function (product, quantity) {
     var self = this; // Scope Trick
-  
+
     self.product = ko.observable(product);
     self.quantity = quantity;
     self.total = ko.computed(function () {
-      return self.product().price * self.quantity;
+        return self.product().price * self.quantity;
     });
-  };
-  
-  LoadDataCart().done(data => {
+};
+
+LoadDataCart().done(data => {
     let ViewModel = function () {
-      let self = this; // Scope Trick
-      //self.cart = ko.observableArray();
-      //self.products = ko.observableArray();
-      self.details = ko.observableArray();
-      self.subtt = ko.computed(function () {
-        var subtotal = 0;
-        $(self.details()).each(function () {
-          subtotal += this.amount;
-          console.log(subtotal);
-          
-      });
-      return subtotal;
-    });
-        
-      self.subam = ko.computed(function () {
-        $(self.details()).each(function () {
-            //console.log(this.price * this.quantity);
-            this.amount = this.price * this.quantity
-            return this.amount;
-        });
-        
-      });
-      self.removeFromCart = function(cart_item, event) {
-        //var qt = $("#producid").val();
-        productid=cart_item.productId
-        //console.log(cart_item.productId);
-        
-        let fcremove = function () {
-            self.details.remove(cart_item);
-            return $.ajax({
-                type: "DELETE",
-                url: "/api/delItem",
-                data: {productId:productid},
-                success: function(response) {
-                    alert('Xóa sản phẩm thành công!');
-                    LoadSumItem();
-                },
-                error: function() {
-                    alert("Lỗi xóa sản phẩm");
-                }
+        let self = this; // Scope Trick
+        //self.cart = ko.observableArray();
+        //self.products = ko.observableArray();
+        self.details = ko.observableArray();
+        self.subtt = ko.computed(function () {
+            var subtotal = 0;
+            $(self.details()).each(function () {
+                subtotal += this.amount;
             });
-          }
-          fcremove()
-      };
-      self.updateCart = function(cart_item, event) {
-        $(self.details((function () {
-            var qt = $("#qt").val();
-            this.quantity = $("#qt").val();
+            return subtotal;
+        });
+
+        self.subam = ko.computed(function () {
+            $(self.details()).each(function () {
+                //console.log(this.price * this.quantity);
+                this.amount = this.price * this.quantity
+                return this.amount;
+            });
+        });
+        self.removeFromCart = function (cart_item, event) {
+            //var qt = $("#producid").val();
+            productid = cart_item.productId
+            //console.log(cart_item.productId);
+
+            let fcremove = function () {
+                self.details.remove(cart_item);
+                return $.ajax({
+                    type: "DELETE",
+                    url: "/api/delItem",
+                    data: { productId: productid },
+                    success: function (response) {
+                        alert('Xóa sản phẩm thành công!');
+                        LoadSumItem();
+                    },
+                    error: function () {
+                        alert("Lỗi xóa sản phẩm");
+                    }
+                });
+            }
+            fcremove()
+        };
+        self.updateCart = function (cart_item, event) {
+
+            self.details().forEach(function (item, index, array) {
+                console.log(item);
+
+                let fcupdate = function () {
+                    //self.cart.push(cart_item);
+                    let settings = {
+                        type: "PUT",
+                        url: "/api/updateItem/"+last_segment,
+                        data: { productId: item.productId, quantity: item.quantity },
+                        dataType: "html",
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                        try {
+                            if (response.message == 'update thanh cong') {
+                                try {
+                                    LoadSumItem();
+                                    alert('Them san pham vao gio hang thanh cong!');
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            } else {
+                                alert(response.message);
+                                LoadSumItem();
+                            }
+                        } catch (error) {
+                            alert('Error network!!!' + error)
+                        }
+                    });
+                }
+                fcupdate()
+            });
             
-            console.log(qt);
-        })));
+
+        }
         
-      }
-    //   self.item = ko.computed(function () {
-    //     var item = 0;
-    //     $(self.cart()).each(function () {
-    //       item += 1;
-    //     });
-    //     return item;
-    //   })
-     
-  
-    //   var full_url = document.URL; // Get current url
-    //   var url_array = full_url.split('/') // Split the string into an array with / as separator
-    //   var last_segment = url_array[url_array.length - 1];  // Get the last part of the array (-1)
-    //   self.addToCart = function (product, event) {
-    //     // Instantiate a new CartItem object using the passed
-    //     // in `Product` object, and then set a quantity of 1.
-    //     var qt = $("#qty").val();
-  
-    //     var id = last_segment
-    //     id.toLocaleString();
-    //     console.log(id);
-    //     var cart_item = new CartItem(product, qt);
-  
-    //     // Add the CartItem instance to the self.cart (Observable Array)
-    //     let fcpush = function () {
-    //       self.cart.push(cart_item);
-    //       return $.ajax({
-    //           type: "POST",
-    //           url: "/api/addDetail",
-    //           data: {orderId:1,productId:id,quantity:qt, amount: self.amount},
-    //           dataType: "html",
-    //           success: function(response) {
-    //               alert('Add new product successfully!');
-    //           },
-    //           error: function() {
-    //               alert("Problem communicating with the server");
-    //           }
-    //       });
-    //     }
-    //     fcpush()
-  
-  
-  
-    //     //alert(qt)
-    //     // self.addToCart().done(data => {
-    //     //   console.log(product);
-  
-    //     // })   
-    //   };
     };
-  
+
     // Instantiate the ViewModel
     window.view_model = new ViewModel();
-  
+
     //   // Add some products...
     view_model.details(data);
-  
+
     // Away we go...
     ko.applyBindings(window.view_model);
-  
-  })
-  LoadDataCart().fail(err =>{
-      console.log(err);
-  })
+
+})
+LoadDataCart().fail(err => {
+    console.log(err);
+})

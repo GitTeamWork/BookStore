@@ -37,7 +37,6 @@ function login(email, password, res) {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
                 console.log(result);
-                
                 return res.json({ message: 'Dang nhap thanh cong', data: result.recordset});
             }
             else {

@@ -312,10 +312,11 @@
 										</div>
 										<div class="price-box">
 											<span id="price" data-bind="text:$data.price"></span>
+											<span class="old_prize" data-bind="text:$data.oldPrice"></span>
 										</div>
-										<div class="product__overview">
+										<!-- <div class="product__overview">
 											<p data-bind="text:$data.detail"></p>
-										</div>
+										</div> -->
 
 										<!-- xu li get product o js -->
 										<div class="box-tocart d-flex">
@@ -323,11 +324,13 @@
 											<input id="qty" data-bind="value:$data.quantity"
 												class="input-text qty" name="qty" min="1" value="1" title="Qty"
 												type="number">
+												<!-- <div data-bind="text:$data.total"></div> -->
 											<div>
 												<button class="btn add" type="button"
 													data-bind="click: $parent.addToCart">Add</button>
 
 											</div>
+											
 											<div class="product-addto-links clearfix">
 												<a class="wishlist" href="#"></a>
 												<a class="compare" href="#"></a>

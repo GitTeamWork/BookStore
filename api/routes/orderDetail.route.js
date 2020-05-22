@@ -13,11 +13,12 @@ route.get('/api/sumItem/:id', function (req, res) {
     orderDetailController.sumItem(req, res, userid)
 });
 route.post('/api/addDetail', function (req, res) {
-    //console.log(req);
-    //console.log(res);
     orderDetailController.addDetail(req, res)
 });
 route.delete('/api/delItem', function(req, res){
     orderDetailController.delItem(req, res)
+});
+route.put('/api/updateItem/:id', function(req, res){
+    orderDetailController.updateItem(req, res)
 })
 module.exports = route

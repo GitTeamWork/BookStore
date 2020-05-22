@@ -116,10 +116,34 @@ function delItem(req, res) {
 
     }
 };
+
+function updateItem(req, res) {
+    try {
+        let {quantity, productId } = req.body;
+        let userId = req.params.id;
+        var sql = `UPDATE dbo.OrderDetail SET quantity = ${quantity} WHERE productId = ${productId} AND orderId = (SELECT orderId FROM dbo.[Order] WHERE status = 0 AND userId = ${userId})`;
+        console.log(sql);
+
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                res.json({ message: "update thanh cong" });
+            }
+            else {
+                res.json({ message: "update that bai" });
+            }
+        })
+    } catch (error) {
+        res.json(error)
+        console.log(error);
+
+    }
+};
 module.exports = {
     orderDetail: orderDetail,
     getDetail: getDetail,
     addDetail: addDetail,
     delItem: delItem,
-    sumItem: sumItem
+    sumItem: sumItem,
+    updateItem: updateItem
 }

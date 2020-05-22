@@ -156,7 +156,7 @@ LoadDataProduct().done(data => {
             var cart_item = new CartItem(product, 1);
 
             // Add the CartItem instance to the self.cart (Observable Array)
-            self.cart.push(cart_item);
+            //self.cart.push(cart_item);
             //console.log([cart_item.product](0));
             let fcpush = function () {
                 self.cart.push(cart_item);
