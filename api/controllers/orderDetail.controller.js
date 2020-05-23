@@ -119,9 +119,9 @@ function delItem(req, res) {
 
 function updateItem(req, res) {
     try {
-        let {quantity, productId } = req.body;
+        let {quantity, productId, amount } = req.body;
         let userId = req.params.id;
-        var sql = `UPDATE dbo.OrderDetail SET quantity = ${quantity} WHERE productId = ${productId} AND orderId = (SELECT orderId FROM dbo.[Order] WHERE status = 0 AND userId = ${userId})`;
+        var sql = `UPDATE dbo.OrderDetail SET quantity = ${quantity}, amount=${amount} WHERE productId = ${productId} AND orderId = (SELECT orderId FROM dbo.[Order] WHERE status = 0 AND userId = ${userId})`;
         console.log(sql);
 
         db.executeSql(sql, (result) => {

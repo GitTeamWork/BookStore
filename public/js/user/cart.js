@@ -164,7 +164,7 @@ LoadDataCart().done(data => {
                     let settings = {
                         type: "PUT",
                         url: "/api/updateItem/"+last_segment,
-                        data: { productId: item.productId, quantity: item.quantity },
+                        data: { productId: item.productId, quantity: item.quantity, amount: item.quantity*item.price },
                         dataType: "html",
                     };
                     $.ajax(settings).done(function (response) {

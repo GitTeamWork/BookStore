@@ -43,9 +43,10 @@ $.ajax(settings).done(function (response1) {
 let $userName = $('#Showusername')
 let $sumitem = $('#sumItem')
 let $linkcart = $('#linkcart')
+var a;
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
-    var a = userLogin.userId;
+    a = userLogin.userId;
     console.log(a);
     var settings = {
         "async": true,
@@ -151,8 +152,8 @@ LoadDataProduct().done(data => {
             });
             return subtotal;
         });
-
         self.addToCart = function (product, event) {
+            console.log(a);
             var cart_item = new CartItem(product, 1);
 
             // Add the CartItem instance to the self.cart (Observable Array)
@@ -163,7 +164,7 @@ LoadDataProduct().done(data => {
                 let settings = {
                     type: "POST",
                     url: "/api/addDetail",
-                    data: { productId: product.productId, quantity: 1, amount: product.price, userId: 23 },
+                    data: { productId: product.productId, quantity: 1, amount: product.price, userId: a },
                     dataType: "html",
                 };
                 $.ajax(settings).done(function (response) {

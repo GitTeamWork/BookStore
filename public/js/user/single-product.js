@@ -211,7 +211,6 @@ LoadSingleProduct().done(data => {
     self.addToCart = function (product, event) {
       var qt = $("#qty").val();
       //id.toLocaleString();
-      console.log(id);
       var cart_item = new CartItem(product, qt);
 
       // Add the CartItem instance to the self.cart (Observable Array)
