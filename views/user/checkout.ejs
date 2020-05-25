@@ -2,15 +2,11 @@
 <!doctype html>
 <html class="no-js" lang="zxx">
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- Ensures optimal rendering on mobile devices. -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Shopping Cart | Bookshop Responsive Bootstrap4 Template</title>
+	<title>Checkout | Bookshop Responsive Bootstrap4 Template</title>
 	<meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="http://localhost:9000/">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- Favicons -->
 	<link rel="shortcut icon" href="assets/template/images/favicon.ico">
@@ -19,7 +15,7 @@
 	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet"> 
 
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="assets/template/css/bootstrap.min.css">
@@ -31,7 +27,7 @@
 
 	<!-- Modernizer js -->
 	<script src="assets/template/js/vendor/modernizr-3.5.0.min.js"></script>
-
+</head>
 <body>
 	<!--[if lte IE 9]>
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
@@ -47,7 +43,7 @@
 					<div class="col-md-4 col-sm-4 col-7 col-lg-2">
 						<div class="logo">
 							<a href="index.html">
-                                <img src="assets/template/images/logo/logo.png" alt="logo images">
+								<img src="assets/template/images/logo/logo.png" alt="logo images">
 							</a>
 						</div>
 					</div>
@@ -167,73 +163,14 @@
 							<li class="wishlist"><a href="#"></a></li>
 							<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun" id="sumItem">0</span></a>
 								<!-- Start Shopping Cart -->
-								<div class="block-minicart minicart__active" >
+								<<div class="block-minicart minicart__active" >
 									<div class="minicart-content-wrapper">
 										<div class="micart__close">
 											<span>close</span>
 										</div>
-										<!-- <div class="items-total d-flex justify-content-between">
-											<span>3 items</span>
-											<span>Cart Subtotal</span>
-										</div>
-										<div class="total_amount text-right">
-											<span>$66.00</span>
-										</div> -->
 										<div class="mini_action checkout">
 											<a class="checkout__btn" href="cart.html">Go to Checkout</a>
 										</div>
-										<!-- <div class="single__items">
-											<div class="miniproduct">
-												<div class="item01 d-flex">
-													<div class="thumb">
-														<a href="product-details.html"><img src="assets/template/images/product/sm-img/1.jpg" alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-														<span class="prize">$30.00</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 01</span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-																<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="item01 d-flex mt--20">
-													<div class="thumb">
-														<a href="product-details.html"><img src="assets/template/images/product/sm-img/3.jpg" alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">Impulse Duffle</a></h6>
-														<span class="prize">$40.00</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 03</span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-																<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-												<div class="item01 d-flex mt--20">
-													<div class="thumb">
-														<a href="product-details.html"><img src="assets/template/images/product/sm-img/2.jpg" alt="product images"></a>
-													</div>
-													<div class="content">
-														<h6><a href="product-details.html">Compete Track Tote</a></h6>
-														<span class="prize">$40.00</span>
-														<div class="product_prize d-flex justify-content-between">
-															<span class="qun">Qty: 03</span>
-															<ul class="d-flex justify-content-end">
-																<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-																<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-															</ul>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div> -->
 										<div class="mini_action cart">
 											<a class="cart__btn" href="cart.html">View and edit cart</a>
 										</div>
@@ -271,6 +208,7 @@
 												</div>
 											</div>
 										</div>
+										
 									</div>
 								</div>
 							</li>
@@ -341,16 +279,16 @@
 		</div>
 		<!-- End Search Popup -->
         <!-- Start Bradcaump area -->
-        <div class="ht__bradcaump__area bg-image--3">
+        <div class="ht__bradcaump__area bg-image--4">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="bradcaump__inner text-center">
-                        	<h2 class="bradcaump-title">Shopping Cart</h2>
+                        	<h2 class="bradcaump-title">Checkout</h2>
                             <nav class="bradcaump-content">
                               <a class="breadcrumb_item" href="index.html">Home</a>
                               <span class="brd-separetor">/</span>
-                              <span class="breadcrumb_item active">Shopping Cart</span>
+                              <span class="breadcrumb_item active">Checkout</span>
                             </nav>
                         </div>
                     </div>
@@ -358,78 +296,285 @@
             </div>
         </div>
         <!-- End Bradcaump area -->
-        <!-- cart-main-area start -->
-        <div class="cart-main-area section-padding--lg bg--white">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 ol-lg-12">
-                        <form action="#">               
-                            <div class="table-content wnro__table table-responsive">
-                                <table>
-                                    <thead>
-                                        <tr class="title-top">
-                                            <th class="product-thumbnail">Image</th>
-                                            <th class="product-name">Product</th>
-                                            <th class="product-price">Price</th>
-                                            <th class="product-quantity">Quantity</th>
-                                            <th class="product-subtotal">Total</th>
-                                            <th class="product-remove">Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody data-bind="foreach:details">
-                                        <tr>
-                                            <td class="product-thumbnail"> <a href="#"><img data-bind="attr:{src: image,alt:image}"></a></td>
-                                           
-                                            <td class="product-name"><span id="productid" data-bind="text:$data.productName"></span></td>
-                                            <!-- <a href="#">Natoque penatibus</a> -->
-                                            <td class="product-price"><span class="amount" data-bind="text:$data.price"></span></td>
-                                            <td class="product-quantity"><input type="number" id="qt" data-bind="value:$data.quantity"></td>
-                                            <td class="product-subtotal"><span data-bind="text:$data.amount"></span></td>
-                                            <td class="product-remove"><a href="#" data-bind="click:$parent.removeFromCart">X</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </form> 
-                        <div class="cartbox__btn" >
-                            <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                                <li><a href="#">Coupon Code</a></li>
-                                <li><a href="#">Apply Code</a></li>
-                                <li><a href="#" data-bind='click:updateCart'>Update Cart</a></li>
-                                <li><a href="checkout">Check Out</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 offset-lg-6">
-                        <div class="cartbox__total__area">
-                            <!-- <div class="cartbox-total d-flex justify-content-between">
-                                <ul class="cart__total__list">
-                                    <li>Cart total</li>
-                                    <li>Sub Total</li>
-                                </ul>
-                                <ul class="cart__total__tk">
-                                    <li>$70</li>
-                                    <li>$70</li>
-                                </ul>
-                            </div> -->
-                            <div class="cart__total__amount">
-								<span>Grand Total</span>
-								<input disabled style="background-color: #e59285; border: none; color: black;" id="pay" data-bind="value:$data.subtt()">
-                                <!-- <span data-bind="text:$data.subtt()"></span> -->
-							</div>
-							
-							<div id="paypal-button-container"></div>
-							<script> paypal.Buttons().render('#paypal-button-container') </script>
-							
-                        </div>
-                    </div>
-                </div>
-            </div>  
-		</div>
-		
-        <!-- cart-main-area end -->
+        <!-- Start Checkout Area -->
+        <section class="wn__checkout__area section-padding--lg bg__white">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-lg-12">
+        				<div class="wn_checkout_wrap">
+        					<div class="checkout_info">
+        						<span>Returning customer ?</span>
+        						<a class="showlogin" href="#">Click here to login</a>
+        					</div>
+        					<div class="checkout_login">
+        						<form class="wn__checkout__form" action="#">
+        							<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
+
+        							<div class="input__box">
+        								<label>Username or email <span>*</span></label>
+        								<input type="text">
+        							</div>
+
+        							<div class="input__box">
+        								<label>password <span>*</span></label>
+        								<input type="password">
+        							</div>
+        							<div class="form__btn">
+        								<button>Login</button>
+        								<label class="label-for-checkbox">
+        									<input id="rememberme" name="rememberme" value="forever" type="checkbox">
+        									<span>Remember me</span>
+        								</label>
+        								<a href="#">Lost your password?</a>
+        							</div>
+        						</form>
+        					</div>
+        					<div class="checkout_info">
+        						<span>Have a coupon? </span>
+        						<a class="showcoupon" href="#">Click here to enter your code</a>
+        					</div>
+        					<div class="checkout_coupon">
+        						<form action="#">
+        							<div class="form__coupon">
+        								<input type="text" placeholder="Coupon code">
+        								<button>Apply coupon</button>
+        							</div>
+        						</form>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row">
+        			<div class="col-lg-6 col-12">
+        				<div class="customer_details">
+        					<h3>Billing details</h3>
+        					<div class="customar__field">
+        						<div class="margin_between">
+	        						<div class="input_box space_between">
+	        							<label>First name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+	        						<div class="input_box space_between">
+	        							<label>last name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+        						</div>
+        						<div class="input_box">
+        							<label>Company name <span>*</span></label>
+        							<input type="text">
+        						</div>
+        						<div class="input_box">
+        							<label>Country<span>*</span></label>
+        							<select class="select__option">
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+        						<div class="input_box">
+        							<label>Address <span>*</span></label>
+        							<input type="text" placeholder="Street address">
+        						</div>
+        						<div class="input_box">
+        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+        						</div>
+        						<div class="input_box">
+        							<label>District<span>*</span></label>
+        							<select class="select__option">
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+								<div class="input_box">
+									<label>Postcode / ZIP <span>*</span></label>
+									<input type="text">
+								</div>
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Phone <span>*</span></label>
+										<input type="text">
+									</div>
+
+									<div class="input_box space_between">
+										<label>Email address <span>*</span></label>
+										<input type="email">
+									</div>
+								</div>
+        					</div>
+        					<div class="create__account">
+        						<div class="wn__accountbox">
+	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
+	        						<span>Create an account ?</span>
+        						</div>
+        						<div class="account__field">
+        							<form action="#">
+        								<label>Account password <span>*</span></label>
+        								<input type="text" placeholder="password">
+        							</form>
+        						</div>
+        					</div>
+        				</div>
+        				<div class="customer_details mt--20">
+        					<div class="differt__address">
+	        					<input name="ship_to_different_address" value="1" type="checkbox">
+	        					<span>Ship to a different address ?</span>
+        					</div>
+        					<div class="customar__field differt__form mt--40">
+        						<div class="margin_between">
+	        						<div class="input_box space_between">
+	        							<label>First name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+	        						<div class="input_box space_between">
+	        							<label>last name <span>*</span></label>
+	        							<input type="text">
+	        						</div>
+        						</div>
+        						<div class="input_box">
+        							<label>Company name <span>*</span></label>
+        							<input type="text">
+        						</div>
+        						<div class="input_box">
+        							<label>Country<span>*</span></label>
+        							<select class="select__option">
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+        						<div class="input_box">
+        							<label>Address <span>*</span></label>
+        							<input type="text" placeholder="Street address">
+        						</div>
+        						<div class="input_box">
+        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+        						</div>
+        						<div class="input_box">
+        							<label>District<span>*</span></label>
+        							<select class="select__option"> 
+										<option>Select a country…</option>
+										<option>Afghanistan</option>
+										<option>American Samoa</option>
+										<option>Anguilla</option>
+										<option>American Samoa</option>
+										<option>Antarctica</option>
+										<option>Antigua and Barbuda</option>
+        							</select>
+        						</div>
+								<div class="input_box">
+									<label>Postcode / ZIP <span>*</span></label>
+									<input type="text">
+								</div>
+								<div class="margin_between">
+									<div class="input_box space_between">
+										<label>Phone <span>*</span></label>
+										<input type="text">
+									</div>
+									<div class="input_box space_between">
+										<label>Email address <span>*</span></label>
+										<input type="email">
+									</div>
+								</div>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
+        				<div class="wn__order__box">
+        					<h3 class="onder__title">Your order</h3>
+        					<ul class="order__total">
+        						<li>Product</li>
+        						<li>Total</li>
+        					</ul>
+        					<ul class="order_product" data-bind="foreach:details">
+        						<li>
+                                    <span id="productid" data-bind="text:$data.productName"></span>
+                                    <span data-bind="text:$data.quantity"></span> x 
+                                    <span data-bind="text:$data.amount"></span>
+                                    </li>
+        						<!-- <li>Buscipit at magna × 1<span>$48.00</span></li>
+        						<li>Buscipit at magna × 1<span>$48.00</span></li>
+        						<li>Buscipit at magna × 1<span>$48.00</span></li> -->
+        					</ul>
+        					<ul class="shipping__method">
+        						<li>Cart Subtotal <span data-bind="text:$data.subtt()">$48.00</span></li>
+        						<li>Shipping 
+        							<ul>
+        								<!-- <li>
+        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
+        									<label>Flat Rate: $48.00</label>
+        								</li>
+        								<li>
+        									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
+        									<label>Flat Rate: $48.00</label>
+        								</li> -->
+        							</ul>
+        						</li>
+        					</ul>
+        					<ul class="total__amount">
+        						<li>Order Total <span data-bind="text:$data.subtt()">$48.00</span></li>
+        					</ul>
+        				</div>
+					    <div id="accordion" class="checkout_accordion mt--30" role="tablist">
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingOne">
+						          	<a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						                <span>Direct Bank Transfer</span>
+						          	</a>
+						        </div>
+						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+					            	<div class="payment-body">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</div>
+						        </div>
+						    </div>
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingTwo">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+							            <span>Cheque Payment</span>
+						          	</a>
+						        </div>
+						        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
+					          		<div class="payment-body">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</div>
+						        </div>
+						    </div>
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingThree">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							            <span>Cash on Delivery</span>
+						          	</a>
+						        </div>
+						        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
+					          		<div class="payment-body">Pay with cash upon delivery.</div>
+						        </div>
+						    </div>
+						    <div class="payment">
+						        <div class="che__header" role="tab" id="headingFour">
+						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+							            <span>PayPal <img src="assets/template/images/icons/payment.png" alt="payment images"> </span>
+						          	</a>
+						        </div>
+						        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
+					          		<div class="payment-body">Pay with cash upon delivery.</div>
+						        </div>
+						    </div>
+					    </div>
+
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!-- End Checkout Area -->
 		<!-- Footer Area -->
 		<footer id="wn__footer" class="footer__area bg__cat--8 brown--color">
 			<div class="footer-static-top">
@@ -494,32 +639,8 @@
 	<script src="assets/template/js/popper.min.js"></script>
 	<script src="assets/template/js/bootstrap.min.js"></script>
 	<script src="assets/template/js/plugins.js"></script>
-    <script src="assets/template/js/active.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
-	<script src="assets/js/user/cart.js" ></script>
-	<script src="https://www.paypal.com/sdk/js?client-id=AZBZ2Qj67dTuyMdpZzKQjKghlxbB_XpvU6mOaqeU5ODG2iB7BcHrsRUmomZPcz6sQ13O_FIZJ1qDnbjl"></script>
-	<script>
-		paypal.Buttons({
-		  createOrder: function(data, actions) {
-			// This function sets up the details of the transaction, including the amount and line item details.
-			return actions.order.create({
-			  purchase_units: [{
-				amount: {
-				  value: $("#pay").val()
-				}
-			  }]
-			});
-		  },
-		  onApprove: function(data, actions) {
-			// This function captures the funds from the transaction.
-			return actions.order.capture().then(function(details) {
-			  // This function shows a transaction success message to your buyer.
-			  alert('Transaction completed by ' + details.payer.name.given_name);
-			});
-		  }
-		}).render('#paypal-button-container');
-		//This function displays Smart Payment Buttons on your web page.
-	  </script>
-
+	<script src="assets/template/js/active.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
+	<script src="assets/js/user/checkout.js" ></script>
 </body>
 </html>

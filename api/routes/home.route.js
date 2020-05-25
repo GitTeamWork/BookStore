@@ -13,6 +13,9 @@ route.get('/single-product/:id', function (req, res) {
 route.get('/cart/:id', function(req, res){
     res.render("user/cart",{id: req.params.id});
 })
+route.get('/checkout', function(req, res){
+    res.render("user/checkout");
+})
 route.get('/showproductcatalog/:id', function (req, res) {
     res.render("user/showproductcatalog",{id: req.params.id});
 });

@@ -1,9 +1,10 @@
 let $userName = $('#Showusername')
-//let $linkcart = $('#link')
+let $linkcart = $('#link')
 let $sumitem = $('#sumItem')
+var a;
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
-    var a = userLogin.userId;
+    a = userLogin.userId;
     //var b=''
     console.log(a);
     var settings = {
@@ -24,10 +25,10 @@ window.onload = function () {
         response.map(function (item) {
             str +=
                 `${item.username}`;
-            
+            str2 += `<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
         })
         $userName.html(str)
-        
+        $linkcart.html(str2)
     });
 
     LoadSumItem = () => {
@@ -63,28 +64,9 @@ window.onload = function () {
             })
     }
     LoadSumItem();
-}
-// let $sumitem = $('#sumItem')
-// LoadSumItem = () => {
-//     var settings = {
-//         async: true,
-//         url: "/api/getDetail/"+a,
-//         method: "GET",
-//         headers: {
-//             "cache-control": "no-cache",
-//         },
-//     };
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         let str = '';
-//         response.map(function (item) {
-//             str +=
-//                 `<span class="product_qun">${item}</span>`;
-//         })
-//         $sumitem.html(str)
-//     });
-// }
-// LoadSumItem();
+
+console.log("a:"+a);
+
 var full_url = document.URL; // Get current url
     var url_array = full_url.split('/') // Split the string into an array with / as separator
     var last_segment = url_array[url_array.length - 1];
@@ -92,7 +74,7 @@ const LoadDataCart = () => {
     
     var settings = {
         async: true,
-        url: "/api/getDetail/" + last_segment,
+        url: "/api/getDetail/" + a,
         method: "GET",
         headers: {
             "cache-control": "no-cache",
@@ -132,66 +114,6 @@ LoadDataCart().done(data => {
                 return this.amount;
             });
         });
-        self.removeFromCart = function (cart_item, event) {
-            //var qt = $("#producid").val();
-            productid = cart_item.productId
-            //console.log(cart_item.productId);
-
-            let fcremove = function () {
-                self.details.remove(cart_item);
-                return $.ajax({
-                    type: "DELETE",
-                    url: "/api/delItem",
-                    data: { productId: productid },
-                    success: function (response) {
-                        alert('Xóa sản phẩm thành công!');
-                        LoadSumItem();
-                    },
-                    error: function () {
-                        alert("Lỗi xóa sản phẩm");
-                    }
-                });
-            }
-            fcremove()
-        };
-        self.updateCart = function (cart_item, event) {
-
-            self.details().forEach(function (item, index, array) {
-                console.log(item);
-
-                let fcupdate = function () {
-                    //self.cart.push(cart_item);
-                    let settings = {
-                        type: "PUT",
-                        url: "/api/updateItem/"+last_segment,
-                        data: { productId: item.productId, quantity: item.quantity, amount: item.quantity*item.price },
-                        dataType: "html",
-                    };
-                    $.ajax(settings).done(function (response) {
-                        console.log(response);
-                        try {
-                            if (response.message == 'update thanh cong') {
-                                try {
-                                    LoadSumItem();
-                                    alert('Them san pham vao gio hang thanh cong!');
-                                } catch (error) {
-                                    console.log(error);
-                                }
-                            } else {
-                                alert(response.message);
-                                LoadSumItem();
-                            }
-                        } catch (error) {
-                            alert('Error network!!!' + error)
-                        }
-                    });
-                }
-                fcupdate()
-            });
-            
-
-        }
-        
     };
 
     // Instantiate the ViewModel
@@ -205,5 +127,7 @@ LoadDataCart().done(data => {
 
 })
 LoadDataCart().fail(err => {
-    console.log(err);
+    console.log(err+"-----------------");
 })
+
+}
