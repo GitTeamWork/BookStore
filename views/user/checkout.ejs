@@ -500,9 +500,11 @@
         					</ul>
         					<ul class="order_product" data-bind="foreach:details">
         						<li>
-                                    <span id="productid" data-bind="text:$data.productName"></span>
-                                    <span data-bind="text:$data.quantity"></span> x 
-                                    <span data-bind="text:$data.amount"></span>
+									<span data-bind="text:$data.amount"></span>
+									
+									<span data-bind="text:$data.quantity" style="margin-right: 180px;"></span>
+									<span style="margin-right: 10px;">x</span>
+									<span id="productid" data-bind="text:$data.productName" style="margin-right: 13px;"></span>
                                     </li>
         						<!-- <li>Buscipit at magna × 1<span>$48.00</span></li>
         						<li>Buscipit at magna × 1<span>$48.00</span></li>

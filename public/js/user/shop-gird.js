@@ -43,7 +43,9 @@ $.ajax(settings).done(function (response1) {
 let $userName = $('#Showusername')
 let $sumitem = $('#sumItem')
 let $linkcart = $('#linkcart')
-var a;
+var a=null;
+console.log(a);
+
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
     a = userLogin.userId;
@@ -154,61 +156,67 @@ LoadDataProduct().done(data => {
         });
         self.addToCart = function (product, event) {
             console.log(a);
-            var cart_item = new CartItem(product, 1);
-
-            // Add the CartItem instance to the self.cart (Observable Array)
-            //self.cart.push(cart_item);
-            //console.log([cart_item.product](0));
-            let fcpush = function () {
-                self.cart.push(cart_item);
-                let settings = {
-                    type: "POST",
-                    url: "/api/addDetail",
-                    data: { productId: product.productId, quantity: 1, amount: product.price, userId: a },
-                    dataType: "html",
-                };
-                $.ajax(settings).done(function (response) {
-                    //console.log(response);
-                    try {
-                        if (response == 'Them thanh cong') {
-                            try {
-                                LoadSumItem();
-                                alert('Them san pham vao gio hang thanh cong!');
-                            } catch (error) {
-                                console.log(error);
-                            }
-                        } else {
-                            alert(response);
-                            LoadSumItem();
-                        }
-                    } catch (error) {
-                        alert('Error network!!!' + error)
-                    }
-                });
-
-                // return $.ajax({
-                //     type: "POST",
-                //     url: "/api/addDetail",
-                //     data: { productId: product.productId, quantity: 1, amount: product.price, userId: 23 },
-                //     dataType: "html",
-                //     success: function (response) {
-                //         console.log(response.message);
-
-                //         if (response.message == 'Them thanh cong') {
-                //             alert('Them san pham vao gio hang thanh cong!');
-                //             LoadSumItem();
-                //         }
-                //         else {
-                //             alert("San pham da ton tai, vui long update trong gio hang");
-                //             LoadSumItem();
-                //         }
-                //     },
-                //     error: function () {
-                //         alert("Problem communicating with the server");
-                //     }
-                // });
+            if (a==null){
+                location.assign('/login');
             }
-            fcpush()
+            else{
+                var cart_item = new CartItem(product, 1);
+
+                // Add the CartItem instance to the self.cart (Observable Array)
+                //self.cart.push(cart_item);
+                //console.log([cart_item.product](0));
+                let fcpush = function () {
+                    self.cart.push(cart_item);
+                    let settings = {
+                        type: "POST",
+                        url: "/api/addDetail",
+                        data: { productId: product.productId, quantity: 1, amount: product.price, userId: a },
+                        dataType: "html",
+                    };
+                    $.ajax(settings).done(function (response) {
+                        //console.log(response);
+                        try {
+                            if (response == 'Them thanh cong') {
+                                try {
+                                    LoadSumItem();
+                                    alert('Them san pham vao gio hang thanh cong!');
+                                } catch (error) {
+                                    console.log(error);
+                                }
+                            } else {
+                                alert(response);
+                                LoadSumItem();
+                            }
+                        } catch (error) {
+                            alert('Error network!!!' + error)
+                        }
+                    });
+    
+                    // return $.ajax({
+                    //     type: "POST",
+                    //     url: "/api/addDetail",
+                    //     data: { productId: product.productId, quantity: 1, amount: product.price, userId: 23 },
+                    //     dataType: "html",
+                    //     success: function (response) {
+                    //         console.log(response.message);
+    
+                    //         if (response.message == 'Them thanh cong') {
+                    //             alert('Them san pham vao gio hang thanh cong!');
+                    //             LoadSumItem();
+                    //         }
+                    //         else {
+                    //             alert("San pham da ton tai, vui long update trong gio hang");
+                    //             LoadSumItem();
+                    //         }
+                    //     },
+                    //     error: function () {
+                    //         alert("Problem communicating with the server");
+                    //     }
+                    // });
+                }
+                fcpush()
+            }
+            
         };
     };
 
