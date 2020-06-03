@@ -543,7 +543,7 @@
 						    <div class="payment">
 								<!-- paypol -->
 								<div id="paypal-button-container"></div>
-								<script> paypal.Buttons().render('#paypal-button-container') </script>
+								
 							<!-- endpb -->
 						        <div class="che__header" role="tab" id="headingTwo">
 						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -656,7 +656,7 @@
 			return actions.order.create({
 			  purchase_units: [{
 				amount: {
-				  value: $("#pay").val()
+				  value: '0.01'
 				}
 			  }]
 			});
