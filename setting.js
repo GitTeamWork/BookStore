@@ -1,8 +1,8 @@
 exports.dbConfig = {
-    user:"DB_A57E8F_honganh_admin",
-    password: "leanhbb2909",
-    server: "sql5047.site4now.net",
-    database: "DB_A57E8F_honganh",
+    user:"DB_A62CB3_bookstore_admin",
+    password: "honganh123",
+    server: "sql5059.site4now.net",
+    database: "DB_A62CB3_bookstore",
     port: 1433
 };
 
