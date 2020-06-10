@@ -80,7 +80,7 @@ function updateUser(reqBody, res, userId){
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({data: { fullname, phone }});
+                return res.json({ message: 'update thanh cong' ,data: { fullname, phone }});
             }
             return res.json({ message: 'that bai' });
         })
@@ -96,7 +96,7 @@ function delUser(userId, res){
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({message: 'thanhcong'});
+                return res.json({message: 'thanh cong'});
             }
             return res.json({ message: 'that bai' });
         })

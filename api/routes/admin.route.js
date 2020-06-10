@@ -55,6 +55,9 @@ route.get('/addcatalog-admin', function (req, res) {
 route.get('/updatecatalog-admin/:id', function (req, res) {
     res.render("admin/updatecatalog-admin");
 });
-
+//user
+route.get('/updateUser-admin/:id', function (req, res) {
+    res.render("admin/updateUser-admin");
+});
 
 module.exports = route;
