@@ -48,7 +48,7 @@ function addProduct(req, res) {
     try {
         let { productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
         var sql = `INSERT INTO [Product] (productName, price, oldPrice, image, detail, inventory, catalogId, publisherId) VALUES  
-        ('${productName}', ${price}, ${oldPrice}, '${image}' , '${detail}', ${inventory}, ${catalogId}, ${publisherId})`;
+        (N'${productName}', ${price}, ${oldPrice}, '${image}' , N'${detail}', ${inventory}, N'${catalogId}', N'${publisherId}')`;
         console.log({ productName, price, oldPrice, image, detail, inventory, catalogId, publisherId })
         console.log(sql);
 
@@ -67,7 +67,7 @@ function updateProduct(req, res) {
     try {
         let productId = req.params.id;
         let { productName, price, oldPrice, image, detail, inventory, catalogId, publisherId } = req.body;
-        var sql = ` UPDATE [Product] SET productName = '${productName}', price = ${price}, oldPrice = ${oldPrice}, image = '${image}', detail = '${detail}', inventory = ${inventory}, catalogId = ${catalogId}, publisherId = ${publisherId}  WHERE productId = ${productId}`;
+        var sql = ` UPDATE [Product] SET productName = N'${productName}', price = ${price}, oldPrice = ${oldPrice}, image = '${image}', detail = N'${detail}', inventory = ${inventory}, catalogId = N'${catalogId}', publisherId = N'${publisherId}'  WHERE productId = ${productId}`;
         console.log(sql);
 
         db.executeSql(sql, (result) => {
