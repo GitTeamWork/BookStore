@@ -1,25 +1,33 @@
+window.onload = function () {
+    
 let $catalog = $('#ShowCatalog')
-var settings = {
-    "async": true,
-    "url": "/api/cataList",
-    "method": "GET",
-    "headers": {
-        "cache-control": "no-cache",
-    },
+let $catalog2 = $('#ShowCatalog2')
+const LoadCatalog = () => {
+    var settings = {
+        "async": true,
+        "url": "/api/cataList",
+        "method": "GET",
+        "headers": {
+            "cache-control": "no-cache",
+        },
+    }
+    
+    $.ajax(settings).done(function (response) {
+        console.log(response+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        let str = '';
+        response.map(function (item) {
+            str +=
+                `<li><a href="http://localhost:9000/showproductcatalog/${item.catalogId}">${item.catalogName} </a></li>
+                     `
+        })
+        $catalog.html(str)
+        $catalog2.html(str)
+    });
 }
-
-$.ajax(settings).done(function (response) {
-    console.log(response);
-    let str = '';
-    response.map(function (item) {
-        str +=
-            `<li><a href="http://localhost:9000/showproductcatalog/${item.catalogId}">${item.catalogName} </a></li>
-                 `
-    })
-    $catalog.html(str)
-});
+LoadCatalog();
 //==============================
 let $publisher = $('#ShowPublisher')
+let $publisher2 = $('#ShowPublisher2')
 var settings = {
     "async": true,
     "url": "/api/publisherList",
@@ -30,7 +38,7 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response1) {
-    console.log(response1);
+    console.log(response1+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
     let str1 = '';
     response1.map(function (item1) {
         str1 +=
@@ -38,6 +46,7 @@ $.ajax(settings).done(function (response1) {
                    `
     })
     $publisher.html(str1)
+    $publisher2.html(str1)
 });
 
 let $userName = $('#Showusername')
@@ -46,7 +55,7 @@ let $linkcart = $('#linkcart')
 var a=null;
 console.log(a);
 
-window.onload = function () {
+
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
     a = userLogin.userId;
     console.log(a);

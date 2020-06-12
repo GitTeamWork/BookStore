@@ -222,7 +222,7 @@ LoadSingleProduct().done(data => {
           data: { productId: product.productId, quantity: qt, amount: self.amount, userId: a },
           dataType: "html",
           success: function (response) {
-            alert('Add new product successfully!');
+            alert(response);
             console.log(response);
             (response);
             LoadSumItem();

@@ -9,9 +9,6 @@ route.get('/comment-admin', function (req, res) {
 route.get('/index-admin', function (req, res) {
     res.render("admin/index-admin");
 });
-route.get('/order-admin', function (req, res) {
-    res.render("admin/order-admin");
-});
 route.get('/orderdetail-admin', function (req, res) {
     res.render("admin/comment-admin");
 });
@@ -34,7 +31,10 @@ route.get('/addproduct-admin', function (req, res) {
 route.get('/updateproduct-admin/:id', function (req, res) {
     res.render("admin/updateproduct-admin",{id: req.params.id});
 });
-
+//revenue
+route.get('/order-admin', function (req, res) {
+    res.render("admin/revenue");
+});
 
 // publisher
 route.get('/publisher-admin', function (req, res) { 

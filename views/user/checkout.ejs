@@ -511,7 +511,7 @@
         						<li>Buscipit at magna × 1<span>$48.00</span></li> -->
         					</ul>
         					<ul class="shipping__method">
-        						<li>Cart Subtotal <span data-bind="text:$data.subtt()">$48.00</span></li>
+        						<li>Cart Subtotal <span id="pay" data-bind="text:$data.subtt()">$48.00</span></li>
         						<li>Shipping 
         							<ul>
         								<!-- <li>
@@ -572,7 +572,10 @@
 						        </div>
 						        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
 					          		<div class="payment-body">Pay with cash upon delivery.</div>
-						        </div>
+								</div>
+								<div id= "formpay">
+
+								</div>
 						    </div>
 					    </div>
 
@@ -648,15 +651,18 @@
 	<script src="assets/template/js/active.js"></script>
 	<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
 	<script src="assets/js/user/checkout.js" ></script>
-	<script src="https://www.paypal.com/sdk/js?client-id=ASE-GovQYOACFFDkx7Heg-14-yFTgptlJn6PljeQyZhOnGExiF1puGB08xEfA2-EbLCise1OvjmnZ7zK"></script>
-	<script>
+	<script src="https://www.paypal.com/sdk/js?client-id=AZBZ2Qj67dTuyMdpZzKQjKghlxbB_XpvU6mOaqeU5ODG2iB7BcHrsRUmomZPcz6sQ13O_FIZJ1qDnbjl"></script>
+	<!-- <script>
 		paypal.Buttons({
 		  createOrder: function(data, actions) {
+			var x = document.getElementById('pay');
 			// This function sets up the details of the transaction, including the amount and line item details.
 			return actions.order.create({
 			  purchase_units: [{
 				amount: {
-				  value: '0.01'
+				 
+				  value: x
+				 
 				}
 			  }]
 			});
@@ -670,6 +676,6 @@
 		  }
 		}).render('#paypal-button-container');
 		//This function displays Smart Payment Buttons on your web page.
-	  </script>
+	  </script> -->
 </body>
 </html>

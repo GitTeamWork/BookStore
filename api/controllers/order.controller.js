@@ -10,6 +10,19 @@ function orderList(req, res) {
         res.end();
     });
 };
+function revenue(req, res, start, end) {
+    var sql = `SELECT * FROM dbo.[Order] WHERE created BETWEEN '${start}' AND '${end}'`
+    console.log(sql);
+    
+    db.executeSql(sql, function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+};
 function getOrder(req, res, orderId) {
     var sql = `SELECT * from [Order] where orderId= ${orderId}`;
     console.log(sql);
@@ -44,5 +57,6 @@ function addOrder(req, res) {
 module.exports={
     orderList: orderList,
     getOrder: getOrder,
-    addOrder: addOrder
+    addOrder: addOrder,
+    revenue: revenue
 }

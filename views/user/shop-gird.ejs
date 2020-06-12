@@ -278,13 +278,13 @@
 						<div class="shop__sidebar">
 							<aside class="wedget__categories poroduct--cat">
 								<h3 class="wedget__title">Book Categories</h3>
-								<ul id="ShowCatalog">
+								<ul id="ShowCatalog2">
 									<!-- xu ly get catalog trong js -->
 								</ul>
 							</aside>
 							<aside class="wedget__categories poroduct--cat">
 								<h3 class="wedget__title">Book Publishers</h3>
-								<ul id="ShowPublisher">
+								<ul id="ShowPublisher2">
 									<!-- xu ly get publisher trong js -->
 
 								</ul>
@@ -376,9 +376,9 @@
 									</li>
 
 								</ul> -->
-								<div class="row" id="productGird" data-bind="foreach:products">
+								<div class="row pagination" id="productGird" data-bind="foreach:products" >
 
-									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+									<div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12 page-item" >
 										<div class="product__thumb">
 											<a class="first__img" data-bind="attr: { href: link}"><img style="width: 270px; height:370px ;"
 													data-bind="attr:{src: image,alt:image}"></a>

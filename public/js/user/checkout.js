@@ -1,12 +1,16 @@
 let $userName = $('#Showusername')
 let $linkcart = $('#link')
 let $sumitem = $('#sumItem')
+let $linkpay = $('#formpay')
 var a;
 window.onload = function () {
     var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
     a = userLogin.userId;
     //var b=''
     console.log(a);
+    strpay=`<form action="/pay/${a}" method="POST">
+    <input type="submit" value="BUY">
+    </form>`
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -29,6 +33,7 @@ window.onload = function () {
         })
         $userName.html(str)
         $linkcart.html(str2)
+        $linkpay.html(strpay)
     });
 
     LoadSumItem = () => {

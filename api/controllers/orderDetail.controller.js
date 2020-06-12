@@ -1,11 +1,15 @@
 var db = require("../db")
 
+orderDetail();
 function orderDetail(req, res) {
     db.executeSql('select * from [OrderDetail]', function (data, err) {
         if (err) {
             res.json(err);
         } else {
-            res.json(data.recordset);
+            items = JSON.stringify(data.recordset)
+            //res.json(data.recordset);
+            console.log(items);
+            
         }
         res.end();
     });
