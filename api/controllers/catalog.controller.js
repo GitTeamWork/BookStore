@@ -20,7 +20,7 @@ function cataList(req, res) {
 function addCata(req, res){
     try {
         let cataName = req.body.catalogName;
-        var sql = ` INSERT INTO [Catalog] (catalogName) VALUES ('${cataName}') `;
+        var sql = ` INSERT INTO [Catalog] (catalogName) VALUES (N'${cataName}') `;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
@@ -41,7 +41,7 @@ function updateCata(req, res){
     try {
         let cataId = req.params.id;
         let cataName = req.body.catalogName;
-        var sql = ` UPDATE [Catalog] SET catalogName = '${cataName}' WHERE catalogId = ${cataId}`;
+        var sql = ` UPDATE [Catalog] SET catalogName = N'${cataName}' WHERE catalogId = N'${cataId}'`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
