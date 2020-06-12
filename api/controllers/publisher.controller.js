@@ -20,7 +20,7 @@ function publisherList(req, res) {
 function addPublisher(req, res){
     try {
         let publisherName = req.body.publisherName;
-        var sql = ` INSERT INTO [publisher] (publisherName) VALUES ('${publisherName}') `;
+        var sql = ` INSERT INTO [publisher] (publisherName) VALUES (N'${publisherName}') `;
         console.log(sql);
         
         db.executeSql(sql, (result) => {
@@ -41,7 +41,7 @@ function updatePublisher(req, res){
     try {
         let publisherId = req.params.id;
         let publisherName = req.body.publisherName;
-        var sql = ` UPDATE [Publisher] SET publisherName = '${publisherName}' WHERE publisherId = ${publisherId}`;
+        var sql = ` UPDATE [Publisher] SET publisherName = N'${publisherName}' WHERE publisherId = N'${publisherId}'`;
         console.log(sql);
         
         db.executeSql(sql, (result) => {

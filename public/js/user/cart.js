@@ -1,3 +1,48 @@
+let $catalog = $('#ShowCatalog')
+var settingsCa = {
+  "async": true,
+  "url": "/api/cataList",
+  "method": "GET",
+  "headers": {
+    "cache-control": "no-cache",
+  },
+}
+
+$.ajax(settingsCa).done(function (response) {
+  console.log(response);
+  let str = '';
+  response.map(function (item) {
+    str +=
+      `<li><a href="http://localhost:9000/showproductcatalog/${item.catalogId}">${item.catalogName} </a></li>
+                 `
+  })
+  $catalog.html(str)
+});
+//==============================
+let $publisher = $('#ShowPublisher')
+
+var settingsPu = {
+  "async": true,
+  "url": "/api/publisherList",
+  "method": "GET",
+  "headers": {
+    "cache-control": "no-cache",
+  },
+}
+$.ajax(settingsPu).done(function (response1) {
+    console.log(response1);
+    let str1 = '';
+    
+    response1.map(function (item1) {
+      str1 +=
+        `<li><a http://localhost:9000/showproductpublisher/${item1.publisherId}">${item1.publisherName}</a></li>
+                     `
+                    
+    })
+    $publisher.html(str1)
+    
+  });
+//
 let $userName = $('#Showusername')
 //let $linkcart = $('#link')
 let $sumitem = $('#sumItem')
