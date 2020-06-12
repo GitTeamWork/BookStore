@@ -37,6 +37,6 @@ app.use(orderDetailRoute);
 // chỉnh port
 const post = process.env.PORT || 9000;
 app.listen(post, function () {
-    console.log(`Node app is running on port http://localhost:${post}`);
+    console.log(`Node app is running on port http://localhost:${post}/login`);
 });
 module.exports = app;
