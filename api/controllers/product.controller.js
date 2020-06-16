@@ -1,7 +1,7 @@
 var db = require("../db")
 
 function newProduct(req, res) {
-    db.executeSql('select top (4) * from [Product]', function (data, err) {
+    db.executeSql('select top (4) * from [Product] ORDER BY productId DESC', function (data, err) {
         if (err) {
             res.json(err);
         } else {

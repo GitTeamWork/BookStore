@@ -1,5 +1,4 @@
 window.onload = function () {
-    
 let $catalog = $('#ShowCatalog')
 let $catalog2 = $('#ShowCatalog2')
 const LoadCatalog = () => {
@@ -13,7 +12,7 @@ const LoadCatalog = () => {
     }
     
     $.ajax(settings).done(function (response) {
-        console.log(response+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        console.log(response);
         let str = '';
         response.map(function (item) {
             str +=
@@ -38,7 +37,7 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response1) {
-    console.log(response1+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+    console.log(response1);
     let str1 = '';
     response1.map(function (item1) {
         str1 +=
