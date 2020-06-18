@@ -269,7 +269,7 @@ $("body").ready(() => {
           <h4><a href="single-product/${item.productId}">${item.productName}</a></h4>
           <ul class="prize d-flex">
               <li>${item.price}</li>
-              <li class="old_prize">$35.00</li>
+              <li class="old_prize">${item.oldPrice}</li>
           </ul>
           <div class="action">
               <div class="actions_inner">
