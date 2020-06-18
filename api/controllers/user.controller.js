@@ -74,13 +74,18 @@ function signup(reqBody, res) {
 function updateUser(reqBody, res, userId){
     try {
         if (!reqBody) throw new Error("input not valid");
-        let { fullname, phone } = reqBody;
-        var sql = `UPDATE [User] SET fullname= '${fullname}' , phone= '${phone}' WHERE userId= ${userId}`
+        let { fullname,password, phone } = reqBody;
+        var hash = crypto.createHmac('sha256', "BOOKSTORE") // ma hoa password
+        .update(password)
+        .digest('hex');
+        password = hash;
+        
+        var sql = `UPDATE [User] SET fullname= '${fullname}' ,password='${password}', phone= '${phone}' WHERE userId= ${userId}`
         console.log({ sql});
         db.executeSql(sql, (result) => {
             let { rowsAffected } = result;
             if (rowsAffected[0] == 1) {
-                return res.json({ message: 'update thanh cong' ,data: { fullname, phone }});
+                return res.json({ message: 'update thanh cong' ,data: { fullname,password, phone }});
             }
             return res.json({ message: 'that bai' });
         })

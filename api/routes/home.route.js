@@ -22,5 +22,8 @@ route.get('/showproductcatalog/:id', function (req, res) {
 route.get('/showproductpublisher/:id', function (req, res) {
     res.render("user/showproductpublisher",{id: req.params.id});
 });
+route.get('/contact', function (req, res) {
+    res.render("user/contact");
+});
 
 module.exports = route;

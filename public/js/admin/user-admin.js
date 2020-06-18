@@ -125,11 +125,11 @@ const LoadgetUser = () => {
 
       str += `   <div class="form-group">
       <label for="updateEmail">Email</label>
-      <input class="input-css" type="text" value="${item.email}" id="updateEmail">
+      <input class="input-css" type="text" value="${item.email}" id="updateEmail" disabled>
   </div>
   <div class="form-group">
       <label for="updateUsername">Username</label>
-      <input style="margin-left: 37px !important;" class="input-css" type="text" value="${item.username}" id="updateUsername">
+      <input style="margin-left: 37px !important;" class="input-css" type="text" value="${item.username}" id="updateUsername" disabled>
   </div>
       
   <div class="form-group">
@@ -142,11 +142,11 @@ const LoadgetUser = () => {
   </div>
   <div class="form-group">
       <label for="updatePhone">Phone</label>
-      <input style="margin-left: 64px !important;" class="input-css" type="text" value="${item.phone}" id="updatePhone">
+      <input style="margin-left: 64px !important;" class="input-css" type="text" value="${item.phone}" id="updatePhone" >
   </div>
   <div class="form-group">
       <label for="updateStatus">Status</label>
-      <input style="margin-left: 66px !important;" class="input-css" type="text" value="${item.status}" id="updateStatus">
+      <input style="margin-left: 66px !important;" class="input-css" type="text" value="${item.status}" id="updateStatus" disabled>
   </div>
 <button type="submit" class="button-css" id = " button">Update User</button>
         `;

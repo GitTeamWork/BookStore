@@ -29,9 +29,9 @@ route.post('/api/signup', function(req, res) {
     // const result= CreateUser(reqBody,res);
 })
 route.put('/api/updateUser/:id', function(req, res){
-    let {fullname, phone} = req.body;
+    let {fullname,password ,phone} = req.body;
     let userId = req.params.id;
-    let reqBody = {fullname, phone};
+    let reqBody = {fullname,password, phone};
     userController.updateUser(reqBody, res, userId);
     
 })
