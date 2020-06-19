@@ -9,6 +9,11 @@ route.get('/api/revenueFill', function (req, res) {
     let endD = req.query.end;
     orderController.revenue(req, res, startD, endD)
 });
+route.get('/api/sumRevenueFill', function (req, res) {
+    let startD = req.query.start;
+    let endD = req.query.end;
+    orderController.sumRevenue(req, res, startD, endD)
+});
 route.get('/api/order/:id', function (req, res) {
     let orderid = req.params.id;
     orderController.getOrder(req, res, orderid);

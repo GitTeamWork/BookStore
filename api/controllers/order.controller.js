@@ -23,6 +23,19 @@ function revenue(req, res, start, end) {
         res.end();
     });
 };
+function sumRevenue(req, res, start, end) {
+    var sql = `SELECT sum(total) sum FROM dbo.[Order] WHERE created BETWEEN '${start}' AND '${end}'`
+    console.log(sql);
+    
+    db.executeSql(sql, function (data, err) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(data.recordset);
+        }
+        res.end();
+    });
+};
 function getOrder(req, res, orderId) {
     var sql = `SELECT * from [Order] where orderId= ${orderId}`;
     console.log(sql);
@@ -58,5 +71,6 @@ module.exports={
     orderList: orderList,
     getOrder: getOrder,
     addOrder: addOrder,
-    revenue: revenue
+    revenue: revenue,
+    sumRevenue: sumRevenue
 }
