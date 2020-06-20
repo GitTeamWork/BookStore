@@ -227,194 +227,59 @@
         <section class="wn__checkout__area section-padding--lg bg__white">
         	<div class="container">
         		<div class="row">
-        			<div class="col-lg-12">
-        				<div class="wn_checkout_wrap">
-        					<div class="checkout_info">
-        						<span>Returning customer ?</span>
-        						<a class="showlogin" href="#">Click here to login</a>
-        					</div>
-        					<div class="checkout_login">
-        						<form class="wn__checkout__form" action="#">
-        							<p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-
-        							<div class="input__box">
-        								<label>Username or email <span>*</span></label>
-        								<input type="text">
-        							</div>
-
-        							<div class="input__box">
-        								<label>password <span>*</span></label>
-        								<input type="password">
-        							</div>
-        							<div class="form__btn">
-        								<button>Login</button>
-        								<label class="label-for-checkbox">
-        									<input id="rememberme" name="rememberme" value="forever" type="checkbox">
-        									<span>Remember me</span>
-        								</label>
-        								<a href="#">Lost your password?</a>
-        							</div>
-        						</form>
-        					</div>
-        					<div class="checkout_info">
-        						<span>Have a coupon? </span>
-        						<a class="showcoupon" href="#">Click here to enter your code</a>
-        					</div>
-        					<div class="checkout_coupon">
-        						<form action="#">
-        							<div class="form__coupon">
-        								<input type="text" placeholder="Coupon code">
-        								<button>Apply coupon</button>
-        							</div>
-        						</form>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        		<div class="row">
         			<div class="col-lg-6 col-12">
         				<div class="customer_details">
         					<h3>Billing details</h3>
-        					<div class="customar__field">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>District<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
+        					<div class="customar__field" id="form-add">
+								
+        						<form id="formaddress">
+									<div class="margin_between">
+										<div class="input_box space_between">
+											<label>Name <span>*</span></label>
+											<input id="form-name" type="text">
+										</div>
 									</div>
-
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
+									<div class="input_box">
+										<label>City<span>*</span></label>
+										<select class="select__option" id="form-city" >
+											<option>Select a country…</option>
+											<option>Afghanistan</option>
+											<option>American Samoa</option>
+											<option>Anguilla</option>
+											<option>American Samoa</option>
+											<option>Antarctica</option>
+											<option>Antigua and Barbuda</option>
+										</select>
 									</div>
-								</div>
-        					</div>
-        					<div class="create__account">
-        						<div class="wn__accountbox">
-	        						<input class="input-checkbox" name="createaccount" value="1" type="checkbox">
-	        						<span>Create an account ?</span>
-        						</div>
-        						<div class="account__field">
-        							<form action="#">
-        								<label>Account password <span>*</span></label>
-        								<input type="text" placeholder="password">
-        							</form>
-        						</div>
-        					</div>
-        				</div>
-        				<div class="customer_details mt--20">
-        					<div class="differt__address">
-	        					<input name="ship_to_different_address" value="1" type="checkbox">
-	        					<span>Ship to a different address ?</span>
-        					</div>
-        					<div class="customar__field differt__form mt--40">
-        						<div class="margin_between">
-	        						<div class="input_box space_between">
-	        							<label>First name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-	        						<div class="input_box space_between">
-	        							<label>last name <span>*</span></label>
-	        							<input type="text">
-	        						</div>
-        						</div>
-        						<div class="input_box">
-        							<label>Company name <span>*</span></label>
-        							<input type="text">
-        						</div>
-        						<div class="input_box">
-        							<label>Country<span>*</span></label>
-        							<select class="select__option">
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-        						<div class="input_box">
-        							<label>Address <span>*</span></label>
-        							<input type="text" placeholder="Street address">
-        						</div>
-        						<div class="input_box">
-        							<input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-        						</div>
-        						<div class="input_box">
-        							<label>District<span>*</span></label>
-        							<select class="select__option"> 
-										<option>Select a country…</option>
-										<option>Afghanistan</option>
-										<option>American Samoa</option>
-										<option>Anguilla</option>
-										<option>American Samoa</option>
-										<option>Antarctica</option>
-										<option>Antigua and Barbuda</option>
-        							</select>
-        						</div>
-								<div class="input_box">
-									<label>Postcode / ZIP <span>*</span></label>
-									<input type="text">
-								</div>
-								<div class="margin_between">
-									<div class="input_box space_between">
-										<label>Phone <span>*</span></label>
-										<input type="text">
+									
+									<div class="input_box">
+										<label>District<span>*</span></label>
+										<select class="select__option" id="form-distric" >
+											<option>Select a country…</option>
+											<option>Afghanistan</option>
+											<option>American Samoa</option>
+											<option>Anguilla</option>
+											<option>American Samoa</option>
+											<option>Antarctica</option>
+											<option>Antigua and Barbuda</option>
+										</select>
 									</div>
-									<div class="input_box space_between">
-										<label>Email address <span>*</span></label>
-										<input type="email">
+									<div class="input_box">
+										<label>Street <span>*</span></label>
+										<input id="form-street"  type="text" placeholder="Street address">
 									</div>
-								</div>
+									<div class="input_box">
+										<input id="form-apartment"  type="text" placeholder="Apartment, suite, unit etc. (optional)">
+									</div>
+									<div class="margin_between">
+										<div class="input_box space_between">
+											<label>Phone <span>*</span></label>
+											<input id="form-phone" type="text">
+										</div>
+									</div>
+									<button type="submit" class="cart__btn__list" id = "button">SAVE</button>
+									
+						</form>
         					</div>
         				</div>
         			</div>
@@ -428,78 +293,38 @@
         					<ul class="order_product" data-bind="foreach:details">
         						<li>
 									<span data-bind="text:$data.amount"></span>
-									
-									<span data-bind="text:$data.quantity" style="margin-right: 180px;"></span>
-									<span style="margin-right: 10px;">x</span>
-									<span id="productid" data-bind="text:$data.productName" style="margin-right: 13px;"></span>
+									<span style="color:#f8f9fa">____</span>
+									<span data-bind="text:$data.quantity" style="margin-right: 0px;"></span>
+									<span style="color:#f8f9fa">____</span>
+									<span style="margin-right: 0px;">x</span>
+									<span style="color:#f8f9fa">____</span>
+									<span id="productid" data-bind="text:$data.productName" style="margin-right: px;"></span>
                                     </li>
         						<!-- <li>Buscipit at magna × 1<span>$48.00</span></li>
         						<li>Buscipit at magna × 1<span>$48.00</span></li>
         						<li>Buscipit at magna × 1<span>$48.00</span></li> -->
         					</ul>
-        					<ul class="shipping__method">
+        					<!-- <ul class="shipping__method">
         						<li>Cart Subtotal <span id="pay" data-bind="text:$data.subtt()">$48.00</span></li>
         						<li>Shipping 
         							<ul>
-        								<!-- <li>
+        								<li>
         									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
         									<label>Flat Rate: $48.00</label>
         								</li>
         								<li>
         									<input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
         									<label>Flat Rate: $48.00</label>
-        								</li> -->
+        								</li>
         							</ul>
         						</li>
-        					</ul>
+        					</ul> -->
         					<ul class="total__amount">
         						<li>Order Total <span data-bind="text:$data.subtt()">$48.00</span></li>
         					</ul>
         				</div>
 					    <div id="accordion" class="checkout_accordion mt--30" role="tablist">
 						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingOne">
-						          	<a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-						                <span>Direct Bank Transfer</span>
-						          	</a>
-						        </div>
-						        <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-					            	<div class="payment-body">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-								<!-- paypol -->
-								<div id="paypal-button-container"></div>
-								
-							<!-- endpb -->
-						        <div class="che__header" role="tab" id="headingTwo">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							            <span>Cheque Payment</span>
-						          	</a>
-						        </div>
-						        <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-					          		<div class="payment-body">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingThree">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-							            <span>Cash on Delivery</span>
-						          	</a>
-						        </div>
-						        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-					          		<div class="payment-body">Pay with cash upon delivery.</div>
-						        </div>
-						    </div>
-						    <div class="payment">
-						        <div class="che__header" role="tab" id="headingFour">
-						          	<a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-							            <span>PayPal <img src="assets/template/images/icons/payment.png" alt="payment images"> </span>
-						          	</a>
-						        </div>
-						        <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
-					          		<div class="payment-body">Pay with cash upon delivery.</div>
-								</div>
 								<div id= "formpay">
 
 								</div>
@@ -579,30 +404,6 @@
 	<script src="https://ajax.aspnetcdn.com/ajax/knockout/knockout-3.4.2.js"></script>
 	<script src="assets/js/user/checkout.js" ></script>
 	<script src="https://www.paypal.com/sdk/js?client-id=AZBZ2Qj67dTuyMdpZzKQjKghlxbB_XpvU6mOaqeU5ODG2iB7BcHrsRUmomZPcz6sQ13O_FIZJ1qDnbjl"></script>
-	<!-- <script>
-		paypal.Buttons({
-		  createOrder: function(data, actions) {
-			var x = document.getElementById('pay');
-			// This function sets up the details of the transaction, including the amount and line item details.
-			return actions.order.create({
-			  purchase_units: [{
-				amount: {
-				 
-				  value: x
-				 
-				}
-			  }]
-			});
-		  },
-		  onApprove: function(data, actions) {
-			// This function captures the funds from the transaction.
-			return actions.order.capture().then(function(details) {
-			  // This function shows a transaction success message to your buyer.
-			  alert('Transaction completed by ' + details.payer.name.given_name);
-			});
-		  }
-		}).render('#paypal-button-container');
-		//This function displays Smart Payment Buttons on your web page.
-	  </script> -->
+	
 </body>
 </html>

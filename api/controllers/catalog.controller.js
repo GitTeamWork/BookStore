@@ -29,10 +29,12 @@ function addCata(req, res){
                 res.json({message: "them thanh cong",data : {cataName}} );
             }
             else{
-                res.json({message: "them that bai"});
+                return res.json('San pham da ton tai, vui long update gio hang');
             }
         })
     } catch (error) {
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        
         res.json(error);
     }
 }

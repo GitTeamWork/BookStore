@@ -79,19 +79,26 @@ $("#form-addcatalog").submit((e) => {
       data: JSON.stringify(data),
     };
     $.ajax(settings).done(function (response) {
+      
+      
       try {
         if (response.message == "them thanh cong") {
           //console.log(message)
           localStorage.setItem("addcata", JSON.stringify(response.data));
           location.assign("/catalog-admin");
         } else {
-          alert(response.message);
+          alert(response);
+          console.log(response);
+          
         }
       } catch (error) {
         alert("Error network!!!");
-        console.log(erro);
+        console.log(error);
       }
-    });
+    })
+    .fail(function (err) {
+      alert("Tên đã bị trùng, vui lòng nhập lại");
+    })
   }
   
 });

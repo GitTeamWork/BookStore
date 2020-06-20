@@ -10,9 +10,8 @@ function newProduct(req, res) {
         res.end();
     });
 };
-
-function AllProduct(req, res) {
-    db.executeSql('select top (8) * from [Product]', function (data, err) {
+function page(req, res) {
+    db.executeSql('SELECT COUNT(productId)/9+1 page FROM Product', function (data, err) {
         if (err) {
             res.json(err);
         } else {
@@ -22,11 +21,15 @@ function AllProduct(req, res) {
     });
 };
 function productList(req, res) {
+    var page = parseInt(req.query.page) || 1
+    var perpage = 9;
+    var start = (page-1)* perpage;
+    var end = page * perpage
     db.executeSql('SELECT * FROM Product ORDER BY productId DESC', function (data, err) {
         if (err) {
             res.json(err);
         } else {
-            res.json(data.recordset);
+            res.json(data.recordset.slice(start,end));
         }
         res.end();
     });
@@ -164,6 +167,6 @@ module.exports = {
     getcatalodId: getcatalodId,
     getpublisherId: getpublisherId,
     getsearch: getsearch,
-    AllProduct: AllProduct
+    page: page
 }
 //exports.userList = userList;

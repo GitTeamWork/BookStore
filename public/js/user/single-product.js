@@ -33,20 +33,23 @@ var settingsPu = {
 $.ajax(settingsPu).done(function (response1) {
   console.log(response1);
   let str1 = '';
-  
+
   response1.map(function (item1) {
     str1 +=
       `<li><a http://localhost:9000/showproductpublisher/${item1.publisherId}">${item1.publisherName}</a></li>
                    `
-                  
+
   })
   $publisher.html(str1)
-  
+
 });
 
 let $userName = $('#Showusername')
 let $linkcart = $('#linkcart')
 let $sumitem = $('#sumItem')
+var full_url = document.URL; // Get current url
+var url_array = full_url.split('/') // Split the string into an array with / as separator
+var last_segment = url_array[url_array.length - 1];
 window.onload = function () {
   var userLogin = JSON.parse(window.localStorage.getItem("userLogin"));
   var a = userLogin.userId;
@@ -70,7 +73,7 @@ window.onload = function () {
     response.map(function (item) {
       strU +=
         `${item.username}`;
-        str2 += `<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
+      str2 += `<a class="cart__btn" href="cart/${item.userId}">View and edit cart</a>`
     })
     $userName.html(strU)
     $linkcart.html(str2)
@@ -88,8 +91,15 @@ window.onload = function () {
       console.log(response1);
       let str3 = '';
       response1.map(function (item) {
-        str3 +=
-          `<span class="product_qun">${item.sumitem}</span>`;
+        if (item.sumitem == null) {
+          console.log(item.sumitem + "-------------------");
+          str3 +=
+            `<span class="product_qun">0</span>`;
+        }
+        else {
+          str3 +=
+            `<span class="product_qun">${item.sumitem}</span>`;
+        }
       })
       $sumitem.html(str3)
     })
@@ -99,63 +109,94 @@ window.onload = function () {
       })
   }
   LoadSumItem();
+
+
+  let $comment = $("#getcomment")
+  LoadComment = () => {
+    var settings1 = {
+      async: true,
+      url: "/api/getComment/" + last_segment,
+      method: "GET",
+      headers: {
+        "cache-control": "no-cache",
+      },
+    };
+    $.ajax(settings1).done(function (response1) {
+      console.log(response1);
+      let strc = '';
+      response1.map(function (item) {
+        console.log(item+"--------------");
+        
+        strc += `<li>
+        <ul class="rating d-flex">
+														<li>${item.username}&nbsp</li>
+														<li>(${item.created}):&nbsp</li>
+														<li>${item.content}</li>
+													</ul>
+        </li>
+                `
+          
+
+      })
+      $comment.html(strc);
+      LoadComment();
+    })
+      .fail(function (err) {
+        console.log(err);
+
+      })
+  }
+  LoadComment();
+
+  $("#formcomment").submit((e) => {
+    e.preventDefault();
+    let userId = a;
+    let productId = last_segment;
+    let content = $("#content").val();
+
+    if (content == '') {
+      alert('vui long nhap noi dung');
+    }
+    else {
+      let data = {
+        userId: userId,
+        productId: productId,
+        content: content,
+      };
+      console.log(JSON.stringify(data));
+      let settings = {
+        async: true,
+        crossDomain: true,
+        url: "http://localhost:9000/api/addComment",
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          "cache-control": "no-cache",
+        },
+
+        processData: false,
+        data: JSON.stringify(data),
+      };
+      $.ajax(settings).done(function (response) {
+        try {
+          if (response.message == 'them thanh cong') {
+            alert(response.message);
+          } else {
+            alert(response.message)
+          }
+        } catch (error) {
+          alert('Error network!!!')
+          console.log(error);
+        }
+      })
+        .fail(function (err) {
+          console.log(err);
+
+        })
+    }
+
+  });
 }
-var full_url = document.URL; // Get current url
-var url_array = full_url.split('/') // Split the string into an array with / as separator
-var last_segment = url_array[url_array.length - 1];
-// GET
-// let $getproduct1 = $("#singlePoduct1");
-// let $getproduct2 = $("#singlePoduct2");
-// const LoadSingleProduct = () => {
-//     var settings = {
-//         async: true,
-//         url: "/api/product/" + last_segment,
-//         method: "GET",
-//         headers: {
-//             "cache-control": "no-cache",
-//         },
-//     };
-
-//     return $.ajax(settings).done(function (response) {
-//         //console.log(response);
-//         let str1 = "";
-//         let str2 = "";
-//         response.map(function (item) {
-//             str1 += `<div class="fotorama wn__fotorama__action" data-nav="thumbs">
-//             <a href="1.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="2.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="3.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="4.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="5.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="6.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="7.jpg"><img src="${item.image}" alt=""></a>
-//             <a href="8.jpg"><img src="${item.image}" alt=""></a>
-//       </div>
-//       <span id="productid"  style="display: none;" data-bind='value: productId'>${item.productId}</span>
-//                    `;
-//             str2 += `<h1>${item.productName}</h1>
-//             <div class="product-reviews-summary d-flex">
-//                 <ul class="rating-summary d-flex">
-//                     <li><i class="zmdi zmdi-star-outline"></i></li>
-//                     <li><i class="zmdi zmdi-star-outline"></i></li>
-//                     <li><i class="zmdi zmdi-star-outline"></i></li>
-//                     <li class="off"><i class="zmdi zmdi-star-outline"></i></li>
-//                     <li class="off"><i class="zmdi zmdi-star-outline"></i></li>
-//                 </ul>
-//             </div>
-//             <div class="price-box">
-//                 <span id="price">${item.price}</span>
-//             </div>
-//             <div class="product__overview">
-//                 <p>${item.detail}</p>
-
-//             </div>`
-//         });
-//         $getproduct1.html(str1);
-//         $getproduct2.html(str2);
-//     });
-// };
-//LoadSingleProduct();
 
 
 const LoadSingleProduct = () => {
@@ -207,7 +248,7 @@ LoadSingleProduct().done(data => {
     var a = userLogin.userId;
     console.log(a);
 
-    
+
     self.addToCart = function (product, event) {
       var qt = $("#qty").val();
       //id.toLocaleString();
@@ -224,7 +265,6 @@ LoadSingleProduct().done(data => {
           success: function (response) {
             alert(response);
             console.log(response);
-            (response);
             LoadSumItem();
           },
           error: function () {
@@ -248,7 +288,7 @@ LoadSingleProduct().done(data => {
 
 })
 
-    //// ======================================//
+//// ======================================//
 let $getdetail = $("#nav-details");
 const LoaddetailProduct = () => {
   var full_url = document.URL; // Get current url
@@ -269,8 +309,8 @@ const LoaddetailProduct = () => {
     let str3 = "";
     response.map(function (item) {
       //document.getElementById("selected").value = $(item.catalogId);
-      str3 += 
-      `<p>${item.detail}</p>`;
+      str3 +=
+        `<p>${item.detail}</p>`;
     });
     $getdetail.html(str3);
   });

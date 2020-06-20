@@ -109,27 +109,6 @@ window.onload = function () {
     }
     LoadSumItem();
 }
-// let $sumitem = $('#sumItem')
-// LoadSumItem = () => {
-//     var settings = {
-//         async: true,
-//         url: "/api/getDetail/"+a,
-//         method: "GET",
-//         headers: {
-//             "cache-control": "no-cache",
-//         },
-//     };
-//     $.ajax(settings).done(function (response) {
-//         console.log(response);
-//         let str = '';
-//         response.map(function (item) {
-//             str +=
-//                 `<span class="product_qun">${item}</span>`;
-//         })
-//         $sumitem.html(str)
-//     });
-// }
-// LoadSumItem();
 var full_url = document.URL; // Get current url
     var url_array = full_url.split('/') // Split the string into an array with / as separator
     var last_segment = url_array[url_array.length - 1];

@@ -12,6 +12,7 @@ var adminRoute = require("./api/routes/admin.route");
 var orderRoute = require("./api/routes/order.route");
 var orderDetailRoute = require("./api/routes/orderDetail.route")
 var payRoute = require("./api/routes/pay.route")
+var commentRoute = require("./api/routes/comment.route")
 app.use("/assets", express.static(__dirname+"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -47,6 +48,8 @@ app.use(orderRoute);
 app.use(orderDetailRoute);
 //payment
 app.use(payRoute)
+//comment
+app.use(commentRoute)
 // chỉnh port
 const post = process.env.PORT || 9000;
 app.listen(post, function () {

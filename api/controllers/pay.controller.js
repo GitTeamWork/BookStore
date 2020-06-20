@@ -4,33 +4,48 @@ const { json } = require('body-parser');
 
 
 var userID;
-//var arr = [];
-// function getItem(req, res, userId) {
-//     var sql = `SELECT productName, amount
-//     FROM ORDERDETAIL INNER JOIN PRODUCT ON PRODUCT.productId = ORDERDETAIL.productId 
-//     WHERE orderId = (SELECT orderId  FROM dbo.[Order] WHERE userId = ${userId} AND status = 0)`;
+function updateAdress(req, res, id) {
+    try {
+        let userid = req.params.id;
+        let { name, city, distric, street, apartment, phone } = req.body;
+        let address = name+"- "+apartment+", "+street+", "+distric+", "+city+"- "+phone
+        var sql = ` UPDATE [Order] SET address = N'${address}' WHERE userId = ${userid} AND status = 0`;
+        console.log(sql);
 
-//     return db.executeSql(sql, function (data, err) {
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                res.json({ message: "Luu dia chi thanh cong" });
+            }
+            else {
+                res.json({ message: "Luu dia chi that bai" });
+            }
+        })
+    } catch (error) {
+        res.json(error);
+    }
+}
+function COD(req, res, id) {
+    try {
+        let userid = req.params.id;
+        var sql = ` EXEC dbo.SP_INSERT_COD @userid = ${userid}     -- int`;
+        console.log(sql);
 
-//         if (err) {
-//             res.json(err);
-//         } else {
-//             arr = (data.recordset);
-//             console.log((arr));
-//             console.log(typeof (arr));
-//             return arr;
-//             //console.log("--------------------------"+items);
-//         }
-
-//     });
-
-
-//     //return arr;
-// }
-
+        db.executeSql(sql, (result) => {
+            let { rowsAffected } = result;
+            if (rowsAffected[0] == 1) {
+                return res.render("user/success");
+            }
+            else {
+                res.json({ message: "Dat hang that bai" });
+            }
+        })
+    } catch (error) {
+        res.json(error);
+    }
+}
 function pay(req, res, userid) {
     userID=userid
-    console.log(userID);
     
     var sql = `SELECT productName name, OrderDetail.productId sku, price, currency='USD', quantity
     FROM ORDERDETAIL INNER JOIN PRODUCT ON PRODUCT.productId = ORDERDETAIL.productId 
@@ -149,12 +164,10 @@ function success(req, res) {
 
         }
     })
-
-
-
-
 }
 module.exports = {
     pay: pay,
     success: success,
+    updateAdress: updateAdress,
+    COD: COD
 }

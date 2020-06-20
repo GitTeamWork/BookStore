@@ -300,7 +300,7 @@
 										</div>
 										<div class="price-box">
 											<span id="price" data-bind="text:$data.price"></span>
-											<span class="old_prize" data-bind="text:$data.oldPrice" style="color: red;"></span>
+											<strike class="old_prize" data-bind="text:$data.oldPrice" ></strike>
 										</div>
 										<!-- <div class="product__overview">
 											<p data-bind="text:$data.detail"></p>
@@ -377,21 +377,17 @@
 								<div class="pro__tab_label tab-pane fade" id="nav-review" role="tabpanel">
 									<div class="review__attribute">
 										<h1>Customer Reviews</h1>
-										<h2>Hastech</h2>
+										
 										<div class="review__ratings__type d-flex">
-											<div class="review-ratings">
-												<div class="rating-summary d-flex">
-													<span>Quality</span>
-													<ul class="rating d-flex">
-														<li><i class="zmdi zmdi-star"></i></li>
-														<li><i class="zmdi zmdi-star"></i></li>
-														<li><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
+											<div class="review-ratings" >
+												<div class="rating-summary d-flex" >
+													<ul >
+														<!-- <li><a href="shop-grid.html" id="ShowPublisher"></a></li> -->
+														<li id="getcomment"></li>
 													</ul>
 												</div>
 
-												<div class="rating-summary d-flex">
+												<!-- <div class="rating-summary d-flex">
 													<span>Price</span>
 													<ul class="rating d-flex">
 														<li><i class="zmdi zmdi-star"></i></li>
@@ -410,68 +406,28 @@
 														<li class="off"><i class="zmdi zmdi-star"></i></li>
 														<li class="off"><i class="zmdi zmdi-star"></i></li>
 													</ul>
-												</div>
+												</div> -->
 											</div>
-											<div class="review-content">
+											<!-- <div class="review-content">
 												<p>Hastech</p>
 												<p>Review by Hastech</p>
 												<p>Posted on 11/6/2018</p>
-											</div>
+											</div> -->
 										</div>
 									</div>
 									<div class="review-fieldset">
-										<h2>You're reviewing:</h2>
-										<h3>Chaz Kangeroo Hoodie</h3>
-										<div class="review-field-ratings">
-											<div class="product-review-table">
-												<div class="review-field-rating d-flex">
-													<span>Quality</span>
-													<ul class="rating d-flex">
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-													</ul>
-												</div>
-												<div class="review-field-rating d-flex">
-													<span>Price</span>
-													<ul class="rating d-flex">
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-													</ul>
-												</div>
-												<div class="review-field-rating d-flex">
-													<span>Value</span>
-													<ul class="rating d-flex">
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-														<li class="off"><i class="zmdi zmdi-star"></i></li>
-													</ul>
-												</div>
-											</div>
-										</div>
+										
 										<div class="review_form_field">
-											<div class="input__box">
-												<span>Nickname</span>
-												<input id="nickname_field" type="text" name="nickname">
-											</div>
-											<div class="input__box">
-												<span>Summary</span>
-												<input id="summery_field" type="text" name="summery">
-											</div>
-											<div class="input__box">
-												<span>Review</span>
-												<textarea name="review"></textarea>
-											</div>
-											<div class="review-form-actions">
-												<button>Submit Review</button>
-											</div>
+											<form id="formcomment">
+												<div class="input__box">
+													<span>Review</span>
+													<textarea name="review" id="content"></textarea>
+												</div>
+												<div class="review-form-actions">
+													<button>Submit Review</button>
+												</div>
+											</form>
+											
 										</div>
 									</div>
 								</div>
@@ -1066,14 +1022,14 @@
 									</div>
 								</div>
 							</aside>
-							<aside class="wedget__categories poroduct--compare">
+							<!-- <aside class="wedget__categories poroduct--compare">
 								<h3 class="wedget__title">Compare</h3>
 								<ul>
 									<li><a href="#">x</a><a href="#">Condimentum posuere</a></li>
 									<li><a href="#">x</a><a href="#">Condimentum posuere</a></li>
 									<li><a href="#">x</a><a href="#">Dignissim venenatis</a></li>
 								</ul>
-							</aside>
+							</aside> -->
 							<aside class="wedget__categories poroduct--tag">
 								<h3 class="wedget__title">Product Tags</h3>
 								<ul>
@@ -1092,13 +1048,13 @@
 									<li><a href="#">Hoodies</a></li>
 								</ul>
 							</aside>
-							<aside class="wedget__categories sidebar--banner">
+							<!-- <aside class="wedget__categories sidebar--banner">
 								<img src="assets/template/images/others/banner_left.jpg" alt="banner images">
 								<div class="text">
 									<h2>new products</h2>
 									<h6>save up to <br> <strong>40%</strong>off</h6>
 								</div>
-							</aside>
+							</aside> -->
 						</div>
 					</div>
 				</div>
